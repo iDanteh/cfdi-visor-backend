@@ -1,0 +1,29 @@
+2026-03-26 11:21:46 [error]: Error: secretOrPrivateKey must have a value
+    at module.exports [as sign] (D:\KORE - Claude\cfdi-comparator-api\node_modules\jsonwebtoken\sign.js:111:20)
+    at D:\KORE - Claude\cfdi-comparator-api\src\routes\auth.js:29:23
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-03-26 11:22:12 [error]: Error: secretOrPrivateKey must have a value
+    at module.exports [as sign] (D:\KORE - Claude\cfdi-comparator-api\node_modules\jsonwebtoken\sign.js:111:20)
+    at D:\KORE - Claude\cfdi-comparator-api\src\routes\auth.js:29:23
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-03-26 11:40:18 [error]: Error creando cliente SOAP SAT:
+2026-03-26 11:40:18 [error]: Error consultando SAT para UUID 559C5294-8C7B-4ABF-8435-C35A56E426E2:
+2026-03-26 11:42:19 [error]: Error creando cliente SOAP SAT:
+2026-03-26 11:42:19 [error]: Error consultando SAT para UUID 559C5294-8C7B-4ABF-8435-C35A56E426E2:
+2026-03-26 11:44:54 [error]: [SAT] No se pudo parsear XML de respuesta para 559C5294-8C7B-4ABF-8435-C35A56E426E2
+2026-03-26 11:46:10 [error]: [SAT] Error de conexión para 559C5294-8C7B-4ABF-8435-C35A56E426E2: HTTP 500
+2026-03-26 11:57:41 [error]: ValidationError: CFDI validation failed: satStatus: `Expresión Inválida` is not a valid enum value for path `satStatus`.
+    at Document.invalidate (D:\KORE - Claude\cfdi-comparator-api\node_modules\mongoose\lib\document.js:3381:32)
+    at D:\KORE - Claude\cfdi-comparator-api\node_modules\mongoose\lib\document.js:3142:17
+    at D:\KORE - Claude\cfdi-comparator-api\node_modules\mongoose\lib\schemaType.js:1446:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:77:11)
+2026-03-26 12:23:07 [error]: ValidationError: Discrepancy validation failed: severity: `warning` is not a valid enum value for path `severity`.
+    at Document.invalidate (D:\KORE - Claude\cfdi-comparator-api\node_modules\mongoose\lib\document.js:3381:32)
+    at D:\KORE - Claude\cfdi-comparator-api\node_modules\mongoose\lib\document.js:3142:17
+    at D:\KORE - Claude\cfdi-comparator-api\node_modules\mongoose\lib\schemaType.js:1446:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:77:11)
+2026-03-26 12:25:56 [error]: ValidationError: Discrepancy validation failed: severity: `warning` is not a valid enum value for path `severity`.
+    at Document.invalidate (D:\KORE - Claude\cfdi-comparator-api\node_modules\mongoose\lib\document.js:3381:32)
+    at D:\KORE - Claude\cfdi-comparator-api\node_modules\mongoose\lib\document.js:3142:17
+    at D:\KORE - Claude\cfdi-comparator-api\node_modules\mongoose\lib\schemaType.js:1446:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:77:11)

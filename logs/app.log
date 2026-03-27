@@ -1,0 +1,513 @@
+2026-03-26 10:50:26 [info]: MongoDB conectado
+2026-03-26 10:50:26 [info]: [SatSyncJob] Job registrado: verificación SAT diaria a las 2:00 AM CST
+2026-03-26 10:50:26 [info]: Servidor corriendo en puerto 3000 [undefined]
+2026-03-26 11:18:03 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:18:03 +0000] "POST /api/auth/login HTTP/1.1" 401 35 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:19:07 [info]: MongoDB conectado
+2026-03-26 11:19:07 [info]: [SatSyncJob] Job registrado: verificación SAT diaria a las 2:00 AM CST
+2026-03-26 11:19:07 [info]: Servidor corriendo en puerto 3000 [undefined]
+2026-03-26 11:19:43 [info]: MongoDB conectado
+2026-03-26 11:19:43 [info]: [SatSyncJob] Job registrado: verificación SAT diaria a las 2:00 AM CST
+2026-03-26 11:19:43 [info]: Servidor corriendo en puerto 3000 [undefined]
+2026-03-26 11:20:52 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:20:52 +0000] "POST /api/auth/login HTTP/1.1" 401 35 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:20:57 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:20:57 +0000] "POST /api/auth/login HTTP/1.1" 401 35 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:20:58 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:20:58 +0000] "POST /api/auth/login HTTP/1.1" 401 35 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:21:14 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:21:14 +0000] "POST /api/auth/login HTTP/1.1" 401 35 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:21:15 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:21:15 +0000] "POST /api/auth/login HTTP/1.1" 401 35 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:21:22 [info]: MongoDB conectado
+2026-03-26 11:21:22 [info]: [SatSyncJob] Job registrado: verificación SAT diaria a las 2:00 AM CST
+2026-03-26 11:21:22 [info]: Servidor corriendo en puerto 3000 [undefined]
+2026-03-26 11:21:46 [error]: Error: secretOrPrivateKey must have a value
+    at module.exports [as sign] (D:\KORE - Claude\cfdi-comparator-api\node_modules\jsonwebtoken\sign.js:111:20)
+    at D:\KORE - Claude\cfdi-comparator-api\src\routes\auth.js:29:23
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-03-26 11:21:46 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:21:46 +0000] "POST /api/auth/login HTTP/1.1" 500 48 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:22:12 [error]: Error: secretOrPrivateKey must have a value
+    at module.exports [as sign] (D:\KORE - Claude\cfdi-comparator-api\node_modules\jsonwebtoken\sign.js:111:20)
+    at D:\KORE - Claude\cfdi-comparator-api\src\routes\auth.js:29:23
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-03-26 11:22:12 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:22:12 +0000] "POST /api/auth/login HTTP/1.1" 500 48 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:23:38 [info]: MongoDB conectado
+2026-03-26 11:23:38 [info]: [SatSyncJob] Job registrado: verificación SAT diaria a las 2:00 AM CST
+2026-03-26 11:23:38 [info]: Servidor corriendo en puerto 3000 [development]
+2026-03-26 11:23:50 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:23:50 +0000] "POST /api/auth/login HTTP/1.1" 200 309 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:23:50 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:23:50 +0000] "GET /api/reports/dashboard HTTP/1.1" 200 140 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:23:54 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:23:54 +0000] "POST /api/comparisons/batch HTTP/1.1" 200 54 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:23:57 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:23:57 +0000] "GET /api/reports/dashboard HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:23:57 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:23:57 +0000] "GET /api/reports/dashboard HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:23:58 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:23:58 +0000] "GET /api/reports/dashboard HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:30:08 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:30:08 +0000] "GET /api/cfdis?source=ERP&page=1&limit=20 HTTP/1.1" 200 66 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:30:19 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:30:19 +0000] "GET /api/cfdis?page=1&limit=20 HTTP/1.1" 200 66 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:30:20 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:30:20 +0000] "GET /api/cfdis?source=ERP&page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:30:42 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:30:42 +0000] "GET /api/cfdis?source=ERP&page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:30:42 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:30:42 +0000] "GET /api/cfdis?source=ERP&page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:30:50 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:30:50 +0000] "GET /api/cfdis?source=ERP&page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:30:53 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:30:53 +0000] "GET /api/cfdis?source=ERP&page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:31:05 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:31:05 +0000] "GET /api/cfdis?page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:31:05 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:31:05 +0000] "GET /api/cfdis?source=ERP&page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:34:58 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:34:58 +0000] "GET /api/cfdis?source=ERP&page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:35:05 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:35:05 +0000] "GET /api/cfdis?source=ERP&page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:35:18 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:35:18 +0000] "GET /api/cfdis?source=ERP&page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:35:34 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:35:34 +0000] "GET /api/reports/dashboard HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:35:41 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:35:41 +0000] "GET /api/comparisons?page=1&limit=20 HTTP/1.1" 200 56 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:35:42 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:35:42 +0000] "GET /api/discrepancies?status=open&page=1&limit=20 HTTP/1.1" 200 56 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:35:42 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:35:42 +0000] "GET /api/discrepancies/summary HTTP/1.1" 200 43 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:35:46 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:35:46 +0000] "GET /api/cfdis?source=ERP&page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:35:47 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:35:47 +0000] "GET /api/reports/dashboard HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:35:48 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:35:48 +0000] "GET /api/cfdis?source=ERP&page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:37:26 [info]: MongoDB conectado
+2026-03-26 11:37:26 [info]: [SatSyncJob] Job registrado: verificación SAT diaria a las 2:00 AM CST
+2026-03-26 11:37:26 [info]: Servidor corriendo en puerto 3000 [development]
+2026-03-26 11:38:20 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:38:20 +0000] "GET /api/cfdis?source=ERP&page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:38:29 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:38:29 +0000] "GET /api/cfdis?source=ERP&page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:38:45 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:38:45 +0000] "GET /api/reports/dashboard HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:38:45 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:38:45 +0000] "GET /api/cfdis?source=ERP&page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:38:49 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:38:49 +0000] "GET /api/comparisons?page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:38:50 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:38:50 +0000] "GET /api/cfdis?source=ERP&page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:39:24 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:39:24 +0000] "GET /api/cfdis?source=ERP&page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:39:32 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:39:32 +0000] "POST /api/cfdis/upload HTTP/1.1" 207 218 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:39:32 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:39:32 +0000] "GET /api/cfdis?source=ERP&page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:39:39 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:39:39 +0000] "POST /api/cfdis/upload HTTP/1.1" 207 206 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:39:39 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:39:39 +0000] "GET /api/cfdis?source=ERP&page=1&limit=20 HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:39:41 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:39:41 +0000] "GET /api/cfdis?source=ERP&page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:39:55 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:39:55 +0000] "POST /api/cfdis/upload HTTP/1.1" 207 218 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:39:55 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:39:55 +0000] "GET /api/cfdis?source=SAT&page=1&limit=20 HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:39:58 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:39:58 +0000] "GET /api/reports/dashboard HTTP/1.1" 200 184 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:40:05 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:40:05 +0000] "GET /api/comparisons?page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:40:06 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:40:06 +0000] "GET /api/discrepancies?status=open&page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:40:06 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:40:06 +0000] "GET /api/discrepancies/summary HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:40:07 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:40:07 +0000] "GET /api/comparisons?page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:40:12 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:40:12 +0000] "GET /api/discrepancies?status=open&page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:40:12 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:40:12 +0000] "GET /api/discrepancies/summary HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:40:14 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:40:14 +0000] "GET /api/reports/dashboard HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:40:15 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:40:15 +0000] "GET /api/cfdis?source=ERP&page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:40:18 [error]: Error creando cliente SOAP SAT:
+2026-03-26 11:40:18 [error]: Error consultando SAT para UUID 559C5294-8C7B-4ABF-8435-C35A56E426E2:
+2026-03-26 11:40:18 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:40:18 +0000] "POST /api/cfdis/69c56f5b0364431136f92c10/compare HTTP/1.1" 200 418 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:41:16 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:41:16 +0000] "POST /api/cfdis/upload HTTP/1.1" 207 218 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:41:16 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:41:16 +0000] "GET /api/cfdis?source=ERP&page=1&limit=20 HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:41:23 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:41:23 +0000] "GET /api/cfdis?source=ERP&page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:41:32 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:41:32 +0000] "POST /api/cfdis/upload HTTP/1.1" 207 218 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:41:32 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:41:32 +0000] "GET /api/cfdis?source=SAT&page=1&limit=20 HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:42:16 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:42:16 +0000] "GET /api/reports/dashboard HTTP/1.1" 200 212 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:42:19 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:42:19 +0000] "POST /api/comparisons/batch HTTP/1.1" 202 83 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:42:19 [error]: Error creando cliente SOAP SAT:
+2026-03-26 11:42:19 [error]: Error consultando SAT para UUID 559C5294-8C7B-4ABF-8435-C35A56E426E2:
+2026-03-26 11:42:20 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:42:20 +0000] "GET /api/reports/dashboard HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:42:33 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:42:33 +0000] "GET /api/cfdis?source=ERP&page=1&limit=20 HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:44:41 [info]: MongoDB conectado
+2026-03-26 11:44:41 [info]: [SatSyncJob] Job registrado: verificación SAT diaria a las 2:00 AM CST
+2026-03-26 11:44:41 [info]: Servidor corriendo en puerto 3000 [development]
+2026-03-26 11:44:54 [error]: [SAT] No se pudo parsear XML de respuesta para 559C5294-8C7B-4ABF-8435-C35A56E426E2
+2026-03-26 11:46:01 [info]: MongoDB conectado
+2026-03-26 11:46:01 [info]: [SatSyncJob] Job registrado: verificación SAT diaria a las 2:00 AM CST
+2026-03-26 11:46:01 [info]: Servidor corriendo en puerto 3000 [development]
+2026-03-26 11:46:10 [error]: [SAT] Error de conexión para 559C5294-8C7B-4ABF-8435-C35A56E426E2: HTTP 500
+2026-03-26 11:46:41 [info]: MongoDB conectado
+2026-03-26 11:46:41 [info]: [SatSyncJob] Job registrado: verificación SAT diaria a las 2:00 AM CST
+2026-03-26 11:46:41 [info]: Servidor corriendo en puerto 3000 [development]
+2026-03-26 11:46:49 [info]: [SAT] 559C5294-8C7B-4ABF-8435-C35A56E426E2 → No Encontrado (N - 601: La expresión impresa proporcionada no es válida.)
+2026-03-26 11:47:27 [info]: MongoDB conectado
+2026-03-26 11:47:27 [info]: [SatSyncJob] Job registrado: verificación SAT diaria a las 2:00 AM CST
+2026-03-26 11:47:27 [info]: Servidor corriendo en puerto 3000 [development]
+2026-03-26 11:47:45 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:47:45 +0000] "POST /api/cfdis/upload HTTP/1.1" 207 218 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:47:45 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:47:45 +0000] "GET /api/cfdis?source=SAT&page=1&limit=20 HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:47:58 [info]: [SAT] 8F9803DE-6802-4708-B008-654462814C8C → No Encontrado (N - 601: La expresión impresa proporcionada no es válida.)
+2026-03-26 11:47:58 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:47:58 +0000] "POST /api/cfdis/69c56f540364431136f92c0f/compare HTTP/1.1" 200 423 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:48:29 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:48:29 +0000] "GET /api/comparisons?page=1&limit=20 HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:48:37 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:48:37 +0000] "GET /api/discrepancies?status=open&page=1&limit=20 HTTP/1.1" 200 647 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:48:37 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:48:37 +0000] "GET /api/discrepancies/summary HTTP/1.1" 200 133 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:48:47 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:48:47 +0000] "GET /api/cfdis?source=ERP&page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:48:49 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:48:49 +0000] "GET /api/reports/dashboard HTTP/1.1" 200 801 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:50:34 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:50:34 +0000] "GET /api/cfdis?source=ERP&page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:50:40 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:50:40 +0000] "GET /api/cfdis?source=ERP&page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:50:44 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:50:44 +0000] "GET /api/comparisons?page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:51:02 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:51:02 +0000] "GET /api/comparisons?page=1&limit=20 HTTP/1.1" 200 854 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:51:04 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:51:04 +0000] "GET /api/discrepancies/summary HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:51:04 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:51:04 +0000] "GET /api/discrepancies?status=open&page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:51:05 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:51:05 +0000] "GET /api/comparisons?page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:51:15 [info]: [SAT] 559C5294-8C7B-4ABF-8435-C35A56E426E2 → No Encontrado (N - 601: La expresión impresa proporcionada no es válida.)
+2026-03-26 11:52:49 [info]: MongoDB conectado
+2026-03-26 11:52:49 [info]: [SatSyncJob] Job registrado: verificación SAT diaria a las 2:00 AM CST
+2026-03-26 11:52:49 [info]: Servidor corriendo en puerto 3000 [development]
+2026-03-26 11:52:58 [info]: MongoDB conectado
+2026-03-26 11:52:58 [info]: [SatSyncJob] Job registrado: verificación SAT diaria a las 2:00 AM CST
+2026-03-26 11:52:59 [info]: Servidor corriendo en puerto 3000 [development]
+2026-03-26 11:53:08 [info]: MongoDB conectado
+2026-03-26 11:53:08 [info]: [SatSyncJob] Job registrado: verificación SAT diaria a las 2:00 AM CST
+2026-03-26 11:53:08 [info]: Servidor corriendo en puerto 3000 [development]
+2026-03-26 11:53:35 [info]: [SAT] 559C5294-8C7B-4ABF-8435-C35A56E426E2 → Expresión Inválida (N - 601: La expresión impresa proporcionada no es válida.)
+2026-03-26 11:54:49 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:54:49 +0000] "GET /api/discrepancies?status=open&page=1&limit=20 HTTP/1.1" 401 33 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:54:49 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:54:49 +0000] "GET /api/discrepancies/summary HTTP/1.1" 401 33 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:54:49 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:54:49 +0000] "GET /api/discrepancies?status=open&page=1&limit=20 HTTP/1.1" 401 45 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:54:49 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:54:49 +0000] "GET /api/discrepancies/summary HTTP/1.1" 401 45 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:55:23 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:55:23 +0000] "POST /api/auth/login HTTP/1.1" 401 35 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:55:50 [info]: MongoDB conectado
+2026-03-26 11:55:50 [info]: [SatSyncJob] Job registrado: verificación SAT diaria a las 2:00 AM CST
+2026-03-26 11:55:50 [info]: Servidor corriendo en puerto 3000 [development]
+2026-03-26 11:55:54 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:55:54 +0000] "POST /api/auth/login HTTP/1.1" 200 309 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:55:54 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:55:54 +0000] "GET /api/reports/dashboard HTTP/1.1" 200 140 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:55:58 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:55:58 +0000] "GET /api/cfdis?source=ERP&page=1&limit=20 HTTP/1.1" 200 66 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:55:59 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:55:59 +0000] "GET /api/comparisons?page=1&limit=20 HTTP/1.1" 200 56 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:56:00 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:56:00 +0000] "GET /api/discrepancies?status=open&page=1&limit=20 HTTP/1.1" 200 56 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:56:00 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:56:00 +0000] "GET /api/discrepancies/summary HTTP/1.1" 200 43 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:56:01 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:56:01 +0000] "GET /api/cfdis?source=ERP&page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:56:20 [info]: MongoDB conectado
+2026-03-26 11:56:21 [info]: [SatSyncJob] Job registrado: verificación SAT diaria a las 2:00 AM CST
+2026-03-26 11:56:21 [info]: Servidor corriendo en puerto 3000 [development]
+2026-03-26 11:57:07 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:57:07 +0000] "POST /api/cfdis/upload HTTP/1.1" 207 218 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:57:07 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:57:07 +0000] "GET /api/cfdis?source=ERP&page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:57:25 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:57:25 +0000] "GET /api/cfdis?source=ERP&page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:57:36 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:57:36 +0000] "POST /api/cfdis/upload HTTP/1.1" 207 218 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:57:36 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:57:36 +0000] "GET /api/cfdis?source=SAT&page=1&limit=20 HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:57:41 [info]: [SAT] 8F9803DE-6802-4708-B008-654462814C8C → Expresión Inválida (N - 601: La expresión impresa proporcionada no es válida.)
+2026-03-26 11:57:41 [error]: ValidationError: CFDI validation failed: satStatus: `Expresión Inválida` is not a valid enum value for path `satStatus`.
+    at Document.invalidate (D:\KORE - Claude\cfdi-comparator-api\node_modules\mongoose\lib\document.js:3381:32)
+    at D:\KORE - Claude\cfdi-comparator-api\node_modules\mongoose\lib\document.js:3142:17
+    at D:\KORE - Claude\cfdi-comparator-api\node_modules\mongoose\lib\schemaType.js:1446:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:77:11)
+2026-03-26 11:57:41 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:57:41 +0000] "POST /api/cfdis/69c573730364431136f92c13/compare HTTP/1.1" 400 148 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:58:30 [info]: MongoDB conectado
+2026-03-26 11:58:30 [info]: [SatSyncJob] Job registrado: verificación SAT diaria a las 2:00 AM CST
+2026-03-26 11:58:30 [info]: Servidor corriendo en puerto 3000 [development]
+2026-03-26 11:58:42 [info]: [SAT] 8F9803DE-6802-4708-B008-654462814C8C → Expresión Inválida (N - 601: La expresión impresa proporcionada no es válida.)
+2026-03-26 11:58:42 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:58:42 +0000] "POST /api/cfdis/69c573730364431136f92c13/compare HTTP/1.1" 200 457 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:59:10 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:59:10 +0000] "POST /api/cfdis/upload HTTP/1.1" 207 206 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:59:10 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:59:10 +0000] "GET /api/cfdis?source=ERP&page=1&limit=20 HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:59:13 [info]: [SAT] 559C5294-8C7B-4ABF-8435-C35A56E426E2 → Expresión Inválida (N - 601: La expresión impresa proporcionada no es válida.)
+2026-03-26 11:59:13 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:59:13 +0000] "POST /api/cfdis/69c573ee0364431136f92c15/compare HTTP/1.1" 200 418 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:59:16 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:59:16 +0000] "GET /api/comparisons?page=1&limit=20 HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 11:59:18 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:17:59:18 +0000] "GET /api/cfdis?source=ERP&page=1&limit=20 HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:00:57 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:00:57 +0000] "GET /api/reports/dashboard HTTP/1.1" 200 227 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:01:05 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:01:05 +0000] "POST /api/comparisons/batch HTTP/1.1" 202 83 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:01:06 [info]: [SAT] 559C5294-8C7B-4ABF-8435-C35A56E426E2 → Expresión Inválida (N - 601: La expresión impresa proporcionada no es válida.)
+2026-03-26 12:01:13 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:01:13 +0000] "GET /api/cfdis?source=ERP&page=1&limit=20 HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:01:18 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:01:18 +0000] "GET /api/cfdis?source=ERP&page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:01:22 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:01:22 +0000] "GET /api/discrepancies?status=open&page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:01:22 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:01:22 +0000] "GET /api/discrepancies/summary HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:01:24 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:01:24 +0000] "GET /api/comparisons?page=1&limit=20 HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:01:36 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:01:36 +0000] "GET /api/comparisons?page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:01:39 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:01:39 +0000] "GET /api/comparisons?page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:01:42 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:01:42 +0000] "GET /api/comparisons?page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:02:16 [info]: MongoDB conectado
+2026-03-26 12:02:16 [info]: [SatSyncJob] Job registrado: verificación SAT diaria a las 2:00 AM CST
+2026-03-26 12:02:16 [info]: Servidor corriendo en puerto 3000 [development]
+2026-03-26 12:02:33 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:02:33 +0000] "GET /api/cfdis?page=1&limit=20 HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:02:44 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:02:44 +0000] "GET /api/cfdis/69c573ee0364431136f92c15/xml HTTP/1.1" 401 45 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:02:44 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:02:44 +0000] "GET /favicon.ico HTTP/1.1" 404 30 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:02:48 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:02:48 +0000] "GET /api/cfdis/69c573ee0364431136f92c15/xml HTTP/1.1" 401 45 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:02:48 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:02:48 +0000] "GET /favicon.ico HTTP/1.1" 404 30 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:07:43 [info]: MongoDB conectado
+2026-03-26 12:07:43 [info]: [SatSyncJob] Job registrado: verificación SAT diaria a las 2:00 AM CST
+2026-03-26 12:07:43 [info]: Servidor corriendo en puerto 3000 [development]
+2026-03-26 12:07:48 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:07:48 +0000] "GET /api/reports/dashboard HTTP/1.1" 200 269 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:07:59 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:07:59 +0000] "GET /api/comparisons?page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:08:00 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:08:00 +0000] "GET /api/cfdis?page=1&limit=20 HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:08:45 [info]: [SAT] AAAAAAAA-1111-2222-3333-BBBBBBBBBBBB → No Encontrado (N - 602: Comprobante no encontrado.)
+2026-03-26 12:08:45 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:08:45 +0000] "POST /api/cfdis/69c575e5ae4b03a17f891c6d/compare HTTP/1.1" 200 423 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:08:50 [info]: [SAT] AAAAAAAA-1111-2222-3333-BBBBBBBBBBBB → No Encontrado (N - 602: Comprobante no encontrado.)
+2026-03-26 12:08:50 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:08:50 +0000] "POST /api/cfdis/69c575e5ae4b03a17f891c6f/compare HTTP/1.1" 200 423 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:09:22 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:09:22 +0000] "GET /api/cfdis?page=1&limit=20 HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:09:29 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:09:29 +0000] "GET /api/cfdis?page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:09:31 [info]: [SAT] AAAAAAAA-1111-2222-3333-BBBBBBBBBBBB → No Encontrado (N - 602: Comprobante no encontrado.)
+2026-03-26 12:09:31 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:09:31 +0000] "POST /api/cfdis/69c575e5ae4b03a17f891c6f/compare HTTP/1.1" 200 423 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:09:34 [info]: [SAT] AAAAAAAA-1111-2222-3333-BBBBBBBBBBBB → No Encontrado (N - 602: Comprobante no encontrado.)
+2026-03-26 12:09:34 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:09:34 +0000] "POST /api/cfdis/69c575e5ae4b03a17f891c6d/compare HTTP/1.1" 200 423 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:09:37 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:09:37 +0000] "GET /api/reports/dashboard HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:10:01 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:10:01 +0000] "GET /api/comparisons?page=1&limit=20 HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:10:04 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:10:04 +0000] "GET /api/cfdis?page=1&limit=20 HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:10:39 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:10:39 +0000] "GET /api/cfdis?page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:11:19 [info]: [SAT] AAAAAAAA-1111-2222-3333-BBBBBBBBBBBB → No Encontrado (N - 602: Comprobante no encontrado.)
+2026-03-26 12:11:19 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:11:19 +0000] "POST /api/cfdis/69c575e5ae4b03a17f891c6f/compare HTTP/1.1" 200 423 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:11:21 [info]: [SAT] AAAAAAAA-1111-2222-3333-BBBBBBBBBBBB → No Encontrado (N - 602: Comprobante no encontrado.)
+2026-03-26 12:11:21 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:11:21 +0000] "POST /api/cfdis/69c575e5ae4b03a17f891c6d/compare HTTP/1.1" 200 423 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:11:31 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:11:31 +0000] "GET /api/reports/dashboard HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:11:45 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:11:45 +0000] "GET /api/cfdis?page=1&limit=20 HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:11:56 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:11:56 +0000] "GET /api/cfdis/69c575e5ae4b03a17f891c6f/xml HTTP/1.1" 401 45 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:11:56 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:11:56 +0000] "GET /favicon.ico HTTP/1.1" 404 30 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:12:08 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:12:08 +0000] "GET /api/cfdis?satStatus=Vigente&page=1&limit=20 HTTP/1.1" 200 66 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:12:10 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:12:10 +0000] "GET /api/cfdis?satStatus=No%20Encontrado&page=1&limit=20 HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:12:13 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:12:13 +0000] "GET /api/cfdis?satStatus=Cancelado&page=1&limit=20 HTTP/1.1" 200 66 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:12:15 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:12:15 +0000] "GET /api/cfdis?page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:12:21 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:12:21 +0000] "GET /api/discrepancies/summary HTTP/1.1" 200 133 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:12:21 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:12:21 +0000] "GET /api/discrepancies?status=open&page=1&limit=20 HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:12:34 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:12:34 +0000] "GET /api/comparisons?page=1&limit=20 HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:12:37 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:12:37 +0000] "GET /api/comparisons?page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:12:38 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:12:38 +0000] "GET /api/cfdis?page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:15:43 [info]: MongoDB conectado
+2026-03-26 12:15:43 [info]: [SatSyncJob] Job registrado: verificación SAT diaria a las 2:00 AM CST
+2026-03-26 12:15:43 [info]: Servidor corriendo en puerto 3000 [development]
+2026-03-26 12:15:51 [info]: MongoDB conectado
+2026-03-26 12:15:51 [info]: [SatSyncJob] Job registrado: verificación SAT diaria a las 2:00 AM CST
+2026-03-26 12:15:51 [info]: Servidor corriendo en puerto 3000 [development]
+2026-03-26 12:16:22 [info]: MongoDB conectado
+2026-03-26 12:16:22 [info]: [SatSyncJob] Job registrado: verificación SAT diaria a las 2:00 AM CST
+2026-03-26 12:16:22 [info]: Servidor corriendo en puerto 3000 [development]
+2026-03-26 12:17:28 [info]: MongoDB conectado
+2026-03-26 12:17:29 [info]: [SatSyncJob] Job registrado: verificación SAT diaria a las 2:00 AM CST
+2026-03-26 12:17:29 [info]: Servidor corriendo en puerto 3000 [development]
+2026-03-26 12:19:03 [info]: MongoDB conectado
+2026-03-26 12:19:03 [info]: [SatSyncJob] Job registrado: verificación SAT diaria a las 2:00 AM CST
+2026-03-26 12:19:03 [info]: Servidor corriendo en puerto 3000 [development]
+2026-03-26 12:21:40 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:21:40 +0000] "GET /api/reports/dashboard HTTP/1.1" 401 33 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:21:40 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:21:40 +0000] "GET /api/reports/dashboard HTTP/1.1" 401 45 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:21:59 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:21:59 +0000] "POST /api/auth/login HTTP/1.1" 401 35 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:22:53 [info]: MongoDB conectado
+2026-03-26 12:22:53 [info]: [SatSyncJob] Job registrado: verificación SAT diaria a las 2:00 AM CST
+2026-03-26 12:22:53 [info]: Servidor corriendo en puerto 3000 [development]
+2026-03-26 12:22:55 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:22:55 +0000] "POST /api/auth/login HTTP/1.1" 200 309 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:22:55 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:22:55 +0000] "GET /api/reports/dashboard HTTP/1.1" 200 181 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:23:00 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:23:00 +0000] "GET /api/cfdis?page=1&limit=20 HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:23:07 [info]: [SAT] AAAAAAAA-1111-2222-3333-BBBBBBBBBBBB → No Encontrado (N - 602: Comprobante no encontrado.)
+2026-03-26 12:23:07 [error]: ValidationError: Discrepancy validation failed: severity: `warning` is not a valid enum value for path `severity`.
+    at Document.invalidate (D:\KORE - Claude\cfdi-comparator-api\node_modules\mongoose\lib\document.js:3381:32)
+    at D:\KORE - Claude\cfdi-comparator-api\node_modules\mongoose\lib\document.js:3142:17
+    at D:\KORE - Claude\cfdi-comparator-api\node_modules\mongoose\lib\schemaType.js:1446:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:77:11)
+2026-03-26 12:23:07 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:23:07 +0000] "POST /api/cfdis/69c578930364431136f92c19/compare HTTP/1.1" 400 133 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:23:32 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:23:32 +0000] "GET /api/comparisons?page=1&limit=20 HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:23:57 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:23:57 +0000] "GET /api/discrepancies/summary HTTP/1.1" 200 211 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:23:57 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:23:57 +0000] "GET /api/discrepancies?status=open&page=1&limit=20 HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:24:12 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:24:12 +0000] "PATCH /api/discrepancies/69c5798bbedd47c2f06bfcf2/status HTTP/1.1" 200 485 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:24:14 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:24:14 +0000] "PATCH /api/discrepancies/69c5798bbedd47c2f06bfcf4/status HTTP/1.1" 200 533 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:24:21 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:24:21 +0000] "GET /api/reports/dashboard HTTP/1.1" 200 850 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:24:31 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:24:31 +0000] "GET /api/cfdis?page=1&limit=20 HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:24:42 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:24:42 +0000] "POST /api/cfdis/upload HTTP/1.1" 207 218 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:24:42 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:24:42 +0000] "GET /api/cfdis?page=1&limit=20 HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:24:53 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:24:53 +0000] "GET /api/comparisons?page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:24:54 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:24:54 +0000] "GET /api/discrepancies/summary HTTP/1.1" 200 241 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:24:54 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:24:54 +0000] "GET /api/discrepancies?status=open&page=1&limit=20 HTTP/1.1" 200 715 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:24:55 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:24:55 +0000] "GET /api/reports/dashboard HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:25:02 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:25:02 +0000] "GET /api/cfdis?page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:25:06 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:25:06 +0000] "GET /api/cfdis/69c579ea0364431136f92c1b/xml HTTP/1.1" 401 45 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:25:06 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:25:06 +0000] "GET /favicon.ico HTTP/1.1" 404 30 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:25:12 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:25:12 +0000] "GET /api/cfdis?source=SAT&page=1&limit=20 HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:25:18 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:25:18 +0000] "GET /api/cfdis?page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:25:31 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:25:31 +0000] "POST /api/cfdis/upload HTTP/1.1" 207 206 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:25:31 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:25:31 +0000] "GET /api/cfdis?page=1&limit=20 HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:25:43 [info]: [SAT] 559C5294-8C7B-4ABF-8435-C35A56E426E2 → Expresión Inválida (N - 601: La expresión impresa proporcionada no es válida.)
+2026-03-26 12:25:43 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:25:43 +0000] "POST /api/cfdis/69c57a1b0364431136f92c1c/compare HTTP/1.1" 200 442 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:25:56 [info]: [SAT] AAAAAAAA-1111-2222-3333-BBBBBBBBBBBB → No Encontrado (N - 602: Comprobante no encontrado.)
+2026-03-26 12:25:56 [error]: ValidationError: Discrepancy validation failed: severity: `warning` is not a valid enum value for path `severity`.
+    at Document.invalidate (D:\KORE - Claude\cfdi-comparator-api\node_modules\mongoose\lib\document.js:3381:32)
+    at D:\KORE - Claude\cfdi-comparator-api\node_modules\mongoose\lib\document.js:3142:17
+    at D:\KORE - Claude\cfdi-comparator-api\node_modules\mongoose\lib\schemaType.js:1446:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:77:11)
+2026-03-26 12:25:56 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:25:56 +0000] "POST /api/cfdis/69c578930364431136f92c19/compare HTTP/1.1" 400 133 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:27:49 [info]: MongoDB conectado
+2026-03-26 12:27:49 [info]: [SatSyncJob] Job registrado: verificación SAT diaria a las 2:00 AM CST
+2026-03-26 12:27:49 [info]: Servidor corriendo en puerto 3000 [development]
+2026-03-26 12:28:02 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:28:02 +0000] "GET /api/cfdis?page=1&limit=20 HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:28:08 [info]: [SAT] 559C5294-8C7B-4ABF-8435-C35A56E426E2 → Expresión Inválida (N - 601: La expresión impresa proporcionada no es válida.)
+2026-03-26 12:28:08 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:28:08 +0000] "POST /api/cfdis/69c57a1b0364431136f92c1c/compare HTTP/1.1" 200 442 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:28:26 [info]: MongoDB conectado
+2026-03-26 12:28:26 [info]: [SatSyncJob] Job registrado: verificación SAT diaria a las 2:00 AM CST
+2026-03-26 12:28:26 [info]: Servidor corriendo en puerto 3000 [development]
+2026-03-26 12:28:28 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:28:28 +0000] "GET /api/comparisons?page=1&limit=20 HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:28:31 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:28:31 +0000] "GET /api/cfdis?page=1&limit=20 HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:28:37 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:28:37 +0000] "GET /api/discrepancies?status=open&page=1&limit=20 HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:28:37 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:28:37 +0000] "GET /api/discrepancies/summary HTTP/1.1" 200 241 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:28:39 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:28:39 +0000] "GET /api/comparisons?page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:28:43 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:28:43 +0000] "GET /api/reports/dashboard HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:29:01 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:29:01 +0000] "GET /api/comparisons?page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:29:03 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:29:03 +0000] "GET /api/discrepancies/summary HTTP/1.1" 200 241 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:29:03 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:29:03 +0000] "GET /api/discrepancies?status=open&page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:29:09 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:29:09 +0000] "GET /api/comparisons?page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:29:14 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:29:14 +0000] "GET /api/cfdis?page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:29:29 [info]: [SAT] AAAAAAAA-1111-2222-3333-BBBBBBBBBBBB → No Encontrado (N - 602: Comprobante no encontrado.)
+2026-03-26 12:29:29 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:29:29 +0000] "POST /api/cfdis/69c578930364431136f92c19/compare HTTP/1.1" 200 853 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:29:31 [info]: [SAT] 559C5294-8C7B-4ABF-8435-C35A56E426E2 → Expresión Inválida (N - 601: La expresión impresa proporcionada no es válida.)
+2026-03-26 12:29:31 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:29:31 +0000] "POST /api/cfdis/69c57a1b0364431136f92c1c/compare HTTP/1.1" 200 442 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:29:35 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:29:35 +0000] "GET /api/reports/dashboard HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:29:37 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:29:37 +0000] "GET /api/cfdis?page=1&limit=20 HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:29:40 [info]: [SAT] 559C5294-8C7B-4ABF-8435-C35A56E426E2 → Expresión Inválida (N - 601: La expresión impresa proporcionada no es válida.)
+2026-03-26 12:29:40 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:29:40 +0000] "POST /api/cfdis/69c57a1b0364431136f92c1c/compare HTTP/1.1" 200 442 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:29:42 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:29:42 +0000] "GET /api/reports/dashboard HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:29:43 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:29:43 +0000] "GET /api/cfdis?page=1&limit=20 HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:29:45 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:29:45 +0000] "GET /api/discrepancies/summary HTTP/1.1" 200 295 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:29:45 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:29:45 +0000] "GET /api/discrepancies?status=open&page=1&limit=20 HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:29:48 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:29:48 +0000] "GET /api/comparisons?page=1&limit=20 HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:29:51 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:29:51 +0000] "POST /api/comparisons/batch HTTP/1.1" 202 83 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:29:51 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:29:51 +0000] "GET /api/comparisons?page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:29:52 [info]: [SAT] AAAAAAAA-1111-2222-3333-BBBBBBBBBBBB → No Encontrado (N - 602: Comprobante no encontrado.)
+2026-03-26 12:29:52 [info]: [SAT] 559C5294-8C7B-4ABF-8435-C35A56E426E2 → Expresión Inválida (N - 601: La expresión impresa proporcionada no es válida.)
+2026-03-26 12:29:54 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:29:54 +0000] "GET /api/cfdis?page=1&limit=20 HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:29:55 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:29:55 +0000] "GET /api/reports/dashboard HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:29:56 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:29:56 +0000] "GET /api/cfdis?page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:31:07 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:31:07 +0000] "GET /api/reports/dashboard HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:31:31 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:31:31 +0000] "GET /api/cfdis?page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:33:42 [info]: MongoDB conectado
+2026-03-26 12:33:42 [info]: [SatSyncJob] Job registrado: verificación SAT diaria a las 2:00 AM CST
+2026-03-26 12:33:42 [info]: Servidor corriendo en puerto 3000 [development]
+2026-03-26 12:33:48 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:33:48 +0000] "GET /api/cfdis?page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:33:56 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:33:56 +0000] "GET /api/cfdis?page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:34:00 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:34:00 +0000] "GET /api/cfdis?page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:34:04 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:34:04 +0000] "GET /api/cfdis?page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:35:57 [info]: MongoDB conectado
+2026-03-26 12:35:57 [info]: [SatSyncJob] Job registrado: verificación SAT diaria a las 2:00 AM CST
+2026-03-26 12:35:57 [info]: Servidor corriendo en puerto 3000 [development]
+2026-03-26 12:36:21 [info]: MongoDB conectado
+2026-03-26 12:36:21 [info]: [SatSyncJob] Job registrado: verificación SAT diaria a las 2:00 AM CST
+2026-03-26 12:36:21 [info]: Servidor corriendo en puerto 3000 [development]
+2026-03-26 12:36:25 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:36:25 +0000] "GET /api/reports/dashboard HTTP/1.1" 401 33 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:36:25 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:36:25 +0000] "GET /api/reports/dashboard HTTP/1.1" 401 45 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:36:41 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:36:41 +0000] "POST /api/auth/login HTTP/1.1" 200 309 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:36:41 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:36:41 +0000] "GET /api/reports/dashboard HTTP/1.1" 200 181 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:36:44 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:36:44 +0000] "GET /api/cfdis?page=1&limit=20 HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:36:49 [info]: [SAT] AAAAAAAA-1111-2222-3333-BBBBBBBBBBBB → No Encontrado (N - 602: Comprobante no encontrado.)
+2026-03-26 12:36:49 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:36:49 +0000] "POST /api/cfdis/69c57ca10364431136f92c1f/compare HTTP/1.1" 200 853 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:36:49 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:36:49 +0000] "GET /api/cfdis?page=1&limit=20 HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:36:54 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:36:54 +0000] "GET /api/reports/dashboard HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:36:55 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:36:55 +0000] "GET /api/cfdis?page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:36:58 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:36:58 +0000] "GET /api/comparisons?page=1&limit=20 HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:37:44 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:37:44 +0000] "GET /api/cfdis?page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:37:48 [info]: [SAT] AAAAAAAA-1111-2222-3333-BBBBBBBBBBBB → No Encontrado (N - 602: Comprobante no encontrado.)
+2026-03-26 12:37:48 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:37:48 +0000] "POST /api/cfdis/69c57ca10364431136f92c1f/compare HTTP/1.1" 200 853 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:37:48 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:37:48 +0000] "GET /api/cfdis?page=1&limit=20 HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:37:55 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:37:55 +0000] "GET /api/reports/dashboard HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:37:57 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:37:57 +0000] "GET /api/comparisons?page=1&limit=20 HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:37:59 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:37:59 +0000] "GET /api/discrepancies/summary HTTP/1.1" 200 265 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:37:59 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:37:59 +0000] "GET /api/discrepancies?status=open&page=1&limit=20 HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:38:00 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:38:00 +0000] "GET /api/comparisons?page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:38:03 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:38:03 +0000] "GET /api/cfdis?page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:38:47 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:38:47 +0000] "GET /api/reports/dashboard HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:40:30 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:40:30 +0000] "GET /api/cfdis?page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:41:53 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:41:53 +0000] "POST /api/cfdis/upload HTTP/1.1" 207 218 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:41:53 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:41:53 +0000] "GET /api/cfdis?page=1&limit=20 HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:42:05 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:42:05 +0000] "POST /api/cfdis/upload HTTP/1.1" 207 206 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:42:05 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:42:05 +0000] "GET /api/cfdis?page=1&limit=20 HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:42:08 [info]: [SAT] 559C5294-8C7B-4ABF-8435-C35A56E426E2 → Expresión Inválida (N - 601: La expresión impresa proporcionada no es válida.)
+2026-03-26 12:42:08 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:42:08 +0000] "POST /api/cfdis/69c57dfd0364431136f92c22/compare HTTP/1.1" 200 442 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:42:08 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:42:08 +0000] "GET /api/cfdis?page=1&limit=20 HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:42:15 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:42:15 +0000] "GET /api/discrepancies/summary HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:42:15 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:42:15 +0000] "GET /api/discrepancies?status=open&page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:42:16 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:42:16 +0000] "GET /api/comparisons?page=1&limit=20 HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:42:18 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:42:18 +0000] "GET /api/cfdis?page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:42:23 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:42:23 +0000] "GET /api/reports/dashboard HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:42:29 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:42:29 +0000] "GET /api/cfdis?page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:42:34 [info]: [SAT] 559C5294-8C7B-4ABF-8435-C35A56E426E2 → Expresión Inválida (N - 601: La expresión impresa proporcionada no es válida.)
+2026-03-26 12:42:34 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:42:34 +0000] "POST /api/cfdis/69c57dfd0364431136f92c22/compare HTTP/1.1" 200 442 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:42:34 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:42:34 +0000] "GET /api/cfdis?page=1&limit=20 HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:50:17 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:50:17 +0000] "GET /api/discrepancies/summary HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:50:17 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:50:17 +0000] "GET /api/discrepancies?status=open&page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:50:34 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:50:34 +0000] "GET /api/comparisons?page=1&limit=20 HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:50:38 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:50:38 +0000] "GET /api/cfdis?page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:50:39 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:50:39 +0000] "GET /api/comparisons?page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:50:42 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:50:42 +0000] "GET /api/reports/dashboard HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:50:45 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:50:45 +0000] "GET /api/cfdis?page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 12:51:15 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:18:51:15 +0000] "GET /api/cfdis?page=1&limit=20 HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 13:04:50 [info]: [SAT] AAAAAAAA-1111-2222-3333-BBBBBBBBBBBB → No Encontrado (N - 602: Comprobante no encontrado.)
+2026-03-26 13:04:50 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:19:04:50 +0000] "POST /api/cfdis/69c57ca10364431136f92c1f/compare HTTP/1.1" 200 853 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 13:04:50 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:19:04:50 +0000] "GET /api/cfdis?page=1&limit=20 HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 13:04:56 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:19:04:56 +0000] "GET /api/comparisons?page=1&limit=20 HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 13:05:14 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:19:05:14 +0000] "GET /api/reports/dashboard HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 13:05:19 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:19:05:19 +0000] "GET /api/cfdis?page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 13:46:41 [info]: [SAT] 559C5294-8C7B-4ABF-8435-C35A56E426E2 → Expresión Inválida (N - 601: La expresión impresa proporcionada no es válida.)
+2026-03-26 13:46:41 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:19:46:41 +0000] "POST /api/cfdis/69c57dfd0364431136f92c22/compare HTTP/1.1" 200 442 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 13:46:41 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:19:46:41 +0000] "GET /api/cfdis?page=1&limit=20 HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 13:49:24 [info]: MongoDB conectado
+2026-03-26 13:49:25 [info]: [SatSyncJob] Job registrado: verificación SAT diaria a las 2:00 AM CST
+2026-03-26 13:49:25 [info]: Servidor corriendo en puerto 3000 [development]
+2026-03-26 13:49:37 [info]: MongoDB conectado
+2026-03-26 13:49:37 [info]: [SatSyncJob] Job registrado: verificación SAT diaria a las 2:00 AM CST
+2026-03-26 13:49:37 [info]: Servidor corriendo en puerto 3000 [development]
+2026-03-26 13:50:25 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:19:50:25 +0000] "GET /api/cfdis?page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 13:51:52 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:19:51:52 +0000] "GET /api/reports/dashboard HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 13:52:05 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:19:52:05 +0000] "GET /api/cfdis?page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 13:52:09 [info]: [SAT] 559C5294-8C7B-4ABF-8435-C35A56E426E2 → Expresión Inválida (N - 601: La expresión impresa proporcionada no es válida.)
+2026-03-26 13:52:09 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:19:52:09 +0000] "POST /api/cfdis/69c57dfd0364431136f92c22/compare HTTP/1.1" 200 442 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 13:52:09 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:19:52:09 +0000] "GET /api/cfdis?page=1&limit=20 HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 13:52:17 [info]: [SAT] 559C5294-8C7B-4ABF-8435-C35A56E426E2 → Expresión Inválida (N - 601: La expresión impresa proporcionada no es válida.)
+2026-03-26 13:52:17 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:19:52:17 +0000] "POST /api/cfdis/69c57dfd0364431136f92c22/compare HTTP/1.1" 200 442 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 13:52:17 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:19:52:17 +0000] "GET /api/cfdis?page=1&limit=20 HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 13:52:43 [info]: [SAT] 559C5294-8C7B-4ABF-8435-C35A56E426E2 → Expresión Inválida (N - 601: La expresión impresa proporcionada no es válida.)
+2026-03-26 13:52:43 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:19:52:43 +0000] "POST /api/cfdis/69c57dfd0364431136f92c22/compare HTTP/1.1" 200 442 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 13:52:43 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:19:52:43 +0000] "GET /api/cfdis?page=1&limit=20 HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 13:53:00 [info]: [SAT] AAAAAAAA-1111-2222-3333-BBBBBBBBBBBB → No Encontrado (N - 602: Comprobante no encontrado.)
+2026-03-26 13:53:00 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:19:53:00 +0000] "POST /api/cfdis/69c57ca10364431136f92c1f/compare HTTP/1.1" 200 853 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 13:53:00 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:19:53:00 +0000] "GET /api/cfdis?page=1&limit=20 HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 13:53:05 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:19:53:05 +0000] "GET /api/comparisons?page=1&limit=20 HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 13:53:06 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:19:53:06 +0000] "GET /api/reports/dashboard HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 13:53:08 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:19:53:08 +0000] "GET /api/comparisons?page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 13:53:14 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:19:53:14 +0000] "GET /api/reports/dashboard HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 13:53:15 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:19:53:15 +0000] "GET /api/cfdis?page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 13:53:18 [info]: [SAT] 559C5294-8C7B-4ABF-8435-C35A56E426E2 → Expresión Inválida (N - 601: La expresión impresa proporcionada no es válida.)
+2026-03-26 13:53:18 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:19:53:18 +0000] "POST /api/cfdis/69c57dfd0364431136f92c22/compare HTTP/1.1" 200 442 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 13:53:18 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:19:53:18 +0000] "GET /api/cfdis?page=1&limit=20 HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 14:03:54 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:20:03:54 +0000] "GET /api/reports/dashboard HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 14:12:41 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:20:12:41 +0000] "GET /api/reports/dashboard HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 14:12:50 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:20:12:50 +0000] "GET /api/cfdis?page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 14:13:03 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:20:13:03 +0000] "GET /api/comparisons?page=1&limit=20 HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 14:13:13 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:20:13:13 +0000] "GET /api/discrepancies/summary HTTP/1.1" 200 265 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 14:13:13 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:20:13:13 +0000] "GET /api/discrepancies?status=open&page=1&limit=20 HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 14:13:22 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:20:13:22 +0000] "GET /api/reports/export/excel HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 14:13:58 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:20:13:58 +0000] "GET /api/reports/dashboard HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 14:15:30 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:20:15:30 +0000] "GET /api/cfdis?page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 14:16:21 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:20:16:21 +0000] "GET /api/cfdis?page=1&limit=20 HTTP/1.1" 401 45 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 14:19:02 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:20:19:02 +0000] "POST /api/auth/login HTTP/1.1" 200 309 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 14:19:02 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:20:19:02 +0000] "GET /api/reports/dashboard HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 14:19:09 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:20:19:09 +0000] "GET /api/reports/dashboard HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 14:19:10 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:20:19:10 +0000] "GET /api/reports/dashboard HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 14:19:11 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:20:19:11 +0000] "GET /api/reports/dashboard HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 14:19:15 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:20:19:15 +0000] "GET /api/reports/dashboard HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 14:19:18 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:20:19:18 +0000] "GET /api/cfdis?page=1&limit=20 HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 14:19:22 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:20:19:22 +0000] "GET /api/discrepancies/summary HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 14:19:22 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:20:19:22 +0000] "GET /api/discrepancies?status=open&page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 14:19:23 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:20:19:23 +0000] "GET /api/comparisons?page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 14:19:25 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:20:19:25 +0000] "GET /api/reports/dashboard HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 14:20:44 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:20:20:44 +0000] "GET /api/cfdis?page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 14:20:45 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:20:20:45 +0000] "GET /api/reports/dashboard HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 14:36:45 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:20:36:45 +0000] "GET /api/reports/dashboard HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 14:36:46 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:20:36:46 +0000] "GET /api/reports/dashboard HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 14:36:54 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:20:36:54 +0000] "GET /api/cfdis?page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 14:37:49 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:20:37:49 +0000] "GET /api/cfdis?fechaInicio=2025-06-10&page=1&limit=20 HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 14:38:05 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:20:38:05 +0000] "GET /api/cfdis?fechaInicio=2025-06-10&fechaFin=2025-07-20&page=1&limit=20 HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 14:38:09 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:20:38:09 +0000] "GET /api/cfdis?page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 14:38:33 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:20:38:33 +0000] "GET /api/reports/dashboard HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 14:38:38 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:20:38:38 +0000] "GET /api/comparisons?page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 14:38:39 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:20:38:39 +0000] "GET /api/discrepancies/summary HTTP/1.1" 200 265 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 14:38:39 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:20:38:39 +0000] "GET /api/discrepancies?status=open&page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 15:26:27 [warn]: MongoDB desconectado
+2026-03-26 15:26:37 [info]: MongoDB conectado
+2026-03-26 15:36:35 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:21:36:35 +0000] "GET /api/discrepancies/summary HTTP/1.1" 401 45 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 15:36:35 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:21:36:35 +0000] "GET /api/discrepancies?status=open&page=1&limit=20 HTTP/1.1" 401 45 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 15:37:08 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:21:37:08 +0000] "POST /api/auth/login HTTP/1.1" 200 309 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 15:37:08 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:21:37:08 +0000] "GET /api/reports/dashboard HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 15:37:17 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:21:37:17 +0000] "GET /api/cfdis?page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 15:37:19 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:21:37:19 +0000] "GET /api/comparisons?page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 15:37:21 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:21:37:21 +0000] "GET /api/discrepancies/summary HTTP/1.1" 200 265 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 15:37:21 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:21:37:21 +0000] "GET /api/discrepancies?status=open&page=1&limit=20 HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 15:37:23 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:21:37:23 +0000] "GET /api/cfdis?page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 16:18:14 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:22:18:14 +0000] "GET /api/comparisons?page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 16:18:35 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:22:18:35 +0000] "GET /api/reports/dashboard HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 16:18:39 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:22:18:39 +0000] "GET /api/cfdis?page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 16:30:50 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:22:30:50 +0000] "GET /api/comparisons?page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 16:39:53 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:22:39:53 +0000] "GET /api/reports/dashboard HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 16:39:54 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:22:39:54 +0000] "GET /api/cfdis?page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 16:56:18 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:22:56:18 +0000] "GET /api/reports/dashboard HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 16:56:21 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:22:56:21 +0000] "GET /api/discrepancies/summary HTTP/1.1" 200 265 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 16:56:21 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:22:56:21 +0000] "GET /api/discrepancies?status=open&page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 16:56:23 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:22:56:23 +0000] "GET /api/comparisons?page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 16:56:24 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:22:56:24 +0000] "GET /api/cfdis?page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 16:57:14 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:22:57:14 +0000] "POST /api/cfdis/upload HTTP/1.1" 207 218 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 16:57:14 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:22:57:14 +0000] "GET /api/cfdis?page=1&limit=20 HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 16:57:29 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:22:57:29 +0000] "GET /api/reports/dashboard HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 16:57:40 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:22:57:40 +0000] "GET /api/cfdis?page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 16:57:45 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:22:57:45 +0000] "GET /api/cfdis/69c5b9ca0364431136f92c24/xml HTTP/1.1" 401 45 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 16:57:45 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:22:57:45 +0000] "GET /favicon.ico HTTP/1.1" 404 30 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 16:58:03 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:22:58:03 +0000] "GET /api/discrepancies/summary HTTP/1.1" 200 265 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 16:58:03 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:22:58:03 +0000] "GET /api/discrepancies?status=open&page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 16:58:07 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:22:58:07 +0000] "GET /api/comparisons?page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 16:58:09 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:22:58:09 +0000] "GET /api/reports/dashboard HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 16:58:10 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:22:58:10 +0000] "GET /api/cfdis?page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 17:15:14 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:23:15:14 +0000] "GET /api/reports/dashboard HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 17:15:18 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:23:15:18 +0000] "GET /api/discrepancies/summary HTTP/1.1" 200 265 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 17:15:18 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:23:15:18 +0000] "GET /api/discrepancies?status=open&page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 17:15:34 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:23:15:34 +0000] "GET /api/reports/dashboard HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 17:15:36 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:23:15:36 +0000] "GET /api/cfdis?page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 17:47:41 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:23:47:41 +0000] "GET /api/reports/dashboard HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 17:47:43 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:23:47:43 +0000] "GET /api/comparisons?page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 17:47:44 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:23:47:44 +0000] "GET /api/discrepancies/summary HTTP/1.1" 200 265 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 17:47:44 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:23:47:44 +0000] "GET /api/discrepancies?status=open&page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 17:47:45 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:23:47:45 +0000] "GET /api/cfdis?page=1&limit=20 HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 17:55:43 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:23:55:43 +0000] "POST /api/auth/login HTTP/1.1" 200 309 "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+2026-03-26 17:55:43 [info]: ::ffff:127.0.0.1 - - [26/Mar/2026:23:55:43 +0000] "GET /api/reports/dashboard HTTP/1.1" 200 - "http://localhost:4200/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
