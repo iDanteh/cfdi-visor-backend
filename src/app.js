@@ -1,83 +1,73 @@
 require('dotenv').config();
-const express = require('express');
-const helmet = require('helmet');
-const cors = require('cors');
-const morgan = require('morgan');
+const express     = require('express');
+const helmet      = require('helmet');
+const cors        = require('cors');
+const morgan      = require('morgan');
 const compression = require('compression');
-const rateLimit = require('express-rate-limit');
+const rateLimit   = require('express-rate-limit');
 
-const { connectDB } = require('./config/database');
-const { logger } = require('./utils/logger');
-const errorHandler = require('./middleware/errorHandler');
+const { connectDB }    = require('./config/database');
+const { logger }       = require('./shared/utils/logger');
+const errorHandler     = require('./shared/middleware/error-handler');
 
-// Routes
-const authRoutes = require('./routes/auth');
-const cfdiRoutes = require('./routes/cfdis');
-const comparisonRoutes = require('./routes/comparisons');
-const discrepancyRoutes = require('./routes/discrepancies');
-const reportRoutes = require('./routes/reports');
-const satRoutes = require('./routes/sat');
-const entityRoutes = require('./routes/entities');
+// Domain routers
+const bankRoutes              = require('./domains/banks/bank.routes');
+const cfdiRoutes              = require('./domains/cfdis/cfdi.routes');
+const accountPlanRoutes       = require('./domains/account-plan/account-plan.routes');
+const collectionRequestRoutes = require('./domains/collection-requests/collection-request.routes');
 
 const app = express();
 
-// Security
+// ── Security ──────────────────────────────────────────────────────────────────
 app.use(helmet());
 app.use(cors({
-  origin: process.env.CORS_ORIGIN || 'http://localhost:4200',
+  origin:      process.env.CORS_ORIGIN || 'http://localhost:4200',
   credentials: true,
 }));
 
-// Rate limiting
-const limiter = rateLimit({
+// ── Rate limiting ─────────────────────────────────────────────────────────────
+app.use('/api/', rateLimit({
   windowMs: parseInt(process.env.RATE_LIMIT_WINDOW_MS) || 15 * 60 * 1000,
-  max: parseInt(process.env.RATE_LIMIT_MAX) || 100,
-  message: { error: 'Demasiadas solicitudes, intenta más tarde.' },
-});
-app.use('/api/', limiter);
+  max:      parseInt(process.env.RATE_LIMIT_MAX)       || 100,
+  message:  { error: 'Demasiadas solicitudes, intenta más tarde.' },
+}));
 
-// Body parsing
+// ── Body parsing & compression ────────────────────────────────────────────────
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 app.use(compression());
 
-// Logging
+// ── Logging ───────────────────────────────────────────────────────────────────
 app.use(morgan('combined', {
   stream: { write: (msg) => logger.info(msg.trim()) },
 }));
 
-// Health check
-app.get('/health', (req, res) => {
-  res.json({ status: 'ok', timestamp: new Date().toISOString(), version: '1.0.0' });
+// ── Health check ──────────────────────────────────────────────────────────────
+app.get('/health', (_req, res) => {
+  res.json({ status: 'ok', timestamp: new Date().toISOString(), version: '2.0.0' });
 });
 
-// API Routes
-app.use('/api/auth', authRoutes);
-app.use('/api/cfdis', cfdiRoutes);
-app.use('/api/comparisons', comparisonRoutes);
-app.use('/api/discrepancies', discrepancyRoutes);
-app.use('/api/reports', reportRoutes);
-app.use('/api/sat', satRoutes);
-app.use('/api/entities', entityRoutes);
+// ── API routes ────────────────────────────────────────────────────────────────
+app.use('/api/banks',                bankRoutes);
+app.use('/api/cfdis',                cfdiRoutes);
+app.use('/api/account-plan',         accountPlanRoutes);
+app.use('/api/collection-requests',  collectionRequestRoutes);
 
-// 404
-app.use((req, res) => {
+// ── 404 ───────────────────────────────────────────────────────────────────────
+app.use((_req, res) => {
   res.status(404).json({ error: 'Ruta no encontrada' });
 });
 
-// Error handler (must be last)
+// ── Error handler (must be last) ──────────────────────────────────────────────
 app.use(errorHandler);
 
+// ── Start server ──────────────────────────────────────────────────────────────
 const PORT = process.env.PORT || 3000;
 
 const startServer = async () => {
   await connectDB();
-
-  // Start cron jobs
-  require('./jobs/satSyncJob');
-
   app.listen(PORT, () => {
-    logger.info(`Servidor corriendo en puerto ${PORT} [${process.env.NODE_ENV}]`);
+    logger.info(`Servidor corriendo en puerto ${PORT} [${process.env.NODE_ENV || 'development'}]`);
   });
 };
 

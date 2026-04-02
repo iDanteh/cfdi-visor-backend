@@ -92,6 +92,12 @@ const cfdiSchema = new mongoose.Schema({
   moneda: { type: String, default: 'MXN' },
   tipoCambio: { type: Number, default: 1 },
   total: { type: Number, required: true, index: true },
+
+  // Monto real de pago — solo se popula en tipoDeComprobante 'P' (complemento de pago).
+  // Es la suma de todos los nodos pago:Pago/@Monto del complemento.
+  // Sirve para conciliar contra el movimiento bancario real (tipo P tiene total=0).
+  montoPago: { type: Number, default: null, index: true },
+
   tipoDeComprobante: {
     type: String,
     enum: ['I', 'E', 'T', 'N', 'P'],
@@ -150,6 +156,10 @@ const cfdiSchema = new mongoose.Schema({
   // ERP metadata
   erpId: { type: String, index: true },
   erpSystem: { type: String },
+
+  // Google Drive (opcional — solo presente si el CFDI fue importado desde Drive)
+  driveFileId:   { type: String, default: null },
+  driveFileName: { type: String, default: null },
 
   // Auditoría
   uploadedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },

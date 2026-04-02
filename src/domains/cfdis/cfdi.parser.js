@@ -81,6 +81,7 @@ const parseCFDI = async (xmlString) => {
 
     xmlContent: xmlString,
     xmlHash: crypto.createHash('sha256').update(xmlString).digest('hex'),
+    montoPago: attrs.TipoDeComprobante === 'P' ? extractMontoPago(xmlString) : null,
   };
 
   if (!cfdiData.uuid) {
@@ -120,6 +121,23 @@ const parseConceptos = (conceptosNode) => {
     descuento: parseFloat(c.Descuento) || 0,
     objetoImp: c.ObjetoImp,
   }));
+};
+
+/**
+ * Suma los atributos Monto de todos los nodos pago:Pago del complemento.
+ * Funciona con pago10 y pago20. Retorna null si no hay ninguno.
+ */
+const extractMontoPago = (xmlString) => {
+  if (!xmlString) return null;
+  const re = /<(?:[\w]+:)?Pago[^>]+\sMonto="([^"]+)"/gi;
+  let total = 0;
+  let found = false;
+  let m;
+  while ((m = re.exec(xmlString)) !== null) {
+    const val = parseFloat(m[1]);
+    if (!isNaN(val)) { total += val; found = true; }
+  }
+  return found ? parseFloat(total.toFixed(2)) : null;
 };
 
 const parseImpuestos = (impuestosNode) => {

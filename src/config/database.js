@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { logger } = require('../utils/logger');
+const { logger } = require('../shared/utils/logger');
 
 const connectDB = async () => {
   const uri = process.env.MONGODB_URI || 'mongodb://localhost:27017/cfdi_comparator';

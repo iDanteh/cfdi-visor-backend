@@ -27,3 +27,65 @@
     at D:\KORE - Claude\cfdi-comparator-api\node_modules\mongoose\lib\document.js:3142:17
     at D:\KORE - Claude\cfdi-comparator-api\node_modules\mongoose\lib\schemaType.js:1446:9
     at process.processTicksAndRejections (node:internal/process/task_queues:77:11)
+2026-03-30 17:41:09 [error]: Error: ANTHROPIC_API_KEY no está configurada. Agrégala a tu archivo .env para habilitar el análisis de comprobantes.
+    at extractReceiptData (D:\KORE - Claude\cfdi-comparator-api\src\services\receiptService.js:70:11)
+    at D:\KORE - Claude\cfdi-comparator-api\src\routes\collectionRequests.js:57:29
+    at D:\KORE - Claude\cfdi-comparator-api\src\middleware\errorHandler.js:4:19
+    at Layer.handle [as handle_request] (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\layer.js:95:5)
+    at next (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\route.js:149:13)
+    at done (D:\KORE - Claude\cfdi-comparator-api\node_modules\multer\lib\make-middleware.js:47:7)
+    at indicateDone (D:\KORE - Claude\cfdi-comparator-api\node_modules\multer\lib\make-middleware.js:51:68)
+    at Multipart.<anonymous> (D:\KORE - Claude\cfdi-comparator-api\node_modules\multer\lib\make-middleware.js:168:7)
+    at Multipart.emit (node:events:519:28)
+    at emitCloseNT (node:internal/streams/destroy:147:10)
+    at process.processTicksAndRejections (node:internal/process/task_queues:81:21)
+2026-03-30 19:31:04 [error]: Error: Google Drive API has not been used in project 726132426360 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/drive.googleapis.com/overview?project=726132426360 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.
+    at Gaxios._request (D:\KORE - Claude\cfdi-comparator-api\node_modules\gaxios\build\cjs\src\gaxios.js:155:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async JWT.requestAsync (D:\KORE - Claude\cfdi-comparator-api\node_modules\google-auth-library\build\src\auth\oauth2client.js:463:20)
+    at async createAPIRequestAsync (D:\KORE - Claude\cfdi-comparator-api\node_modules\googleapis-common\build\src\apirequest.js:308:25)
+    at async listXmlFiles (D:\KORE - Claude\cfdi-comparator-api\src\services\driveService.js:58:17)
+    at async syncFolderCFDIs (D:\KORE - Claude\cfdi-comparator-api\src\services\driveService.js:110:19)
+    at async D:\KORE - Claude\cfdi-comparator-api\src\routes\drive.js:46:21
+2026-03-30 19:32:15 [error]: Error: File not found: .
+    at Gaxios._request (D:\KORE - Claude\cfdi-comparator-api\node_modules\gaxios\build\cjs\src\gaxios.js:155:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async JWT.requestAsync (D:\KORE - Claude\cfdi-comparator-api\node_modules\google-auth-library\build\src\auth\oauth2client.js:463:20)
+    at async createAPIRequestAsync (D:\KORE - Claude\cfdi-comparator-api\node_modules\googleapis-common\build\src\apirequest.js:308:25)
+    at async listXmlFiles (D:\KORE - Claude\cfdi-comparator-api\src\services\driveService.js:58:17)
+    at async syncFolderCFDIs (D:\KORE - Claude\cfdi-comparator-api\src\services\driveService.js:110:19)
+    at async D:\KORE - Claude\cfdi-comparator-api\src\routes\drive.js:46:21
+2026-03-30 19:32:38 [error]: Error: File not found: .
+    at Gaxios._request (D:\KORE - Claude\cfdi-comparator-api\node_modules\gaxios\build\cjs\src\gaxios.js:155:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async JWT.requestAsync (D:\KORE - Claude\cfdi-comparator-api\node_modules\google-auth-library\build\src\auth\oauth2client.js:463:20)
+    at async createAPIRequestAsync (D:\KORE - Claude\cfdi-comparator-api\node_modules\googleapis-common\build\src\apirequest.js:308:25)
+    at async listXmlFiles (D:\KORE - Claude\cfdi-comparator-api\src\services\driveService.js:58:17)
+    at async D:\KORE - Claude\cfdi-comparator-api\src\routes\drive.js:22:19
+2026-03-30 19:32:39 [error]: Error: File not found: .
+    at Gaxios._request (D:\KORE - Claude\cfdi-comparator-api\node_modules\gaxios\build\cjs\src\gaxios.js:155:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async JWT.requestAsync (D:\KORE - Claude\cfdi-comparator-api\node_modules\google-auth-library\build\src\auth\oauth2client.js:463:20)
+    at async createAPIRequestAsync (D:\KORE - Claude\cfdi-comparator-api\node_modules\googleapis-common\build\src\apirequest.js:308:25)
+    at async listXmlFiles (D:\KORE - Claude\cfdi-comparator-api\src\services\driveService.js:58:17)
+    at async syncFolderCFDIs (D:\KORE - Claude\cfdi-comparator-api\src\services\driveService.js:110:19)
+    at async D:\KORE - Claude\cfdi-comparator-api\src\routes\drive.js:46:21
+2026-03-31 09:59:49 [error]: Error: File not found: .
+    at Gaxios._request (D:\KORE - Claude\cfdi-comparator-api\node_modules\gaxios\build\cjs\src\gaxios.js:155:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async JWT.requestAsync (D:\KORE - Claude\cfdi-comparator-api\node_modules\google-auth-library\build\src\auth\oauth2client.js:463:20)
+    at async createAPIRequestAsync (D:\KORE - Claude\cfdi-comparator-api\node_modules\googleapis-common\build\src\apirequest.js:308:25)
+    at async listXmlFiles (D:\KORE - Claude\cfdi-comparator-api\src\services\driveService.js:58:17)
+    at async D:\KORE - Claude\cfdi-comparator-api\src\routes\drive.js:22:19
+2026-03-31 09:59:50 [error]: Error: File not found: .
+    at Gaxios._request (D:\KORE - Claude\cfdi-comparator-api\node_modules\gaxios\build\cjs\src\gaxios.js:155:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async JWT.requestAsync (D:\KORE - Claude\cfdi-comparator-api\node_modules\google-auth-library\build\src\auth\oauth2client.js:463:20)
+    at async createAPIRequestAsync (D:\KORE - Claude\cfdi-comparator-api\node_modules\googleapis-common\build\src\apirequest.js:308:25)
+    at async listXmlFiles (D:\KORE - Claude\cfdi-comparator-api\src\services\driveService.js:58:17)
+    at async D:\KORE - Claude\cfdi-comparator-api\src\routes\drive.js:22:19
+2026-03-31 14:22:37 [error]: TypeError: raw.replace is not a function
+    at normalizeOcrText (D:\KORE - Claude\cfdi-comparator-api\src\services\receiptService.js:85:6)
+    at extractReceiptDataTesseract (D:\KORE - Claude\cfdi-comparator-api\src\services\receiptService.js:322:17)
+    at async extractReceiptData (D:\KORE - Claude\cfdi-comparator-api\src\services\receiptService.js:479:20)
+    at async D:\KORE - Claude\cfdi-comparator-api\src\routes\collectionRequests.js:57:23

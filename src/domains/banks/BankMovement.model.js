@@ -1,0 +1,79 @@
+const mongoose = require('mongoose');
+
+const bankMovementSchema = new mongoose.Schema({
+  banco: {
+    type: String,
+    enum: ['Banamex', 'BBVA', 'Santander', 'Azteca'],
+    required: true,
+    index: true,
+  },
+
+  fecha: { type: Date, required: true, index: true },
+
+  // Concepto completo (concatenación de todas las sub-filas donde aplique)
+  concepto: { type: String, trim: true },
+
+  // Montos
+  deposito: { type: Number, default: null },
+  retiro:   { type: Number, default: null },
+  saldo:    { type: Number, default: null },
+
+  // Identificadores del movimiento
+  numeroAutorizacion: { type: String, trim: true, default: null },
+  referenciaNumerica: { type: String, trim: true, default: null },
+
+  // Estado de conciliación del movimiento
+  status: {
+    type:    String,
+    enum:    ['no_identificado', 'identificado', 'otros'],
+    default: 'no_identificado',
+    index:   true,
+  },
+
+  // Categoría inferida del concepto
+  categoria: {
+    type:    String,
+    default: null,
+    index:   true,
+  },
+
+  // Folio auto-incremental de 6 dígitos (000001, 000002…)
+  folio: { type: String, default: null },
+
+  // UUID del CFDI vinculado; al establecerse bloquea el status permanentemente
+  uuidXML: { type: String, default: null },
+
+  // IDs de CxC provenientes del ERP externo (N por movimiento)
+  erpIds: { type: [String], default: [] },
+
+  // Hash de deduplicación: SHA-256 de campos clave, evita duplicados al
+  // volver a cargar el mismo archivo.
+  hash: { type: String },
+
+  // Auditoría
+  uploadedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+  isActive:   { type: Boolean, default: true, index: true },
+}, {
+  timestamps: true,
+  collection: 'bank_movements',
+});
+
+// Índice único sobre el hash — garantiza que el mismo movimiento no se duplique
+bankMovementSchema.index({ hash:  1 }, { unique: true, sparse: true });
+bankMovementSchema.index({ folio: 1 }, { unique: true, sparse: true });
+
+// Índices compuestos para consultas comunes
+bankMovementSchema.index({ banco: 1, fecha: -1 });
+bankMovementSchema.index({ fecha: -1, banco: 1 });
+bankMovementSchema.index({ numeroAutorizacion: 1, banco: 1 });
+bankMovementSchema.index({ banco: 1, status: 1 });
+bankMovementSchema.index({ banco: 1, categoria: 1 });
+
+// Índice de texto para el buscador
+bankMovementSchema.index({
+  concepto:           'text',
+  numeroAutorizacion: 'text',
+  referenciaNumerica: 'text',
+}, { default_language: 'spanish' });
+
+module.exports = mongoose.model('BankMovement', bankMovementSchema);
