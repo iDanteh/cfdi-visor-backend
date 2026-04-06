@@ -46,13 +46,14 @@ function isOtros(text, patterns) {
 const CATEGORIAS = [
   { label: 'Nómina',            re: /\b(n[oó]mina|salario|sueldo)\b/i },
   { label: 'Traspaso',          re: /\btraspaso\b/i },
-  { label: 'Depósito efectivo', re: /\bdep(osito)?\s+(en\s+)?efe(ctivo)?\b/i },
+  { label: 'Depósitos', re: /\b(dep(o|ó)sitos?|ventas?)(\s+(de\s+)?(en\s+)?efectivo)?\b/i },
   { label: 'Cheque',            re: /\bcheque\b/i },
   { label: 'Retiro ATM',        re: /\b(cajero|atm|retiro|disposici[oó]n)\b/i },
   { label: 'Cargo bancario',    re: /\b(comisi[oó]n|mantenimiento|anualidad|cargo\s+(mensual|fijo|por))\b/i },
   { label: 'Pago de servicio',  re: /\b(cfe|telmex|telcel|izzi|totalplay|dish|megacable)\b/i },
   { label: 'Cobro tarjeta',     re: /\b(tpv|terminal\s+punto|punto\s+de\s+venta)\b/i },
   { label: 'Transferencia',     re: /\b(spei|transferencia|pago\s+(a|de|int)|env[ií]o|abono|bnam|bbvamex|hdnx)\b/i },
+  { label: 'Pago cuenta de tercero', re: /\b(pago\s+cuenta\s+de\s+tercero|pago\s+(a|de)\s+(?!int\b))\b/i }
 ];
 
 function clasificar(concepto) {
@@ -74,6 +75,10 @@ function clasificar(concepto) {
  * la muestre con la fecha correcta.
  */
 function normalizeExcelDate(d) {
+  // ExcelJS a veces entrega seriales numéricos en lugar de objetos Date
+  if (typeof d === 'number' && d > 25000) {
+    d = new Date((d - 25569) * 86400000);
+  }
   if (!(d instanceof Date) || isNaN(d.getTime())) return null;
   return new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate(), 12, 0, 0));
 }
@@ -92,11 +97,17 @@ function toNumber(val) {
 
 /**
  * Convierte un valor de celda a Date.
- * Maneja objetos Date, strings tipo "'02032026'" (Santander) y otros formatos.
+ * Maneja objetos Date, seriales numéricos de Excel, strings tipo "'02032026'" (Santander) y otros formatos.
  */
 function toDate(val) {
   if (!val) return null;
   if (val instanceof Date) return isNaN(val.getTime()) ? null : val;
+
+  // ExcelJS puede devolver el serial numérico de Excel en lugar de un objeto Date
+  if (typeof val === 'number' && val > 25000) {
+    const d = new Date((val - 25569) * 86400000);
+    return isNaN(d.getTime()) ? null : d;
+  }
 
   if (typeof val === 'string') {
     // Santander usa strings con comillas como "'02032026'"
@@ -152,11 +163,13 @@ function parseBanamex(sheet) {
 
   // ExcelJS ValueType: 0=Null, 1=Merge, 2=Number, 3=String, 4=Date
   // Las filas principales de Banamex tienen tipo Date (4) en col1.
+  // Algunos exports devuelven tipo Number (2) con un serial numérico de Excel.
   // Las sub-filas pueden tener tipo Merge (1) O Null (0); ambos casos
   // ocurren dependiendo de cómo Banamex exportó las celdas combinadas.
-  const DATE_TYPE  = 4;
-  const MERGE_TYPE = 1;
-  const NULL_TYPE  = 0;
+  const DATE_TYPE   = 4;
+  const NUMBER_TYPE = 2;
+  const MERGE_TYPE  = 1;
+  const NULL_TYPE   = 0;
 
   sheet.eachRow((row) => {
     const cell1Type = row.getCell(1).type;
@@ -172,9 +185,11 @@ function parseBanamex(sheet) {
       return;
     }
 
-    // Una fila principal tiene tipo Date en col1.
+    // Una fila principal tiene tipo Date (4) en col1.
+    // Si ExcelJS devuelve un serial numérico (tipo 2) que sea válido como fecha, también es fila principal.
     // Las sub-filas tienen tipo Merge (1) o Null (0) — ambos deben procesarse.
-    const isMainRow = cell1Type === DATE_TYPE;
+    const isMainRow = cell1Type === DATE_TYPE ||
+      (cell1Type === NUMBER_TYPE && typeof v[1] === 'number' && v[1] > 25000);
     const isSubRow  = (cell1Type === MERGE_TYPE || cell1Type === NULL_TYPE) && current !== null;
 
     if (isMainRow) {
@@ -292,7 +307,8 @@ function parseBBVA(sheet) {
       return;
     }
 
-    if (!(col1 instanceof Date)) return;
+    const fecha = normalizeExcelDate(col1 instanceof Date ? col1 : toDate(col1));
+    if (!fecha) return;
 
     const concepto = cellText(col2);
 
@@ -308,7 +324,7 @@ function parseBBVA(sheet) {
     const cargoRaw = toNumber(col3);
     const mBBVA = {
       banco:              'BBVA',
-      fecha:              normalizeExcelDate(col1),
+      fecha,
       concepto,
       deposito:           toNumber(col4),
       // BBVA exporta cargos como negativos; se guarda el valor absoluto
@@ -419,7 +435,8 @@ function parseAzteca(sheet) {
       return;
     }
 
-    if (!(col1 instanceof Date)) return;
+    const fecha = normalizeExcelDate(col1 instanceof Date ? col1 : toDate(col1));
+    if (!fecha) return;
 
     const depositoRaw = toNumber(col4);
     const retiroRaw   = toNumber(col5);
@@ -430,7 +447,7 @@ function parseAzteca(sheet) {
     const conceptoAzt = cellText(col3);
     const mAzt = {
       banco:              'Azteca',
-      fecha:              normalizeExcelDate(col1),
+      fecha,
       concepto:           conceptoAzt,
       deposito,
       retiro,
@@ -483,7 +500,7 @@ async function parseBankFile(buffer, banco) {
       return { movements: allMovements, summary, errors };
     }
 
-    const sheet = workbook.worksheets[0]; // primera (y normalmente única) hoja
+    const sheet = workbook.worksheets[0];
     if (!sheet) {
       errors.push({ hoja: '-', error: 'El archivo no contiene hojas' });
       return { movements: allMovements, summary, errors };
@@ -493,11 +510,21 @@ async function parseBankFile(buffer, banco) {
       const movements = parser(sheet);
       allMovements.push(...movements);
       summary[banco] = movements.length;
+
+      if (movements.length === 0) {
+        errors.push({
+          hoja:  sheet.name,
+          error: `El parser de ${banco} no encontró movimientos en la hoja "${sheet.name}". ` +
+                 `Verifica que el archivo proviene del portal de ${banco} y no ha sido modificado. ` +
+                 `Filas en la hoja: ${sheet.rowCount}.`,
+        });
+      }
     } catch (err) {
       errors.push({ hoja: sheet.name, error: err.message });
     }
+
   } else {
-    // ── Modo consolidado: detectar banco por nombre de hoja ─────────────────
+    // ── Modo auto-detect: primero busca por nombre de hoja ──────────────────
     const keyByName = {
       banamex:   'Banamex',
       bbva:      'BBVA',
@@ -505,11 +532,14 @@ async function parseBankFile(buffer, banco) {
       azteca:    'Azteca',
     };
 
+    const sheetsDetectadas = [];
+
     workbook.eachSheet((sheet) => {
       const nameLower = sheet.name.toLowerCase().trim();
       const key = Object.keys(keyByName).find((k) => nameLower.includes(k));
       if (!key) return;
 
+      sheetsDetectadas.push(sheet.name);
       const bancoLabel = keyByName[key];
       try {
         const movements = sheetParsers[bancoLabel](sheet);
@@ -519,6 +549,37 @@ async function parseBankFile(buffer, banco) {
         errors.push({ hoja: sheet.name, error: err.message });
       }
     });
+
+    // ── Fallback: si ninguna hoja matcheó por nombre, probar cada parser ────
+    if (sheetsDetectadas.length === 0 && workbook.worksheets.length > 0) {
+      const sheetNames = workbook.worksheets.map((s) => `"${s.name}"`).join(', ');
+      const sheet      = workbook.worksheets[0];
+
+      let bestMovements = [];
+      let bestBanco     = null;
+
+      for (const [bancoLabel, parser] of Object.entries(sheetParsers)) {
+        try {
+          const result = parser(sheet);
+          if (result.length > bestMovements.length) {
+            bestMovements = result;
+            bestBanco     = bancoLabel;
+          }
+        } catch (_) { /* ignorar fallo de parser */ }
+      }
+
+      if (bestMovements.length > 0) {
+        allMovements.push(...bestMovements);
+        summary[bestBanco] = bestMovements.length;
+      } else {
+        errors.push({
+          hoja:  sheet.name,
+          error: `Auto-detección sin resultado. Hojas encontradas: ${sheetNames}. ` +
+                 `Ningún parser reconoció el formato. Selecciona el banco manualmente ` +
+                 `en el botón de importación.`,
+        });
+      }
+    }
   }
 
   return { movements: allMovements, summary, errors };
