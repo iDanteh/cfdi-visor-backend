@@ -29,6 +29,8 @@ const parseCFDI = async (xmlString) => {
   const impuestosNode = comprobante['cfdi:Impuestos'] || comprobante['Impuestos'] || {};
   const timbreNode = getTimbre(comprobante);
 
+  const pagos = attrs.TipoDeComprobante === 'P' ? extractPagos(comprobante) : [];
+
   const cfdiData = {
     uuid: timbreNode?.UUID || timbreNode?.['$']?.UUID || null,
     version: attrs.Version || attrs.version || '4.0',
@@ -81,7 +83,12 @@ const parseCFDI = async (xmlString) => {
 
     xmlContent: xmlString,
     xmlHash: crypto.createHash('sha256').update(xmlString).digest('hex'),
-    montoPago: attrs.TipoDeComprobante === 'P' ? extractMontoPago(xmlString) : null,
+
+    // Complemento de pago — derivado de los nodos pago20:Pago parseados
+    pagos,
+    montoPago: pagos.length
+      ? parseFloat(pagos.reduce((s, p) => s + (p.monto || 0), 0).toFixed(2))
+      : null,
   };
 
   if (!cfdiData.uuid) {
@@ -89,6 +96,61 @@ const parseCFDI = async (xmlString) => {
   }
 
   return cfdiData;
+};
+
+/**
+ * Extrae todos los nodos pago20:Pago / pago10:Pago del complemento de pago.
+ * Retorna un array vacío si el comprobante no tiene complemento de pago.
+ */
+const extractPagos = (comprobante) => {
+  try {
+    const complemento = comprobante['cfdi:Complemento'] || comprobante['Complemento'];
+    if (!complemento) return [];
+
+    const pagosNode =
+      complemento['pago20:Pagos'] || complemento['pago10:Pagos'] || complemento['Pagos'] || null;
+    if (!pagosNode) return [];
+
+    const pagoRaw =
+      pagosNode['pago20:Pago'] || pagosNode['pago10:Pago'] || pagosNode['Pago'];
+    if (!pagoRaw) return [];
+
+    const pagoList = Array.isArray(pagoRaw) ? pagoRaw : [pagoRaw];
+
+    return pagoList.map((p) => {
+      const doctoRaw =
+        p['pago20:DoctoRelacionado'] || p['pago10:DoctoRelacionado'] || p['DoctoRelacionado'];
+      const doctoList = !doctoRaw ? [] : Array.isArray(doctoRaw) ? doctoRaw : [doctoRaw];
+
+      return {
+        fechaPago:          p.FechaPago    ? new Date(p.FechaPago) : null,
+        formaDePagoP:       p.FormaDePagoP || null,
+        monedaP:            p.MonedaP      || 'MXN',
+        tipoCambioP:        parseFloat(p.TipoCambioP)  || 1,
+        monto:              parseFloat(p.Monto)         || 0,
+        numOperacion:       p.NumOperacion              || null,
+        ctaOrdenante:       p.CtaOrdenante              || null,
+        ctaBeneficiario:    p.CtaBeneficiario           || null,
+        rfcEmisorCtaOrd:    p.RfcEmisorCtaOrd           || null,
+        rfcEmisorCtaBen:    p.RfcEmisorCtaBen           || null,
+        nomBancoOrdExt:     p.NomBancoOrdExt            || null,
+        doctosRelacionados: doctoList.map((d) => ({
+          idDocumento:      (d.IdDocumento || '').trim().toUpperCase(),
+          serie:            d.Serie              || null,
+          folio:            d.Folio              || null,
+          monedaDR:         d.MonedaDR           || 'MXN',
+          equivalenciaDR:   parseFloat(d.EquivalenciaDR)   || 1,
+          numParcialidad:   parseInt(d.NumParcialidad)      || 1,
+          impSaldoAnt:      parseFloat(d.ImpSaldoAnt)       || 0,
+          impPagado:        parseFloat(d.ImpPagado)         || 0,
+          impSaldoInsoluto: parseFloat(d.ImpSaldoInsoluto)  || 0,
+          objetoImpDR:      d.ObjetoImpDR || null,
+        })),
+      };
+    });
+  } catch {
+    return [];
+  }
 };
 
 const getTimbre = (comprobante) => {
@@ -123,22 +185,6 @@ const parseConceptos = (conceptosNode) => {
   }));
 };
 
-/**
- * Suma los atributos Monto de todos los nodos pago:Pago del complemento.
- * Funciona con pago10 y pago20. Retorna null si no hay ninguno.
- */
-const extractMontoPago = (xmlString) => {
-  if (!xmlString) return null;
-  const re = /<(?:[\w]+:)?Pago[^>]+\sMonto="([^"]+)"/gi;
-  let total = 0;
-  let found = false;
-  let m;
-  while ((m = re.exec(xmlString)) !== null) {
-    const val = parseFloat(m[1]);
-    if (!isNaN(val)) { total += val; found = true; }
-  }
-  return found ? parseFloat(total.toFixed(2)) : null;
-};
 
 const parseImpuestos = (impuestosNode) => {
   if (!impuestosNode) return { totalImpuestosTrasladados: 0, totalImpuestosRetenidos: 0 };

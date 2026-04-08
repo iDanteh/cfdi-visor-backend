@@ -63,6 +63,28 @@ router.post('/',
   }),
 );
 
+// POST /api/cfdis/:id/reprocesar-pago
+// Vuelve a ejecutar procesarComplementoDePago para un CFDI tipo P ya guardado.
+// Útil cuando las facturas (tipo I) se importaron DESPUÉS del complemento de pago.
+router.post('/:id/reprocesar-pago',
+  authenticate,
+  authorize('admin', 'contador'),
+  asyncHandler(async (req, res) => {
+    const cfdi = await service.getById(req.params.id);
+    if (cfdi.tipoDeComprobante !== 'P') {
+      return res.status(400).json({ error: 'Solo se puede reprocesar un CFDI tipo P' });
+    }
+    if (!cfdi.pagos?.length) {
+      return res.status(400).json({ error: 'Este CFDI tipo P no tiene nodos Pago — ¿fue importado con el parser anterior?' });
+    }
+    const result = await service.procesarComplementoDePago(cfdi);
+    res.json({
+      message: `${result.procesados.length} facturas actualizadas, ${result.noEncontrados.length} no encontradas`,
+      ...result,
+    });
+  }),
+);
+
 // DELETE /api/cfdis/:id
 router.delete('/:id',
   authenticate,

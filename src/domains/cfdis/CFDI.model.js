@@ -41,6 +41,36 @@ const conceptoSchema = new mongoose.Schema({
   },
 }, { _id: false });
 
+// Sub-schema para DoctoRelacionado (complemento de pago)
+const doctoRelacionadoSchema = new mongoose.Schema({
+  idDocumento:      { type: String, uppercase: true, trim: true },
+  serie:            { type: String, default: null },
+  folio:            { type: String, default: null },
+  monedaDR:         { type: String, default: 'MXN' },
+  equivalenciaDR:   { type: Number, default: 1 },
+  numParcialidad:   { type: Number, default: 1 },
+  impSaldoAnt:      { type: Number, default: 0 },
+  impPagado:        { type: Number, default: 0 },
+  impSaldoInsoluto: { type: Number, default: 0 },
+  objetoImpDR:      { type: String, default: null },
+}, { _id: false });
+
+// Sub-schema para nodo pago20:Pago / pago10:Pago
+const pagoSchema = new mongoose.Schema({
+  fechaPago:          { type: Date,   default: null },
+  formaDePagoP:       { type: String, default: null },
+  monedaP:            { type: String, default: 'MXN' },
+  tipoCambioP:        { type: Number, default: 1 },
+  monto:              { type: Number, default: 0 },
+  numOperacion:       { type: String, default: null },
+  ctaOrdenante:       { type: String, default: null },
+  ctaBeneficiario:    { type: String, default: null },
+  rfcEmisorCtaOrd:    { type: String, default: null },
+  rfcEmisorCtaBen:    { type: String, default: null },
+  nomBancoOrdExt:     { type: String, default: null },
+  doctosRelacionados: [doctoRelacionadoSchema],
+}, { _id: false });
+
 // Sub-schema para Impuestos globales
 const impuestosSchema = new mongoose.Schema({
   totalImpuestosTrasladados: { type: Number, default: 0 },
@@ -97,6 +127,23 @@ const cfdiSchema = new mongoose.Schema({
   // Es la suma de todos los nodos pago:Pago/@Monto del complemento.
   // Sirve para conciliar contra el movimiento bancario real (tipo P tiene total=0).
   montoPago: { type: Number, default: null, index: true },
+
+  // Nodos Pago del complemento — solo para tipoDeComprobante === 'P'.
+  // Cada elemento corresponde a un nodo pago20:Pago y contiene sus DoctoRelacionado.
+  pagos: [pagoSchema],
+
+  // Estado de cobro — solo relevante para tipoDeComprobante === 'I' (facturas de ingreso).
+  // Se actualiza automáticamente al procesar un CFDI tipo P que referencia este CFDI.
+  estadoPago: {
+    type:    String,
+    enum:    ['no_pagado', 'parcialmente_pagado', 'pagado', null],
+    default: null,
+    index:   true,
+  },
+
+  // Saldo pendiente de cobro en MXN.
+  // Inicializado con `total` al importar un CFDI tipo I; reducido por cada tipo P confirmado.
+  saldoPendiente: { type: Number, default: null },
 
   tipoDeComprobante: {
     type: String,
@@ -173,6 +220,7 @@ const cfdiSchema = new mongoose.Schema({
 cfdiSchema.index({ uuid: 1, source: 1 }, { unique: true });
 
 // Índices compuestos
+cfdiSchema.index({ estadoPago: 1, 'receptor.rfc': 1 });
 cfdiSchema.index({ 'emisor.rfc': 1, fecha: -1 });
 cfdiSchema.index({ 'receptor.rfc': 1, fecha: -1 });
 cfdiSchema.index({ source: 1, satStatus: 1 });

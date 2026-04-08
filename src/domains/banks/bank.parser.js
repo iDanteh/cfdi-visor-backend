@@ -46,15 +46,17 @@ function isOtros(text, patterns) {
 const CATEGORIAS = [
   { label: 'Nómina',            re: /\b(n[oó]mina|salario|sueldo)\b/i },
   { label: 'Traspaso',          re: /\btraspaso\b/i },
-  { label: 'Depósitos', re: /\b(dep(o|ó)sitos?|ventas?)(\s+(de\s+)?(en\s+)?efectivo)?\b/i },
+  { label: 'Depósitos',         re: /\b(dep[oó]s(ito)?s?|ventas?)(\s+(de\s+)?(en\s+)?efectivo)?\b/i },
   { label: 'Cheque',            re: /\bcheque\b/i },
   { label: 'Retiro ATM',        re: /\b(cajero|atm|retiro|disposici[oó]n)\b/i },
   { label: 'Cargo bancario',    re: /\b(comisi[oó]n|mantenimiento|anualidad|cargo\s+(mensual|fijo|por))\b/i },
   { label: 'Pago de servicio',  re: /\b(cfe|telmex|telcel|izzi|totalplay|dish|megacable)\b/i },
-  { label: 'Cobro tarjeta',     re: /\b(tpv|terminal\s+punto|punto\s+de\s+venta)\b/i },
-  { label: 'Transferencia',     re: /\b(spei|transferencia|pago\s+(a|de|int)|env[ií]o|abono|bnam|bbvamex|hdnx)\b/i },
-  { label: 'Pago cuenta de tercero', re: /\b(pago\s+cuenta\s+de\s+tercero|pago\s+(a|de)\s+(?!int\b))\b/i }
+  { label: 'Compra',            re: /\bcompra\b/i },
+  { label: 'Cobro tarjeta',     re: /\b(tpv|terminal\s+punto|punto\s+de\s+venta|cobro)\b/i },
+  { label: 'Transferencia',     re: /\b(spei|transferencia|transf|trfr|pago\s+(a|de|int)|env[ií]o|abono|bnam|bbvamex|hdnx)\b/i },
+  { label: 'Pago cuenta de tercero', re: /\b(pago\s+cuenta\s+de\s+tercero|pago\s+(a|de)\s+(?!int\b))\b/i },
 ];
+
 
 function clasificar(concepto) {
   if (!concepto) return null;
@@ -585,4 +587,4 @@ async function parseBankFile(buffer, banco) {
   return { movements: allMovements, summary, errors };
 }
 
-module.exports = { parseBankFile };
+module.exports = { parseBankFile, CATEGORIAS, clasificar };

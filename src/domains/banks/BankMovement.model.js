@@ -3,7 +3,12 @@ const mongoose = require('mongoose');
 const bankMovementSchema = new mongoose.Schema({
   banco: {
     type: String,
-    enum: ['Banamex', 'BBVA', 'Santander', 'Azteca'],
+    enum: [
+      'Banamex', 'BBVA', 'Santander', 'Azteca',
+      'Banorte', 'HSBC', 'Inbursa', 'Scotiabank',
+      'BanBajío', 'Afirme', 'Intercam', 'Nu',
+      'Spin', 'Hey Banco', 'Albo',
+    ],
     required: true,
     index: true,
   },

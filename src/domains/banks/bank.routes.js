@@ -63,12 +63,40 @@ router.patch('/movements/:id/uuid',
   }),
 );
 
-// PATCH /api/banks/movements/:id/erp-ids
+// DELETE /api/banks/movements/:id/uuid
+router.delete('/movements/:id/uuid',
+  authenticate,
+  authorize('admin', 'contador'),
+  asyncHandler(async (req, res) => {
+    res.json(await service.unlinkUuid(req.params.id));
+  }),
+);
+
+// PATCH /api/banks/movements/:id/erp-ids  (add / remove individual)
 router.patch('/movements/:id/erp-ids',
   authenticate,
   authorize('admin', 'contador'),
   asyncHandler(async (req, res) => {
     res.json(await service.updateErpIds(req.params.id, req.body.action, req.body.erpId));
+  }),
+);
+
+// PUT /api/banks/movements/:id/erp-ids  (replace full array)
+router.put('/movements/:id/erp-ids',
+  authenticate,
+  authorize('admin', 'contador'),
+  asyncHandler(async (req, res) => {
+    res.json(await service.setErpIds(req.params.id, req.body.erpIds));
+  }),
+);
+
+// POST /api/banks/recategorizar
+router.post('/recategorizar',
+  authenticate,
+  authorize('admin', 'contador'),
+  asyncHandler(async (_req, res) => {
+    const result = await service.recategorizarMovimientos();
+    res.json({ mensaje: `${result.actualizados} movimientos actualizados`, ...result });
   }),
 );
 

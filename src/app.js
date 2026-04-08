@@ -15,6 +15,7 @@ const bankRoutes              = require('./domains/banks/bank.routes');
 const cfdiRoutes              = require('./domains/cfdis/cfdi.routes');
 const accountPlanRoutes       = require('./domains/account-plan/account-plan.routes');
 const collectionRequestRoutes = require('./domains/collection-requests/collection-request.routes');
+const erpRoutes               = require('./domains/erp/erp.routes');
 
 const app = express();
 
@@ -52,6 +53,7 @@ app.use('/api/banks',                bankRoutes);
 app.use('/api/cfdis',                cfdiRoutes);
 app.use('/api/account-plan',         accountPlanRoutes);
 app.use('/api/collection-requests',  collectionRequestRoutes);
+app.use('/api/erp',                  erpRoutes);
 
 // ── 404 ───────────────────────────────────────────────────────────────────────
 app.use((_req, res) => {

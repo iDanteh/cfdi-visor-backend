@@ -89,24 +89,72 @@ const MESES_ES = {
 };
 
 // ════════════════════════════════════════════════════════════════════════════
-// MOTOR 1 — TESSERACT
+// MOTOR 1 — TESSERACT  (workers singleton — se inicializan una vez y se reusan)
 // ════════════════════════════════════════════════════════════════════════════
 
-async function runOCR(imageBuffer, mimeType = 'image/jpeg') {
-  // Configurar Tesseract con PSM optimizado para recibos
-  const worker = await Tesseract.createWorker(['spa', 'eng'], 1, { logger: () => {} });
-  try {
-    await worker.setParameters({
-      tessedit_pageseg_mode: Tesseract.PSM.SINGLE_BLOCK,  // PSM 6 = bloque uniforme
-      tessedit_char_whitelist: '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzÁÉÍÓÚáéíóúÑñ$.,/:- ',
-      preserve_interword_spaces: '1',
-    });
-    const dataUrl = `data:${mimeType};base64,${imageBuffer.toString('base64')}`;
-    const { data: { text, confidence } } = await worker.recognize(dataUrl);
-    return { text, confidence };
-  } finally {
-    await worker.terminate();
+/**
+ * Workers persistentes: evitan el overhead de ~2-4s por llamada de crear/destruir
+ * procesos de Tesseract. Se inicializan la primera vez y permanecen vivos mientras
+ * el servidor esté corriendo. Tesseract.js encola internamente las llamadas
+ * concurrentes a recognize(), por lo que es seguro reutilizarlos.
+ *
+ * _workerFullPromise  — spa+eng, PSM 4 (SINGLE_COLUMN): texto completo de recibos.
+ * _workerNumsPromise  — eng,     PSM 11 (SPARSE_TEXT):  barrido numérico de montos.
+ */
+let _workerFullPromise = null;
+let _workerNumsPromise = null;
+
+function getFullWorker() {
+  if (!_workerFullPromise) {
+    _workerFullPromise = (async () => {
+      // OEM 1 = LSTM_ONLY: motor neuronal puro, más preciso que el motor clásico (OEM 0)
+      const w = await Tesseract.createWorker(['spa', 'eng'], 1, { logger: () => {} });
+      await w.setParameters({
+        tessedit_pageseg_mode:   Tesseract.PSM.SINGLE_COLUMN,  // PSM 4 — columna única
+        tessedit_char_whitelist: '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzÁÉÍÓÚáéíóúÑñ$.,/:- ',
+        preserve_interword_spaces: '1',
+      });
+      return w;
+    })();
   }
+  return _workerFullPromise;
+}
+
+function getNumsWorker() {
+  if (!_workerNumsPromise) {
+    _workerNumsPromise = (async () => {
+      const w = await Tesseract.createWorker(['eng'], 1, { logger: () => {} });
+      await w.setParameters({
+        // PSM 11 (SPARSE_TEXT): busca texto disperso sin asumir layout uniforme.
+        // Más adecuado que PSM 6 (SINGLE_BLOCK) para encontrar montos sueltos en recibos.
+        tessedit_pageseg_mode:   Tesseract.PSM.SPARSE_TEXT,
+        tessedit_char_whitelist: '0123456789$.,: ',
+        preserve_interword_spaces: '1',
+      });
+      return w;
+    })();
+  }
+  return _workerNumsPromise;
+}
+
+async function runOCR(imageBuffer, mimeType = 'image/jpeg') {
+  // PSM 4 = columna única — layout real de recibos bancarios.
+  const worker  = await getFullWorker();
+  const dataUrl = `data:${mimeType};base64,${imageBuffer.toString('base64')}`;
+  const { data: { text, confidence } } = await worker.recognize(dataUrl);
+  return { text, confidence };
+}
+
+/**
+ * Segunda pasada OCR con whitelist exclusiva de dígitos.
+ * Elimina la ambigüedad O↔0 e l/I↔1 que Tesseract comete en fuentes serif.
+ * Usa PSM 11 (SPARSE_TEXT) para capturar montos dispersos sin importar su posición.
+ */
+async function runOCRAmounts(imageBuffer, mimeType = 'image/jpeg') {
+  const worker  = await getNumsWorker();
+  const dataUrl = `data:${mimeType};base64,${imageBuffer.toString('base64')}`;
+  const { data: { text } } = await worker.recognize(dataUrl);
+  return text;
 }
 
 /**
@@ -123,6 +171,21 @@ function normalizeOcrText(raw) {
     .replace(/[ \t]{2,}/g, ' ')
     .replace(/\r\n/g, '\n')
     .trim();
+
+  // 0. Corregir confusiones clásicas de Tesseract en contextos numéricos:
+  //    O/o → 0  y  l/I → 1  cuando están rodeados de dígitos o separadores de número.
+  //    Se aplica ANTES de las normalizaciones de formato para no interferir con ellas.
+  t = t
+    // "1O5" → "105", "2o0" → "200"  (O/o entre dígitos)
+    .replace(/(\d)[Oo](\d)/g, '$10$2')
+    // "1,O00" → "1,000"  (O/o después de coma de miles)
+    .replace(/,([Oo])(\d{2})\b/g, ',0$2')
+    // "l50" / "I50" → "150"  (l/I al inicio de un número)
+    .replace(/\b([lI])(\d)/g, '1$2')
+    // "15l" / "15I" → "151"  (l/I al final de un número)
+    .replace(/(\d)([lI])\b/g, '$11')
+    // "1.5OO" → "1.500"  (O/o después de punto decimal o en bloque de dígitos)
+    .replace(/(\d\.\d*)[Oo](\d*)/g, (_, a, b) => `${a}0${b}`);
 
   // 1. Formato europeo: 1.500,00 → 1500.00
   t = t.replace(/(\d{1,3})\.(\d{3}),(\d{2})\b/g, (_, a, b, c) => `${a}${b}.${c}`);
@@ -540,14 +603,25 @@ function calcConfianza(fields) {
 }
 
 async function extractReceiptDataTesseract(imageBuffer, mimeType = 'image/jpeg') {
-  const { text: raw, confidence: ocrConfidence } = await runOCR(imageBuffer, mimeType);
+  // Preprocesar: grayscale, gamma, sharpen, normalize, binarización → PNG lossless.
+  // Tesseract es especialmente sensible a imágenes pequeñas o con bajo contraste.
+  const processedBuffer = await preprocessImage(imageBuffer);
+
+  // Pasada principal — texto completo con PSM 4 (columna única).
+  // preprocessImage devuelve PNG; se pasa el mimeType correcto al worker.
+  const { text: raw, confidence: ocrConfidence } = await runOCR(processedBuffer, 'image/png');
   const clean = normalizeOcrText(raw);
+
+  // Pasada numérica — PSM 11 + whitelist dígitos para extraer montos sin ambigüedad O↔0.
+  const rawAmounts   = await runOCRAmounts(processedBuffer, 'image/png');
+  const cleanAmounts = normalizeOcrText(rawAmounts);
 
   const lines = clean.split('\n');
   const half  = Math.floor(lines.length / 2);
 
   const fields = {
-    monto:                extractMonto(clean),
+    // Intentar monto primero con texto completo; si falla, usar la pasada numérica.
+    monto:                extractMonto(clean) ?? extractMonto(cleanAmounts),
     fecha:                extractFecha(clean),
     hora:                 extractHora(clean),
     claveRastreo:         extractClaveRastreo(clean),
@@ -569,10 +643,11 @@ async function extractReceiptDataTesseract(imageBuffer, mimeType = 'image/jpeg')
 
   return {
     ...fields,
-    confianza:  adjustedConfianza,
-    _engine:    'tesseract',
+    confianza:      adjustedConfianza,
+    _engine:        'tesseract',
     _ocrConfidence: ocrConfidence,
-    _ocrText:   process.env.NODE_ENV !== 'production' ? clean : undefined,
+    _ocrText:       process.env.NODE_ENV !== 'production' ? clean       : undefined,
+    _ocrAmounts:    process.env.NODE_ENV !== 'production' ? cleanAmounts : undefined,
   };
 }
 
@@ -646,34 +721,83 @@ async function extractReceiptDataGemini(imageBuffer, mimeType) {
 // ════════════════════════════════════════════════════════════════════════════
 
 /**
- * Mejora la imagen antes de enviarla a Vision:
- *  - Upscale x2 si el ancho es menor a 1400px (imágenes comprimidas por WhatsApp)
- *  - Sharpen para compensar el blur del JPEG
- *  - Normalize para equilibrar brillo/contraste
- * Si sharp no está disponible o falla, devuelve el buffer original.
+ * Preprocesa la imagen para maximizar la precisión del OCR.
+ *
+ * Pipeline:
+ *  1. Upscale — si ancho o alto < 1200 px (verifica ambas dimensiones para screenshots
+ *     angostos como recibos BBVA o screenshots verticales de SPEI).
+ *  2. Escala de grises — elimina varianza de color que introduce ruido en Tesseract.
+ *  3. Corrección gamma — aclara imágenes oscuras (fotos nocturnas, WhatsApp con poca luz).
+ *     sharp.gamma(n) aplica pixel^(1/n): mayor n = más aclarado.
+ *  4. Sharpen — compensa el blur de compresión JPEG/WhatsApp.
+ *  5. Normalize — estira el histograma al rango completo 0–255.
+ *  6. Binarización adaptativa al fondo:
+ *       · Fondo claro (texto oscuro): threshold(145) → texto negro, fondo blanco.
+ *       · Fondo oscuro (texto claro): negate() + threshold(145) → mismo resultado.
+ *       · Brillo intermedio (80–140): se omite para no destruir detalles de fotos.
+ *     Umbral 145 en lugar de 128 para preservar trazos delgados en fuentes ligeras.
+ *  7. Salida PNG (lossless) — JPEG introduciría artefactos de bloque en imágenes binarizadas.
+ *
+ * Si sharp no está disponible o falla en cualquier paso, devuelve el buffer original.
  */
 async function preprocessImage(imageBuffer) {
   try {
     const sharp = require('sharp');
     const meta  = await sharp(imageBuffer).metadata();
-    const w     = meta.width || 0;
+    const w     = meta.width  || 0;
+    const h     = meta.height || 0;
+
+    // Medir brillo promedio tras convertir a grises (instancia separada, no modifica pipeline)
+    const stats         = await sharp(imageBuffer).grayscale().stats();
+    const avgBrightness = stats.channels[0].mean; // 0–255
 
     let pipeline = sharp(imageBuffer, { failOn: 'none' });
 
-    // Upscale si la imagen es pequeña (WhatsApp comprime a ~1200-1600px)
-    if (w < 1400) {
+    // 1. Upscale — verifica la dimensión mínima para capturar screenshots angostos
+    const minDim = Math.min(w || Infinity, h || Infinity);
+    if (minDim < 1200 && minDim > 0) {
+      const scale = Math.min(2, 1800 / minDim);
       pipeline = pipeline.resize({
-        width:             Math.max(w * 2, 1800),
+        width:              Math.round(w * scale),
         withoutEnlargement: false,
-        kernel:            'lanczos3',
+        kernel:             'lanczos3',
+      });
+    } else if (w > 0 && w < 1400) {
+      pipeline = pipeline.resize({
+        width:              Math.max(w * 2, 1800),
+        withoutEnlargement: false,
+        kernel:             'lanczos3',
       });
     }
 
-    return await pipeline
-      .sharpen({ sigma: 1.3, m1: 1.5, m2: 0.5 })
-      .normalize()
-      .jpeg({ quality: 95 })
-      .toBuffer();
+    // 2. Escala de grises
+    pipeline = pipeline.grayscale();
+
+    // 3. Corrección gamma para imágenes oscuras
+    if (avgBrightness < 50) {
+      pipeline = pipeline.gamma(3.0);   // muy oscura — aclarar agresivamente
+    } else if (avgBrightness < 100) {
+      pipeline = pipeline.gamma(2.2);   // moderadamente oscura — corrección estándar sRGB
+    }
+
+    // 4. Sharpen
+    pipeline = pipeline.sharpen({ sigma: 1.3, m1: 1.5, m2: 0.5 });
+
+    // 5. Normalize
+    pipeline = pipeline.normalize();
+
+    // 6. Binarización adaptativa según el tipo de fondo
+    if (avgBrightness > 140) {
+      // Fondo claro (screenshots de apps bancarias, mayoría de los casos)
+      pipeline = pipeline.threshold(145);
+    } else if (avgBrightness < 80) {
+      // Fondo oscuro (BBVA modo oscuro, pantallas con fondo negro)
+      pipeline = pipeline.negate().threshold(145);
+    }
+    // 80–140: foto de papel o imagen con iluminación variable — normalize es suficiente
+
+    // 7. PNG lossless
+    return await pipeline.png().toBuffer();
   } catch {
     return imageBuffer; // si falla el preproceso, continúa con el original
   }
@@ -898,7 +1022,7 @@ function scoreMovement(mov, ext) {
     { score += 20; reasons.push('Clave rastreo exacta'); }
   else if (eRef && mRefN && (mRefN === eRef || mRefN.includes(eRef) || eRef.includes(mRefN)))
     { score += 15; reasons.push('Referencia numérica'); }
-  else if (eClave && mRefN && mRefN.includes(eClave.slice(-8)))
+  else if (eClave && mRefN && eClave.length >= 12 && mRefN.includes(eClave.slice(-12)))
     { score +=  8; reasons.push('Clave rastreo parcial'); }
 
   // ── Banco (15 pts) — comparación por alias normalizado ────────────────────
@@ -916,6 +1040,55 @@ function scoreMovement(mov, ext) {
   const last4 = ext.cuentaDestinoUltimos4 || ext.cuentaOrigenUltimos4;
   if (last4 && mov.concepto && mov.concepto.includes(last4)) {
     score += 5; reasons.push(`Cta ****${last4}`);
+  }
+
+  // ── Titular del comprobante en el concepto del movimiento (10 pts) ─────────
+  // Los movimientos SPEI suelen incluir el nombre del remitente en el concepto,
+  // ej: "SPEI DE EDGAR CORTES GONZALEZ". Comparar con titularOrigen/titularDestino.
+  const movConceptoNorm = (mov.concepto || '')
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '').toUpperCase();
+
+  const titular = ext.titularOrigen || ext.titularDestino || '';
+  if (titular && movConceptoNorm) {
+    const titNorm  = titular.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toUpperCase();
+    // Filtrar tokens cortos (artículos, preposiciones) para evitar falsos positivos
+    const tokens   = titNorm.split(/\s+/).filter(t => t.length > 2);
+    if (tokens.length > 0) {
+      const matched = tokens.filter(t => movConceptoNorm.includes(t));
+      const ratio   = matched.length / tokens.length;
+      if      (ratio >= 0.6) { score += 10; reasons.push(`Titular: ${titular.slice(0, 25)}…`); }
+      else if (ratio >= 0.3) { score +=  5; reasons.push('Titular parcial'); }
+    }
+  }
+
+  // ── Concepto extraído vs concepto del movimiento (5 pts) ──────────────────
+  // El concepto del comprobante ("pago renta feb", "factura 234") puede coincidir
+  // con palabras clave del concepto del banco.
+  const extConcepto = (ext.concepto || '');
+  if (extConcepto && movConceptoNorm) {
+    const extNorm  = extConcepto.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toUpperCase();
+    const extTokens = extNorm.split(/\s+/).filter(t => t.length > 3);
+    if (extTokens.length > 0) {
+      const matched = extTokens.filter(t => movConceptoNorm.includes(t));
+      if (matched.length / extTokens.length >= 0.5) {
+        score += 5; reasons.push('Concepto coincide');
+      }
+    }
+  }
+
+  // ── CLABE — últimos 8 dígitos como señal de cuenta (5 pts) ────────────────
+  // La CLABE completa raramente aparece en el concepto, pero los últimos 8 dígitos
+  // (que identifican al beneficiario + dígito de control) sí pueden estar presentes
+  // en referenciaNumerica o en el concepto del banco.
+  // Nota: los últimos 4 ya están cubiertos por la regla de cuenta arriba;
+  //       aquí se buscan los 8 para sumar puntos adicionales sin duplicar.
+  if (ext.clabe && ext.clabe.length === 18) {
+    const last8   = ext.clabe.slice(-8);
+    const haystack = [mov.concepto, mov.referenciaNumerica, mov.numeroAutorizacion]
+      .filter(Boolean).join(' ');
+    if (haystack.includes(last8) && !(last4 && last8.endsWith(last4) && haystack.includes(last4))) {
+      score += 5; reasons.push(`CLABE ****${last8}`);
+    }
   }
 
   return { score: Math.min(score, 100), reasons };
