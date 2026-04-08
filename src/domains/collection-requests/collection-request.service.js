@@ -1,6 +1,7 @@
 'use strict';
 
 const CollectionRequest = require('./CollectionRequest.model');
+const BankMovement      = require('../banks/BankMovement.model');
 const { extractReceiptData, findMatchingMovements } = require('./receipt.service');
 const { NotFoundError, BadRequestError } = require('../../shared/errors/AppError');
 
@@ -48,7 +49,7 @@ async function create(data, userId) {
   const { clienteNombre, clienteRFC, monto, concepto,
           bankMovementId, cfdiIds, comprobante, notas } = data;
 
-  return CollectionRequest.create({
+  const cr = await CollectionRequest.create({
     clienteNombre:  clienteNombre  || null,
     clienteRFC:     clienteRFC     || null,
     monto:          monto          || null,
@@ -74,6 +75,17 @@ async function create(data, userId) {
     status:         bankMovementId ? 'por_confirmar' : 'pendiente',
     creadoPor:      userId,
   });
+
+  // El movimiento fue identificado mediante el comprobante — marcarlo de inmediato.
+  // Solo si no tiene uuidXML (que bloquea el status).
+  if (bankMovementId) {
+    await BankMovement.findOneAndUpdate(
+      { _id: bankMovementId, uuidXML: null },
+      { status: 'identificado' },
+    );
+  }
+
+  return cr;
 }
 
 async function confirm(id, data, userId) {
@@ -89,6 +101,16 @@ async function confirm(id, data, userId) {
   cr.confirmadoPor = userId;
   cr.confirmadoAt  = new Date();
   await cr.save();
+
+  // Marcar el movimiento bancario como identificado.
+  // Solo se actualiza si aún no tiene uuidXML (que bloquea el status).
+  if (cr.bankMovementId) {
+    await BankMovement.findOneAndUpdate(
+      { _id: cr.bankMovementId, uuidXML: null },
+      { status: 'identificado' },
+    );
+  }
+
   return cr;
 }
 

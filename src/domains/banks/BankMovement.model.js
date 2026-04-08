@@ -3,7 +3,12 @@ const mongoose = require('mongoose');
 const bankMovementSchema = new mongoose.Schema({
   banco: {
     type: String,
-    enum: ['Banamex', 'BBVA', 'Santander', 'Azteca'],
+    enum: [
+      'Banamex', 'BBVA', 'Santander', 'Azteca',
+      'Banorte', 'HSBC', 'Inbursa', 'Scotiabank',
+      'BanBajío', 'Afirme', 'Intercam', 'Nu',
+      'Spin', 'Hey Banco', 'Albo',
+    ],
     required: true,
     index: true,
   },
@@ -45,6 +50,9 @@ const bankMovementSchema = new mongoose.Schema({
 
   // IDs de CxC provenientes del ERP externo (N por movimiento)
   erpIds: { type: [String], default: [] },
+
+  // Nombre del cliente identificado mediante el catálogo auxiliar
+  auxNombre: { type: String, default: null, index: true },
 
   // Hash de deduplicación: SHA-256 de campos clave, evita duplicados al
   // volver a cargar el mismo archivo.

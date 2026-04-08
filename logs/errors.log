@@ -89,3 +89,15 @@
     at extractReceiptDataTesseract (D:\KORE - Claude\cfdi-comparator-api\src\services\receiptService.js:322:17)
     at async extractReceiptData (D:\KORE - Claude\cfdi-comparator-api\src\services\receiptService.js:479:20)
     at async D:\KORE - Claude\cfdi-comparator-api\src\routes\collectionRequests.js:57:23
+2026-04-02 12:50:04 [error]: TypeError: BANCOS_VALIDOS.includes is not a function
+    at Object.importFile (D:\KORE - Claude\cfdi-comparator-api\src\domains\banks\bank.service.js:191:40)
+    at D:\KORE - Claude\cfdi-comparator-api\src\domains\banks\bank.routes.js:43:34
+    at D:\KORE - Claude\cfdi-comparator-api\src\shared\middleware\error-handler.js:9:19
+    at Layer.handle [as handle_request] (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\layer.js:95:5)
+    at next (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\route.js:149:13)
+    at done (D:\KORE - Claude\cfdi-comparator-api\node_modules\multer\lib\make-middleware.js:47:7)
+    at indicateDone (D:\KORE - Claude\cfdi-comparator-api\node_modules\multer\lib\make-middleware.js:51:68)
+    at Multipart.<anonymous> (D:\KORE - Claude\cfdi-comparator-api\node_modules\multer\lib\make-middleware.js:168:7)
+    at Multipart.emit (node:events:519:28)
+    at emitCloseNT (node:internal/streams/destroy:147:10)
+    at process.processTicksAndRejections (node:internal/process/task_queues:81:21)

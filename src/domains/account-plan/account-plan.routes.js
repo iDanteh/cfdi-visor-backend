@@ -86,7 +86,6 @@ router.post('/import',
       omitidos:      result.omitidos,
       total:         result.total,
       errores:       result.errores,
-      columnMapUsed: result.columnMapUsed,
     });
   }),
 );

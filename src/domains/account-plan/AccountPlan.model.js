@@ -96,12 +96,13 @@ accountPlanSchema.index(
   { default_language: 'spanish' },
 );
 
-// ── Pre-save: auto-derivar tipo, naturaleza y nivel ──────────────────────────
-accountPlanSchema.pre('save', function (next) {
+// ── Pre-validate: auto-derivar tipo, naturaleza y nivel ──────────────────────
+// Corre ANTES de la validación de campos requeridos.
+accountPlanSchema.pre('validate', function (next) {
   if (!this.nivel) this.nivel = codigoToNivel(this.codigo);
   const inferred = inferTipoNat(this.codigo);
   if (inferred) {
-    this.tipo      = inferred.tipo;
+    this.tipo       = inferred.tipo;
     this.naturaleza = inferred.naturaleza;
   }
   next();

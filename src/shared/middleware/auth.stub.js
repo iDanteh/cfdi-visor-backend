@@ -13,7 +13,7 @@
 
 // eslint-disable-next-line no-unused-vars
 const authenticate = (req, _res, next) => {
-  req.user = { _id: 'dev', name: 'Desarrollador', role: 'admin' };
+  req.user = { _id: '000000000000000000000001', name: 'Desarrollador', role: 'admin' };
   next();
 };
 

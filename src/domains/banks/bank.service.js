@@ -1,21 +1,38 @@
 'use strict';
 
-const BankMovement = require('./BankMovement.model');
-const BankConfig   = require('./BankConfig.model');
-const Counter      = require('../../shared/models/Counter');
-const { parseBankFile }  = require('./bank.parser');
+const BankMovement      = require('./BankMovement.model');
+const BankConfig        = require('./BankConfig.model');
+const Counter           = require('../../shared/models/Counter');
+const CollectionRequest = require('../collection-requests/CollectionRequest.model');
+const { parseBankFile, clasificar } = require('./bank.parser');
 const { NotFoundError, BadRequestError, ConflictError } = require('../../shared/errors/AppError');
 
 // ── Constantes ────────────────────────────────────────────────────────────────
 
-const BANCOS_VALIDOS = ['BBVA', 'Banamex', 'Santander', 'Azteca'];
+const BANCOS_VALIDOS = [
+  'BBVA', 'Banamex', 'Santander', 'Azteca',
+  'Banorte', 'HSBC', 'Inbursa', 'Scotiabank',
+  'BanBajío', 'Afirme', 'Intercam', 'Nu',
+  'Spin', 'Hey Banco', 'Albo',
+];
 const STATUS_VALIDOS = ['no_identificado', 'identificado', 'otros'];
 
 const BANK_PREFIX = {
-  bbva:      'BBVA',
-  banamex:   'BNAM',
-  santander: 'SANT',
-  azteca:    'AZTC',
+  bbva:       'BBVA',
+  banamex:    'BNAM',
+  santander:  'SANT',
+  azteca:     'AZTC',
+  banorte:    'BNRT',
+  hsbc:       'HSBC',
+  inbursa:    'INBR',
+  scotiabank: 'SCOT',
+  banbajío:   'BAJIO',
+  afirme:     'AFRM',
+  intercam:   'INTC',
+  nu:         'NU',
+  spin:       'SPIN',
+  'hey banco':'HEY',
+  albo:       'ALBO',
 };
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
@@ -48,6 +65,33 @@ async function getCards() {
         no_identificado: { $sum: { $cond: [{ $in: ['$status', ['no_identificado', null]] }, 1, 0] } },
         identificado:    { $sum: { $cond: [{ $eq:  ['$status', 'identificado'] }, 1, 0] } },
         otros:           { $sum: { $cond: [{ $eq:  ['$status', 'otros'] }, 1, 0] } },
+        saldoPendiente:  {
+          $sum: {
+            $cond: [
+              { $in: ['$status', ['no_identificado', null]] },
+              { $subtract: [{ $ifNull: ['$deposito', 0] }, { $ifNull: ['$retiro', 0] }] },
+              0,
+            ],
+          },
+        },
+        saldoIdentificado: {
+          $sum: {
+            $cond: [
+              { $eq: ['$status', 'identificado'] },
+              { $subtract: [{ $ifNull: ['$deposito', 0] }, { $ifNull: ['$retiro', 0] }] },
+              0,
+            ],
+          },
+        },
+        saldoOtros: {
+          $sum: {
+            $cond: [
+              { $eq: ['$status', 'otros'] },
+              { $subtract: [{ $ifNull: ['$deposito', 0] }, { $ifNull: ['$retiro', 0] }] },
+              0,
+            ],
+          },
+        },
       },
     },
     { $sort: { _id: 1 } },
@@ -69,6 +113,9 @@ async function getCards() {
     ultimaImport:   b.ultimaImport,
     cuentaContable: b.config?.cuentaContable ?? null,
     numeroCuenta:   b.config?.numeroCuenta   ?? null,
+    saldoPendiente:    b.saldoPendiente    ?? 0,
+    saldoIdentificado: b.saldoIdentificado ?? 0,
+    saldoOtros:        b.saldoOtros        ?? 0,
     porStatus: {
       no_identificado: b.no_identificado,
       identificado:    b.identificado,
@@ -138,7 +185,7 @@ async function listMovements(filters) {
   const sortOrder  = sortDir === 'asc' ? 1 : -1;
   const skip       = (parseInt(page) - 1) * parseInt(limit);
 
-  const [data, total] = await Promise.all([
+  const [movements, total] = await Promise.all([
     BankMovement.find(filter)
       .sort({ [sortField]: sortOrder, _id: 1 })
       .skip(skip)
@@ -146,6 +193,31 @@ async function listMovements(filters) {
       .lean(),
     BankMovement.countDocuments(filter),
   ]);
+
+  // Enriquecer con solicitudes de cobro confirmadas vinculadas a cada movimiento
+  const movIds = movements.map(m => m._id);
+  const solicitudes = await CollectionRequest.find(
+    { bankMovementId: { $in: movIds }, status: 'confirmado' },
+    'bankMovementId monto clienteNombre clienteRFC confirmadoAt',
+  ).lean();
+
+  const solicitudesPorMov = {};
+  for (const s of solicitudes) {
+    const key = s.bankMovementId.toString();
+    if (!solicitudesPorMov[key]) solicitudesPorMov[key] = [];
+    solicitudesPorMov[key].push({
+      _id:           s._id,
+      monto:         s.monto,
+      clienteNombre: s.clienteNombre,
+      clienteRFC:    s.clienteRFC,
+      confirmadoAt:  s.confirmadoAt,
+    });
+  }
+
+  const data = movements.map(m => ({
+    ...m,
+    solicitudesConfirmadas: solicitudesPorMov[m._id.toString()] ?? [],
+  }));
 
   return {
     data,
@@ -254,13 +326,34 @@ async function linkUuid(id, uuidXML) {
   if (!uuidXML || typeof uuidXML !== 'string' || !uuidXML.trim()) {
     throw new BadRequestError('UUID inválido o vacío');
   }
+  const uuid = uuidXML.trim().toUpperCase();
+
   const mov = await BankMovement.findById(id);
   if (!mov) throw new NotFoundError('Movimiento');
   if (mov.uuidXML) throw new ConflictError('Este movimiento ya tiene un UUID vinculado');
-  mov.uuidXML = uuidXML.trim().toUpperCase();
+
+  // Si ese UUID ya está vinculado a otro movimiento, lo desvincula primero.
+  const previo = await BankMovement.findOne({ uuidXML: uuid, _id: { $ne: id }, isActive: true });
+  if (previo) {
+    previo.uuidXML = null;
+    previo.status  = 'no_identificado';
+    await previo.save();
+  }
+
+  mov.uuidXML = uuid;
   mov.status  = 'identificado';
   await mov.save();
-  return { _id: mov._id, uuidXML: mov.uuidXML, status: mov.status };
+  return { _id: mov._id, uuidXML: mov.uuidXML, status: mov.status, previoDesvinculado: previo?._id ?? null };
+}
+
+async function unlinkUuid(id) {
+  const mov = await BankMovement.findById(id);
+  if (!mov) throw new NotFoundError('Movimiento');
+  if (!mov.uuidXML) throw new BadRequestError('Este movimiento no tiene UUID vinculado');
+  mov.uuidXML = null;
+  mov.status  = 'no_identificado';
+  await mov.save();
+  return { _id: mov._id, uuidXML: null, status: mov.status };
 }
 
 async function updateErpIds(id, action, erpId) {
@@ -280,6 +373,14 @@ async function updateErpIds(id, action, erpId) {
   return { _id: mov._id, erpIds: mov.erpIds };
 }
 
+async function setErpIds(id, erpIds) {
+  if (!Array.isArray(erpIds)) throw new BadRequestError('erpIds debe ser un arreglo');
+  const cleaned = [...new Set(erpIds.map(x => String(x).trim()).filter(Boolean))];
+  const mov = await BankMovement.findByIdAndUpdate(id, { erpIds: cleaned }, { new: true });
+  if (!mov) throw new NotFoundError('Movimiento');
+  return { _id: mov._id, erpIds: mov.erpIds };
+}
+
 async function getConfig(banco) {
   const cfg = await BankConfig.findOne({ banco }).lean();
   return cfg ?? { banco, cuentaContable: null, numeroCuenta: null };
@@ -293,8 +394,41 @@ async function saveConfig(banco, data) {
   return BankConfig.findOneAndUpdate({ banco }, { $set: update }, { upsert: true, new: true });
 }
 
+async function recategorizarMovimientos() {
+  // Obtiene todos los movimientos sin categoría en lotes y los reclasifica
+  const BATCH = 500;
+  let actualizados = 0;
+  let cursor = 0;
+
+  while (true) {
+    const docs = await BankMovement.find(
+      { isActive: true, $or: [{ categoria: null }, { categoria: { $exists: false } }] },
+      { _id: 1, concepto: 1 },
+    ).skip(cursor).limit(BATCH).lean();
+
+    if (docs.length === 0) break;
+
+    const ops = docs
+      .map((d) => ({ id: d._id, cat: clasificar(d.concepto) }))
+      .filter((x) => x.cat !== null)
+      .map(({ id, cat }) => ({
+        updateOne: { filter: { _id: id }, update: { $set: { categoria: cat } } },
+      }));
+
+    if (ops.length) {
+      await BankMovement.bulkWrite(ops, { ordered: false });
+      actualizados += ops.length;
+    }
+
+    cursor += docs.length;
+    if (docs.length < BATCH) break;
+  }
+
+  return { actualizados };
+}
+
 module.exports = {
   getCards, listMovements, getSummary,
-  importFile, updateStatus, linkUuid, updateErpIds,
-  getConfig, saveConfig,
+  importFile, updateStatus, linkUuid, unlinkUuid, updateErpIds, setErpIds,
+  getConfig, saveConfig, recategorizarMovimientos,
 };
