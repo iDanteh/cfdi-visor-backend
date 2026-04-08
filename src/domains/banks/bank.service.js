@@ -332,15 +332,7 @@ async function linkUuid(id, uuidXML) {
   if (!mov) throw new NotFoundError('Movimiento');
   if (mov.uuidXML) throw new ConflictError('Este movimiento ya tiene un UUID vinculado');
 
-  // Validar que el CFDI exista y no esté cancelado ante el SAT
-  const CFDI = require('../cfdis/CFDI.model');
-  const cfdiDoc = await CFDI.findOne({ uuid, isActive: true }, 'satStatus tipoDeComprobante').lean();
-  if (cfdiDoc?.satStatus === 'Cancelado') {
-    throw new ConflictError('No se puede vincular un CFDI cancelado ante el SAT');
-  }
-
   // Si ese UUID ya está vinculado a otro movimiento, lo desvincula primero.
-  // Esto garantiza la relación 1:1 CFDI ↔ movimiento bancario.
   const previo = await BankMovement.findOne({ uuidXML: uuid, _id: { $ne: id }, isActive: true });
   if (previo) {
     previo.uuidXML = null;

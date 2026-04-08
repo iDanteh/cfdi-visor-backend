@@ -10,7 +10,7 @@ const TOL_EXACT_MXN     = 1;      // Diferencia ≤ $1  → match exacto
 const TOL_PCT           = 0.02;   // Tolerancia de monto: 2 % del saldoActual
 const TOL_MIN_MXN       = 5;      // Tolerancia mínima absoluta en pesos
 const CAPACIDAD_MIN_MXN = 5;      // Capacidad restante mínima para incluir el depósito
-const FOLIO_MIN_LEN     = 3;      // Longitud mínima de folio para buscarlo en texto
+const FOLIO_MIN_LEN     = 5;      // Longitud mínima de folio para buscarlo en texto (< 5 chars → riesgo alto de falso positivo)
 const CAT_BONUS         = ['Transferencia', 'Depósitos'];
 const CAT_PENALTY       = ['Nómina', 'Cargo bancario', 'Retiro ATM', 'Cheque'];
 
@@ -155,6 +155,22 @@ function _calcCapacidad(dep, erpIdToSnap) {
 }
 
 /**
+ * Verifica que `needle` aparece como token independiente dentro de `haystack`.
+ * Usa word-boundary (\b) para evitar que folio "123" matchee en "1234" o "COMP123X".
+ * Los folios puramente numéricos usan lookbehind/lookahead de dígito para mayor precisión.
+ */
+function _isTokenMatch(haystack, needle) {
+  if (!haystack || !needle) return false;
+  const escaped = needle.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  // Para tokens numéricos: asegurar que no haya dígito adyacente
+  // Para tokens alfanuméricos: \b es suficiente
+  const pattern = /^\d+$/.test(needle)
+    ? `(?<!\\d)${escaped}(?!\\d)`
+    : `\\b${escaped}\\b`;
+  return new RegExp(pattern).test(haystack);
+}
+
+/**
  * Calcula el score de un match individual (1 depósito ↔ 1 CxC).
  * Retorna { score, matchType, diferencia, daysFromVenc } o null si no supera filtros.
  *
@@ -208,10 +224,11 @@ function _scoreIndividual(dep, cxc, capacidadRestante, dateWin) {
   const sfToken    = serieLower && folioLower ? `${serieLower}-${folioLower}` : '';
 
   // ── Bonus: referenciaNumerica contiene folio / erpId ──────────────────────
+  // Match exacto O token independiente (word-boundary) para evitar falsos positivos
   const refNum = (dep.referenciaNumerica || '').toLowerCase().trim();
   if (refNum && folioLower.length >= FOLIO_MIN_LEN) {
     if (refNum === folioLower || refNum === erpIdLower ||
-        refNum.includes(folioLower) || refNum.includes(erpIdLower)) {
+        _isTokenMatch(refNum, folioLower) || _isTokenMatch(refNum, erpIdLower)) {
       score = 1.0; matchType = 'referencia_numerica';
     }
   }
@@ -220,19 +237,20 @@ function _scoreIndividual(dep, cxc, capacidadRestante, dateWin) {
   if (matchType !== 'referencia_numerica') {
     const authNum = (dep.numeroAutorizacion || '').toLowerCase().trim();
     if (authNum && folioLower.length >= FOLIO_MIN_LEN) {
-      if (authNum.includes(folioLower) || authNum.includes(erpIdLower)) {
+      if (_isTokenMatch(authNum, folioLower) || _isTokenMatch(authNum, erpIdLower)) {
         score = 1.0; matchType = 'numero_autorizacion';
       }
     }
   }
 
   // ── Bonus: folio / serie-folio / erpId aparece en el concepto ────────────
+  // Usa word-boundary: folio "123" no matchea en "COMP1234" ni en "0001230"
   if (!TEXT_MATCH_TYPES.has(matchType)) {
     const concepto = (dep.concepto || '').toLowerCase();
     if (
-      (folioLower.length >= FOLIO_MIN_LEN && concepto.includes(folioLower)) ||
-      (sfToken.length    >= FOLIO_MIN_LEN && concepto.includes(sfToken))    ||
-      (erpIdLower.length >= FOLIO_MIN_LEN && concepto.includes(erpIdLower))
+      (folioLower.length >= FOLIO_MIN_LEN && _isTokenMatch(concepto, folioLower)) ||
+      (sfToken.length    >= FOLIO_MIN_LEN && _isTokenMatch(concepto, sfToken))    ||
+      (erpIdLower.length >= FOLIO_MIN_LEN && _isTokenMatch(concepto, erpIdLower))
     ) {
       score = 1.0; matchType = 'folio_en_concepto';
     }
@@ -289,12 +307,23 @@ function _findCombinational(deposits, cxcsElegibles) {
   const results = [];
 
   for (const dep of deposits) {
-    const target = dep.capacidadRestante;
-    const tolAbs = Math.max(target * TOL_COMB_PCT, TOL_MIN_MXN);
+    const target    = dep.capacidadRestante;
+    const tolAbs    = Math.max(target * TOL_COMB_PCT, TOL_MIN_MXN);
+    const depDateMs = dep.fecha ? new Date(dep.fecha).getTime() : null;
 
-    // Pre-filtrar: solo CxCs cuyo saldo quepa dentro del target
+    // Pre-filtrar: saldo dentro del target Y ventana de fecha tipoPago-aware
     const candidates = cxcsElegibles
-      .filter(c => c.saldoActual >= TOL_MIN_MXN && c.saldoActual <= target + tolAbs)
+      .filter(c => {
+        if (c.saldoActual < TOL_MIN_MXN || c.saldoActual > target + tolAbs) return false;
+        // Verificar que la fecha del depósito cae dentro de la ventana de la CxC
+        if (depDateMs !== null && c.fechaVencimiento) {
+          const dateWin = DATE_WINDOWS[c.tipoPago] || DATE_WINDOWS.default;
+          const vencMs  = new Date(c.fechaVencimiento).getTime();
+          const days    = (depDateMs - vencMs) / 86_400_000;
+          if (days < -dateWin.before || days > dateWin.after) return false;
+        }
+        return true;
+      })
       .sort((a, b) => a.saldoActual - b.saldoActual)   // ASC — necesario para las podas
       .slice(0, MAX_CANDIDATES);
 
@@ -526,8 +555,20 @@ async function getCxcMatches() {
   }
 
   const depositsParaComb = deposits.filter(d => !depositsConTexto.has(d._id.toString()));
-  const cxcsElegibles    = snapshots.filter(s => s.saldoActual > 0);
-  const combinacionales  = _findCombinational(depositsParaComb, cxcsElegibles);
+
+  // CxCs con match individual sólido (texto identificatorio O score ≥ 0.90 sin conflicto)
+  // no deben participar en combinaciones: ya tienen destino conocido y solo generarían ruido.
+  const cxcIdsConMatchSolido = new Set();
+  for (const { cxc, matches } of individual) {
+    if (matches.some(m => !m.esConflicto && (TEXT_MATCH_TYPES.has(m.matchType) || m.score >= 0.90))) {
+      cxcIdsConMatchSolido.add(cxc.erpId);
+    }
+  }
+
+  const cxcsElegibles   = snapshots.filter(s =>
+    s.saldoActual > 0 && !cxcIdsConMatchSolido.has(s.erpId)
+  );
+  const combinacionales = _findCombinational(depositsParaComb, cxcsElegibles);
 
   return { individual, combinacionales };
 }

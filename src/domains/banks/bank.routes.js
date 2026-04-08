@@ -2,9 +2,15 @@
 
 const express = require('express');
 const multer  = require('multer');
-const { authenticate, authorize } = require('../../shared/middleware/auth.stub');
-const { asyncHandler }            = require('../../shared/middleware/error-handler');
-const service                     = require('./bank.service');
+const { authenticate, authorize }  = require('../../shared/middleware/auth.stub');
+const { asyncHandler }             = require('../../shared/middleware/error-handler');
+const service                      = require('./bank.service');
+const {
+  parseAuxiliaryFile,
+  applyAuxiliaryMatching,
+  resumenAuxiliarClientes,
+  listMovimientosAuxiliar,
+} = require('./bank-auxiliary.parser');
 
 const router = express.Router();
 
@@ -97,6 +103,46 @@ router.post('/recategorizar',
   asyncHandler(async (_req, res) => {
     const result = await service.recategorizarMovimientos();
     res.json({ mensaje: `${result.actualizados} movimientos actualizados`, ...result });
+  }),
+);
+
+// POST /api/banks/auxiliar/import
+router.post('/auxiliar/import',
+  authenticate,
+  authorize('admin', 'contador'),
+  upload.single('excelFile'),
+  asyncHandler(async (req, res) => {
+    if (!req.file) return res.status(400).json({ error: 'No se envió ningún archivo Excel' });
+    const result = await parseAuxiliaryFile(req.file.buffer);
+    res.status(207).json(result);
+  }),
+);
+
+// POST /api/banks/auxiliar/aplicar  — cruza catálogo con movimientos
+router.post('/auxiliar/aplicar',
+  authenticate,
+  authorize('admin', 'contador'),
+  asyncHandler(async (_req, res) => {
+    const result = await applyAuxiliaryMatching();
+    res.json(result);
+  }),
+);
+
+// GET /api/banks/auxiliar/clientes  — resumen agrupado por cliente
+router.get('/auxiliar/clientes',
+  authenticate,
+  asyncHandler(async (req, res) => {
+    const result = await resumenAuxiliarClientes(req.query);
+    res.json(result);
+  }),
+);
+
+// GET /api/banks/auxiliar/movimientos  — lista paginada de movimientos identificados
+router.get('/auxiliar/movimientos',
+  authenticate,
+  asyncHandler(async (req, res) => {
+    const result = await listMovimientosAuxiliar(req.query);
+    res.json(result);
   }),
 );
 

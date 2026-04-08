@@ -12,7 +12,6 @@ const errorHandler     = require('./shared/middleware/error-handler');
 
 // Domain routers
 const bankRoutes              = require('./domains/banks/bank.routes');
-const cfdiRoutes              = require('./domains/cfdis/cfdi.routes');
 const accountPlanRoutes       = require('./domains/account-plan/account-plan.routes');
 const collectionRequestRoutes = require('./domains/collection-requests/collection-request.routes');
 const erpRoutes               = require('./domains/erp/erp.routes');
@@ -50,7 +49,6 @@ app.get('/health', (_req, res) => {
 
 // ── API routes ────────────────────────────────────────────────────────────────
 app.use('/api/banks',                bankRoutes);
-app.use('/api/cfdis',                cfdiRoutes);
 app.use('/api/account-plan',         accountPlanRoutes);
 app.use('/api/collection-requests',  collectionRequestRoutes);
 app.use('/api/erp',                  erpRoutes);
