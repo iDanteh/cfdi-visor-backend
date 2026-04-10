@@ -1,28 +1,47 @@
 'use strict';
 
 const express = require('express');
-const { authenticate }  = require('../../shared/middleware/auth.stub');
-const { asyncHandler }  = require('../../shared/middleware/error-handler');
-const service           = require('./erp.service');
+const axios   = require('axios');
+const { authenticate } = require('../../shared/middleware/auth.stub');
+const { asyncHandler } = require('../../shared/middleware/error-handler');
 
 const router = express.Router();
 
-// GET /api/erp/cuentas-pendientes?fechaDesde=2026-04-01T00:00:00Z&fechaHasta=2026-04-07T23:59:59Z
-router.get('/cuentas-pendientes', authenticate, asyncHandler(async (req, res) => {
-  const { fechaDesde, fechaHasta } = req.query;
+const ERP_BASE_URL = (process.env.ERP_BASE_URL || '').replace(/\/$/, '');
+const ERP_TOKEN    = process.env.ERP_TOKEN || '';
 
-  if (!fechaDesde || !fechaHasta) {
-    return res.status(400).json({ error: 'Se requieren los parámetros fechaDesde y fechaHasta (ISO 8601)' });
+// GET /api/erp/cuentas-pendientes
+// Parámetros: fechaDesde, fechaHasta, estadoCobro (opcional; 'pendiente' para solo pendientes)
+router.get('/cuentas-pendientes', authenticate, asyncHandler(async (req, res) => {
+  if (!ERP_BASE_URL) {
+    return res.status(503).json({ error: 'ERP no configurado (ERP_BASE_URL ausente)' });
   }
 
-  res.json(await service.getCuentasPendientes(fechaDesde, fechaHasta));
-}));
+  const { fechaDesde, fechaHasta, estadoCobro } = req.query;
 
-// GET /api/erp/cxc-matches
-// Devuelve todos los snapshots de CxC con sus posibles matches en movimientos bancarios.
-// ENDPOINT TEMPORAL — fase exploratoria de conciliación.
-router.get('/cxc-matches', authenticate, asyncHandler(async (_req, res) => {
-  res.json(await service.getCxcMatches());
+  const params = { fechaDesde, fechaHasta };
+  if (estadoCobro) params.estadoCobro = estadoCobro;
+
+  const response = await axios.get(`${ERP_BASE_URL}/cuentas-pendientes`, {
+    params,
+    headers: { Authorization: `Bearer ${ERP_TOKEN}` },
+    timeout: 15000,
+  });
+
+  const cuentas = (response.data?.Data?.cuentas || []).map(c => ({
+    id:               c.id,
+    serie:            c.serie,
+    folio:            c.folio,
+    tipoPago:         c.tipoPago   ?? null,
+    subtotal:         c.subtotal,
+    impuesto:         c.impuesto,
+    total:            c.total,
+    saldoActual:      c.saldoActual,
+    fechaVencimiento: c.fechaVencimiento ?? null,
+    folioFiscal:      c.folioFiscal ?? null,
+  }));
+
+  res.json(cuentas);
 }));
 
 module.exports = router;

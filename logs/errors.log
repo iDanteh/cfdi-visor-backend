@@ -101,3 +101,370 @@
     at Multipart.emit (node:events:519:28)
     at emitCloseNT (node:internal/streams/destroy:147:10)
     at process.processTicksAndRejections (node:internal/process/task_queues:81:21)
+2026-04-06 14:34:52 [error]: BadRequestError: Este movimiento no tiene UUID vinculado
+    at Object.unlinkUuid (D:\KORE - Claude\cfdi-comparator-api\src\domains\banks\bank.service.js:323:27)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async D:\KORE - Claude\cfdi-comparator-api\src\domains\banks\bank.routes.js:71:14
+2026-04-06 14:34:53 [error]: BadRequestError: Este movimiento no tiene UUID vinculado
+    at Object.unlinkUuid (D:\KORE - Claude\cfdi-comparator-api\src\domains\banks\bank.service.js:323:27)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async D:\KORE - Claude\cfdi-comparator-api\src\domains\banks\bank.routes.js:71:14
+2026-04-06 14:34:54 [error]: BadRequestError: Este movimiento no tiene UUID vinculado
+    at Object.unlinkUuid (D:\KORE - Claude\cfdi-comparator-api\src\domains\banks\bank.service.js:323:27)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async D:\KORE - Claude\cfdi-comparator-api\src\domains\banks\bank.routes.js:71:14
+2026-04-06 14:35:18 [error]: BadRequestError: Este movimiento no tiene UUID vinculado
+    at Object.unlinkUuid (D:\KORE - Claude\cfdi-comparator-api\src\domains\banks\bank.service.js:323:27)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async D:\KORE - Claude\cfdi-comparator-api\src\domains\banks\bank.routes.js:71:14
+2026-04-07 17:13:49 [error]: Error: ERP_TOKEN no configurado en .env
+    at Object.getCuentasPendientes (D:\KORE - Claude\cfdi-comparator-api\src\domains\erp\erp.service.js:19:23)
+    at D:\KORE - Claude\cfdi-comparator-api\src\domains\erp\erp.routes.js:18:26
+    at D:\KORE - Claude\cfdi-comparator-api\src\shared\middleware\error-handler.js:9:19
+    at Layer.handle [as handle_request] (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\layer.js:95:5)
+    at next (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\route.js:149:13)
+    at authenticate (D:\KORE - Claude\cfdi-comparator-api\src\shared\middleware\auth.stub.js:17:3)
+    at Layer.handle [as handle_request] (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\layer.js:95:5)
+    at next (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\layer.js:95:5)
+    at D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\index.js:346:12)
+    at next (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\index.js:175:3)
+    at router (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\layer.js:95:5)
+2026-04-07 17:13:58 [error]: Error: ERP_TOKEN no configurado en .env
+    at Object.getCuentasPendientes (D:\KORE - Claude\cfdi-comparator-api\src\domains\erp\erp.service.js:19:23)
+    at D:\KORE - Claude\cfdi-comparator-api\src\domains\erp\erp.routes.js:18:26
+    at D:\KORE - Claude\cfdi-comparator-api\src\shared\middleware\error-handler.js:9:19
+    at Layer.handle [as handle_request] (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\layer.js:95:5)
+    at next (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\route.js:149:13)
+    at authenticate (D:\KORE - Claude\cfdi-comparator-api\src\shared\middleware\auth.stub.js:17:3)
+    at Layer.handle [as handle_request] (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\layer.js:95:5)
+    at next (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\layer.js:95:5)
+    at D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\index.js:346:12)
+    at next (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\index.js:175:3)
+    at router (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\layer.js:95:5)
+2026-04-07 17:14:35 [error]: Error: ERP_TOKEN no configurado en .env
+    at Object.getCuentasPendientes (D:\KORE - Claude\cfdi-comparator-api\src\domains\erp\erp.service.js:19:23)
+    at D:\KORE - Claude\cfdi-comparator-api\src\domains\erp\erp.routes.js:18:26
+    at D:\KORE - Claude\cfdi-comparator-api\src\shared\middleware\error-handler.js:9:19
+    at Layer.handle [as handle_request] (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\layer.js:95:5)
+    at next (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\route.js:149:13)
+    at authenticate (D:\KORE - Claude\cfdi-comparator-api\src\shared\middleware\auth.stub.js:17:3)
+    at Layer.handle [as handle_request] (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\layer.js:95:5)
+    at next (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\layer.js:95:5)
+    at D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\index.js:346:12)
+    at next (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\index.js:175:3)
+    at router (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\layer.js:95:5)
+2026-04-07 17:15:28 [error]: Error: ERP_TOKEN no configurado en .env
+    at Object.getCuentasPendientes (D:\KORE - Claude\cfdi-comparator-api\src\domains\erp\erp.service.js:19:23)
+    at D:\KORE - Claude\cfdi-comparator-api\src\domains\erp\erp.routes.js:18:26
+    at D:\KORE - Claude\cfdi-comparator-api\src\shared\middleware\error-handler.js:9:19
+    at Layer.handle [as handle_request] (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\layer.js:95:5)
+    at next (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\route.js:149:13)
+    at authenticate (D:\KORE - Claude\cfdi-comparator-api\src\shared\middleware\auth.stub.js:17:3)
+    at Layer.handle [as handle_request] (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\layer.js:95:5)
+    at next (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\layer.js:95:5)
+    at D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\index.js:346:12)
+    at next (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\index.js:175:3)
+    at router (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\layer.js:95:5)
+2026-04-07 17:15:34 [error]: Error: ERP_TOKEN no configurado en .env
+    at Object.getCuentasPendientes (D:\KORE - Claude\cfdi-comparator-api\src\domains\erp\erp.service.js:19:23)
+    at D:\KORE - Claude\cfdi-comparator-api\src\domains\erp\erp.routes.js:18:26
+    at D:\KORE - Claude\cfdi-comparator-api\src\shared\middleware\error-handler.js:9:19
+    at Layer.handle [as handle_request] (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\layer.js:95:5)
+    at next (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\route.js:149:13)
+    at authenticate (D:\KORE - Claude\cfdi-comparator-api\src\shared\middleware\auth.stub.js:17:3)
+    at Layer.handle [as handle_request] (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\layer.js:95:5)
+    at next (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\layer.js:95:5)
+    at D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\index.js:346:12)
+    at next (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\index.js:175:3)
+    at router (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\layer.js:95:5)
+2026-04-07 17:15:36 [error]: Error: ERP_TOKEN no configurado en .env
+    at Object.getCuentasPendientes (D:\KORE - Claude\cfdi-comparator-api\src\domains\erp\erp.service.js:19:23)
+    at D:\KORE - Claude\cfdi-comparator-api\src\domains\erp\erp.routes.js:18:26
+    at D:\KORE - Claude\cfdi-comparator-api\src\shared\middleware\error-handler.js:9:19
+    at Layer.handle [as handle_request] (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\layer.js:95:5)
+    at next (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\route.js:149:13)
+    at authenticate (D:\KORE - Claude\cfdi-comparator-api\src\shared\middleware\auth.stub.js:17:3)
+    at Layer.handle [as handle_request] (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\layer.js:95:5)
+    at next (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\layer.js:95:5)
+    at D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\index.js:346:12)
+    at next (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\index.js:175:3)
+    at router (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\layer.js:95:5)
+2026-04-07 17:15:36 [error]: Error: ERP_TOKEN no configurado en .env
+    at Object.getCuentasPendientes (D:\KORE - Claude\cfdi-comparator-api\src\domains\erp\erp.service.js:19:23)
+    at D:\KORE - Claude\cfdi-comparator-api\src\domains\erp\erp.routes.js:18:26
+    at D:\KORE - Claude\cfdi-comparator-api\src\shared\middleware\error-handler.js:9:19
+    at Layer.handle [as handle_request] (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\layer.js:95:5)
+    at next (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\route.js:149:13)
+    at authenticate (D:\KORE - Claude\cfdi-comparator-api\src\shared\middleware\auth.stub.js:17:3)
+    at Layer.handle [as handle_request] (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\layer.js:95:5)
+    at next (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\layer.js:95:5)
+    at D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\index.js:346:12)
+    at next (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\index.js:175:3)
+    at router (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\layer.js:95:5)
+2026-04-07 17:15:37 [error]: Error: ERP_TOKEN no configurado en .env
+    at Object.getCuentasPendientes (D:\KORE - Claude\cfdi-comparator-api\src\domains\erp\erp.service.js:19:23)
+    at D:\KORE - Claude\cfdi-comparator-api\src\domains\erp\erp.routes.js:18:26
+    at D:\KORE - Claude\cfdi-comparator-api\src\shared\middleware\error-handler.js:9:19
+    at Layer.handle [as handle_request] (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\layer.js:95:5)
+    at next (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\route.js:149:13)
+    at authenticate (D:\KORE - Claude\cfdi-comparator-api\src\shared\middleware\auth.stub.js:17:3)
+    at Layer.handle [as handle_request] (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\layer.js:95:5)
+    at next (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\layer.js:95:5)
+    at D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\index.js:346:12)
+    at next (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\index.js:175:3)
+    at router (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\layer.js:95:5)
+2026-04-08 10:40:19 [error]: AxiosError: Request failed with status code 400
+    at settle (D:\KORE - Claude\cfdi-comparator-api\node_modules\axios\dist\node\axios.cjs:2304:7)
+    at IncomingMessage.handleStreamEnd (D:\KORE - Claude\cfdi-comparator-api\node_modules\axios\dist\node\axios.cjs:3772:13)
+    at IncomingMessage.emit (node:events:531:35)
+    at endReadableNT (node:internal/streams/readable:1696:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+    at Axios.request (D:\KORE - Claude\cfdi-comparator-api\node_modules\axios\dist\node\axios.cjs:5110:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.getCuentasPendientes (D:\KORE - Claude\cfdi-comparator-api\src\domains\erp\erp.service.js:21:20)
+    at async D:\KORE - Claude\cfdi-comparator-api\src\domains\erp\erp.routes.js:18:12
+2026-04-08 12:37:15 [error]: TypeError: CAT_BONUS.has is not a function
+    at _scoreIndividual (D:\KORE - Claude\cfdi-comparator-api\src\domains\erp\erp.service.js:318:17)
+    at D:\KORE - Claude\cfdi-comparator-api\src\domains\erp\erp.service.js:535:22
+    at Array.map (<anonymous>)
+    at Object.getCxcMatches (D:\KORE - Claude\cfdi-comparator-api\src\domains\erp\erp.service.js:526:35)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async D:\KORE - Claude\cfdi-comparator-api\src\domains\erp\erp.routes.js:25:12
+2026-04-08 12:43:11 [error]: ReferenceError: _scoreIndividualOptim is not defined
+    at Object.getCxcMatches (D:\KORE - Claude\cfdi-comparator-api\src\domains\erp\erp.service.js:474:22)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async D:\KORE - Claude\cfdi-comparator-api\src\domains\erp\erp.routes.js:25:12
+2026-04-08 12:57:27 [error]: AxiosError: Request failed with status code 403
+    at settle (D:\KORE - Claude\cfdi-comparator-api\node_modules\axios\dist\node\axios.cjs:2304:7)
+    at IncomingMessage.handleStreamEnd (D:\KORE - Claude\cfdi-comparator-api\node_modules\axios\dist\node\axios.cjs:3772:13)
+    at IncomingMessage.emit (node:events:531:35)
+    at endReadableNT (node:internal/streams/readable:1696:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+    at Axios.request (D:\KORE - Claude\cfdi-comparator-api\node_modules\axios\dist\node\axios.cjs:5110:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.getCuentasPendientes (D:\KORE - Claude\cfdi-comparator-api\src\domains\erp\erp.service.js:61:20)
+    at async D:\KORE - Claude\cfdi-comparator-api\src\domains\erp\erp.routes.js:18:12
+2026-04-08 13:03:58 [error]: AxiosError: Request failed with status code 403
+    at settle (D:\KORE - Claude\cfdi-comparator-api\node_modules\axios\dist\node\axios.cjs:2304:7)
+    at IncomingMessage.handleStreamEnd (D:\KORE - Claude\cfdi-comparator-api\node_modules\axios\dist\node\axios.cjs:3772:13)
+    at IncomingMessage.emit (node:events:531:35)
+    at endReadableNT (node:internal/streams/readable:1696:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+    at Axios.request (D:\KORE - Claude\cfdi-comparator-api\node_modules\axios\dist\node\axios.cjs:5110:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.getCuentasPendientes (D:\KORE - Claude\cfdi-comparator-api\src\domains\erp\erp.service.js:61:20)
+    at async D:\KORE - Claude\cfdi-comparator-api\src\domains\erp\erp.routes.js:18:12
+2026-04-08 13:04:18 [error]: AxiosError: Request failed with status code 403
+    at settle (D:\KORE - Claude\cfdi-comparator-api\node_modules\axios\dist\node\axios.cjs:2304:7)
+    at IncomingMessage.handleStreamEnd (D:\KORE - Claude\cfdi-comparator-api\node_modules\axios\dist\node\axios.cjs:3772:13)
+    at IncomingMessage.emit (node:events:531:35)
+    at endReadableNT (node:internal/streams/readable:1696:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+    at Axios.request (D:\KORE - Claude\cfdi-comparator-api\node_modules\axios\dist\node\axios.cjs:5110:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.getCuentasPendientes (D:\KORE - Claude\cfdi-comparator-api\src\domains\erp\erp.service.js:61:20)
+    at async D:\KORE - Claude\cfdi-comparator-api\src\domains\erp\erp.routes.js:18:12
+2026-04-08 14:59:13 [error]: AxiosError: Request failed with status code 403
+    at settle (D:\KORE - Claude\cfdi-comparator-api\node_modules\axios\dist\node\axios.cjs:2304:7)
+    at IncomingMessage.handleStreamEnd (D:\KORE - Claude\cfdi-comparator-api\node_modules\axios\dist\node\axios.cjs:3772:13)
+    at IncomingMessage.emit (node:events:531:35)
+    at endReadableNT (node:internal/streams/readable:1696:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+    at Axios.request (D:\KORE - Claude\cfdi-comparator-api\node_modules\axios\dist\node\axios.cjs:5110:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.getCuentasPendientes (D:\KORE - Claude\cfdi-comparator-api\src\domains\erp\erp.service.js:61:20)
+    at async D:\KORE - Claude\cfdi-comparator-api\src\domains\erp\erp.routes.js:18:12
+2026-04-08 16:43:11 [error]: AxiosError: Request failed with status code 403
+    at settle (D:\KORE - Claude\cfdi-comparator-api\node_modules\axios\dist\node\axios.cjs:2304:7)
+    at IncomingMessage.handleStreamEnd (D:\KORE - Claude\cfdi-comparator-api\node_modules\axios\dist\node\axios.cjs:3772:13)
+    at IncomingMessage.emit (node:events:531:35)
+    at endReadableNT (node:internal/streams/readable:1696:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+    at Axios.request (D:\KORE - Claude\cfdi-comparator-api\node_modules\axios\dist\node\axios.cjs:5110:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.getCuentasPendientes (D:\KORE - Claude\cfdi-comparator-api\src\domains\erp\erp.service.js:61:20)
+    at async D:\KORE - Claude\cfdi-comparator-api\src\domains\erp\erp.routes.js:18:12
+2026-04-08 16:43:13 [error]: AxiosError: Request failed with status code 403
+    at settle (D:\KORE - Claude\cfdi-comparator-api\node_modules\axios\dist\node\axios.cjs:2304:7)
+    at IncomingMessage.handleStreamEnd (D:\KORE - Claude\cfdi-comparator-api\node_modules\axios\dist\node\axios.cjs:3772:13)
+    at IncomingMessage.emit (node:events:531:35)
+    at endReadableNT (node:internal/streams/readable:1696:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+    at Axios.request (D:\KORE - Claude\cfdi-comparator-api\node_modules\axios\dist\node\axios.cjs:5110:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.getCuentasPendientes (D:\KORE - Claude\cfdi-comparator-api\src\domains\erp\erp.service.js:61:20)
+    at async D:\KORE - Claude\cfdi-comparator-api\src\domains\erp\erp.routes.js:18:12
+2026-04-09 14:53:33 [error]: AxiosError: Request failed with status code 403
+    at settle (D:\KORE - Claude\cfdi-comparator-api\node_modules\axios\dist\node\axios.cjs:2304:7)
+    at IncomingMessage.handleStreamEnd (D:\KORE - Claude\cfdi-comparator-api\node_modules\axios\dist\node\axios.cjs:3772:13)
+    at IncomingMessage.emit (node:events:531:35)
+    at endReadableNT (node:internal/streams/readable:1696:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+    at Axios.request (D:\KORE - Claude\cfdi-comparator-api\node_modules\axios\dist\node\axios.cjs:5110:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.getCuentasPendientes (D:\KORE - Claude\cfdi-comparator-api\src\domains\erp\erp.service.js:61:20)
+    at async D:\KORE - Claude\cfdi-comparator-api\src\domains\erp\erp.routes.js:20:12
+2026-04-09 14:53:53 [error]: AxiosError: Request failed with status code 403
+    at settle (D:\KORE - Claude\cfdi-comparator-api\node_modules\axios\dist\node\axios.cjs:2304:7)
+    at IncomingMessage.handleStreamEnd (D:\KORE - Claude\cfdi-comparator-api\node_modules\axios\dist\node\axios.cjs:3772:13)
+    at IncomingMessage.emit (node:events:531:35)
+    at endReadableNT (node:internal/streams/readable:1696:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+    at Axios.request (D:\KORE - Claude\cfdi-comparator-api\node_modules\axios\dist\node\axios.cjs:5110:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.getCuentasPendientes (D:\KORE - Claude\cfdi-comparator-api\src\domains\erp\erp.service.js:61:20)
+    at async D:\KORE - Claude\cfdi-comparator-api\src\domains\erp\erp.routes.js:20:12
+2026-04-09 14:54:09 [error]: AxiosError: Request failed with status code 403
+    at settle (D:\KORE - Claude\cfdi-comparator-api\node_modules\axios\dist\node\axios.cjs:2304:7)
+    at IncomingMessage.handleStreamEnd (D:\KORE - Claude\cfdi-comparator-api\node_modules\axios\dist\node\axios.cjs:3772:13)
+    at IncomingMessage.emit (node:events:531:35)
+    at endReadableNT (node:internal/streams/readable:1696:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+    at Axios.request (D:\KORE - Claude\cfdi-comparator-api\node_modules\axios\dist\node\axios.cjs:5110:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.getCuentasPendientes (D:\KORE - Claude\cfdi-comparator-api\src\domains\erp\erp.service.js:61:20)
+    at async D:\KORE - Claude\cfdi-comparator-api\src\domains\erp\erp.routes.js:20:12
+2026-04-09 14:54:38 [error]: AxiosError: Request failed with status code 403
+    at settle (D:\KORE - Claude\cfdi-comparator-api\node_modules\axios\dist\node\axios.cjs:2304:7)
+    at IncomingMessage.handleStreamEnd (D:\KORE - Claude\cfdi-comparator-api\node_modules\axios\dist\node\axios.cjs:3772:13)
+    at IncomingMessage.emit (node:events:531:35)
+    at endReadableNT (node:internal/streams/readable:1696:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+    at Axios.request (D:\KORE - Claude\cfdi-comparator-api\node_modules\axios\dist\node\axios.cjs:5110:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.getCuentasPendientes (D:\KORE - Claude\cfdi-comparator-api\src\domains\erp\erp.service.js:61:20)
+    at async D:\KORE - Claude\cfdi-comparator-api\src\domains\erp\erp.routes.js:20:12
+2026-04-09 14:54:40 [error]: AxiosError: Request failed with status code 403
+    at settle (D:\KORE - Claude\cfdi-comparator-api\node_modules\axios\dist\node\axios.cjs:2304:7)
+    at IncomingMessage.handleStreamEnd (D:\KORE - Claude\cfdi-comparator-api\node_modules\axios\dist\node\axios.cjs:3772:13)
+    at IncomingMessage.emit (node:events:531:35)
+    at endReadableNT (node:internal/streams/readable:1696:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+    at Axios.request (D:\KORE - Claude\cfdi-comparator-api\node_modules\axios\dist\node\axios.cjs:5110:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.getCuentasPendientes (D:\KORE - Claude\cfdi-comparator-api\src\domains\erp\erp.service.js:61:20)
+    at async D:\KORE - Claude\cfdi-comparator-api\src\domains\erp\erp.routes.js:20:12
+2026-04-09 14:58:13 [error]: AxiosError: Request failed with status code 403
+    at settle (D:\KORE - Claude\cfdi-comparator-api\node_modules\axios\dist\node\axios.cjs:2304:7)
+    at IncomingMessage.handleStreamEnd (D:\KORE - Claude\cfdi-comparator-api\node_modules\axios\dist\node\axios.cjs:3772:13)
+    at IncomingMessage.emit (node:events:531:35)
+    at endReadableNT (node:internal/streams/readable:1696:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+    at Axios.request (D:\KORE - Claude\cfdi-comparator-api\node_modules\axios\dist\node\axios.cjs:5110:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.getCuentasPendientes (D:\KORE - Claude\cfdi-comparator-api\src\domains\erp\erp.service.js:61:20)
+    at async D:\KORE - Claude\cfdi-comparator-api\src\domains\erp\erp.routes.js:20:12
+2026-04-09 14:58:21 [error]: AxiosError: Request failed with status code 403
+    at settle (D:\KORE - Claude\cfdi-comparator-api\node_modules\axios\dist\node\axios.cjs:2304:7)
+    at IncomingMessage.handleStreamEnd (D:\KORE - Claude\cfdi-comparator-api\node_modules\axios\dist\node\axios.cjs:3772:13)
+    at IncomingMessage.emit (node:events:531:35)
+    at endReadableNT (node:internal/streams/readable:1696:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+    at Axios.request (D:\KORE - Claude\cfdi-comparator-api\node_modules\axios\dist\node\axios.cjs:5110:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.getCuentasPendientes (D:\KORE - Claude\cfdi-comparator-api\src\domains\erp\erp.service.js:61:20)
+    at async D:\KORE - Claude\cfdi-comparator-api\src\domains\erp\erp.routes.js:20:12
+2026-04-09 14:59:22 [error]: AxiosError: Request failed with status code 403
+    at settle (D:\KORE - Claude\cfdi-comparator-api\node_modules\axios\dist\node\axios.cjs:2304:7)
+    at IncomingMessage.handleStreamEnd (D:\KORE - Claude\cfdi-comparator-api\node_modules\axios\dist\node\axios.cjs:3772:13)
+    at IncomingMessage.emit (node:events:531:35)
+    at endReadableNT (node:internal/streams/readable:1696:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+    at Axios.request (D:\KORE - Claude\cfdi-comparator-api\node_modules\axios\dist\node\axios.cjs:5110:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.getCuentasPendientes (D:\KORE - Claude\cfdi-comparator-api\src\domains\erp\erp.service.js:61:20)
+    at async D:\KORE - Claude\cfdi-comparator-api\src\domains\erp\erp.routes.js:20:12
+2026-04-09 14:59:25 [error]: AxiosError: Request failed with status code 403
+    at settle (D:\KORE - Claude\cfdi-comparator-api\node_modules\axios\dist\node\axios.cjs:2304:7)
+    at IncomingMessage.handleStreamEnd (D:\KORE - Claude\cfdi-comparator-api\node_modules\axios\dist\node\axios.cjs:3772:13)
+    at IncomingMessage.emit (node:events:531:35)
+    at endReadableNT (node:internal/streams/readable:1696:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+    at Axios.request (D:\KORE - Claude\cfdi-comparator-api\node_modules\axios\dist\node\axios.cjs:5110:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.getCuentasPendientes (D:\KORE - Claude\cfdi-comparator-api\src\domains\erp\erp.service.js:61:20)
+    at async D:\KORE - Claude\cfdi-comparator-api\src\domains\erp\erp.routes.js:20:12
+2026-04-09 14:59:26 [error]: AxiosError: Request failed with status code 403
+    at settle (D:\KORE - Claude\cfdi-comparator-api\node_modules\axios\dist\node\axios.cjs:2304:7)
+    at IncomingMessage.handleStreamEnd (D:\KORE - Claude\cfdi-comparator-api\node_modules\axios\dist\node\axios.cjs:3772:13)
+    at IncomingMessage.emit (node:events:531:35)
+    at endReadableNT (node:internal/streams/readable:1696:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+    at Axios.request (D:\KORE - Claude\cfdi-comparator-api\node_modules\axios\dist\node\axios.cjs:5110:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.getCuentasPendientes (D:\KORE - Claude\cfdi-comparator-api\src\domains\erp\erp.service.js:61:20)
+    at async D:\KORE - Claude\cfdi-comparator-api\src\domains\erp\erp.routes.js:20:12
+2026-04-09 14:59:26 [error]: AxiosError: Request failed with status code 403
+    at settle (D:\KORE - Claude\cfdi-comparator-api\node_modules\axios\dist\node\axios.cjs:2304:7)
+    at IncomingMessage.handleStreamEnd (D:\KORE - Claude\cfdi-comparator-api\node_modules\axios\dist\node\axios.cjs:3772:13)
+    at IncomingMessage.emit (node:events:531:35)
+    at endReadableNT (node:internal/streams/readable:1696:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+    at Axios.request (D:\KORE - Claude\cfdi-comparator-api\node_modules\axios\dist\node\axios.cjs:5110:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.getCuentasPendientes (D:\KORE - Claude\cfdi-comparator-api\src\domains\erp\erp.service.js:61:20)
+    at async D:\KORE - Claude\cfdi-comparator-api\src\domains\erp\erp.routes.js:20:12
+2026-04-09 14:59:27 [error]: AxiosError: Request failed with status code 403
+    at settle (D:\KORE - Claude\cfdi-comparator-api\node_modules\axios\dist\node\axios.cjs:2304:7)
+    at IncomingMessage.handleStreamEnd (D:\KORE - Claude\cfdi-comparator-api\node_modules\axios\dist\node\axios.cjs:3772:13)
+    at IncomingMessage.emit (node:events:531:35)
+    at endReadableNT (node:internal/streams/readable:1696:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+    at Axios.request (D:\KORE - Claude\cfdi-comparator-api\node_modules\axios\dist\node\axios.cjs:5110:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.getCuentasPendientes (D:\KORE - Claude\cfdi-comparator-api\src\domains\erp\erp.service.js:61:20)
+    at async D:\KORE - Claude\cfdi-comparator-api\src\domains\erp\erp.routes.js:20:12
+2026-04-09 18:25:26 [error]: AxiosError: stream has been aborted
+    at IncomingMessage.handlerStreamAborted (D:\KORE - Claude\cfdi-comparator-api\node_modules\axios\dist\node\axios.cjs:3743:25)
+    at IncomingMessage.emit (node:events:519:28)
+    at IncomingMessage._destroy (node:_http_incoming:224:10)
+    at _destroy (node:internal/streams/destroy:121:10)
+    at IncomingMessage.destroy (node:internal/streams/destroy:83:5)
+    at TLSSocket.socketCloseListener (node:_http_client:460:11)
+    at TLSSocket.emit (node:events:531:35)
+    at node:net:338:12
+    at TCP.done (node:_tls_wrap:657:7)
+    at Axios.request (D:\KORE - Claude\cfdi-comparator-api\node_modules\axios\dist\node\axios.cjs:5110:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.getCuentasPendientes (D:\KORE - Claude\cfdi-comparator-api\src\domains\erp\erp.service.js:61:20)
+    at async D:\KORE - Claude\cfdi-comparator-api\src\domains\erp\erp.routes.js:18:12

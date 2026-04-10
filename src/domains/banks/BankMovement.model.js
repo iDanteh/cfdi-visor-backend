@@ -45,11 +45,25 @@ const bankMovementSchema = new mongoose.Schema({
   // Folio auto-incremental de 6 dígitos (000001, 000002…)
   folio: { type: String, default: null },
 
-  // UUID del CFDI vinculado; al establecerse bloquea el status permanentemente
+  // UUID del CFDI; sólo se gestiona automáticamente vía folioFiscal del ERP
   uuidXML: { type: String, default: null },
 
   // IDs de CxC provenientes del ERP externo (N por movimiento)
   erpIds: { type: [String], default: [] },
+
+  // Snapshot por cada CxC vinculada: saldoActual y folioFiscal al momento de la vinculación
+  erpLinks: {
+    type: [{
+      erpId:       { type: String, required: true },
+      saldoActual: { type: Number, default: 0 },
+      folioFiscal: { type: String, default: null },
+      total:      { type: Number, default: null },
+    }],
+    default: [],
+  },
+
+  // Suma de saldoActual de todos los erpLinks; null cuando no hay vínculos
+  saldoErp: { type: Number, default: null },
 
   // Nombre del cliente identificado mediante el catálogo auxiliar
   auxNombre: { type: String, default: null, index: true },

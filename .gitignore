@@ -3,9 +3,11 @@ node_modules
 credentials/
 *.json.key
 .env.example
-.logs
-.eng.traineddata
-.spa.traineddata
+logs
+eng.traineddata
+spa.traineddata
 *.log
 *.tmp
 satcfdis-34fdcfae6d93.json
+.env
+.env.example
