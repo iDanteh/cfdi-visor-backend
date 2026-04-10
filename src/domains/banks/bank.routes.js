@@ -11,6 +11,7 @@ const {
   resumenAuxiliarClientes,
   listMovimientosAuxiliar,
 } = require('./bank-auxiliary.parser');
+const rulesService = require('./bank-rules.service');
 
 const router = express.Router();
 
@@ -26,6 +27,12 @@ const upload = multer({
 // GET /api/banks/cards
 router.get('/cards', authenticate, asyncHandler(async (req, res) => {
   res.json(await service.getCards());
+}));
+
+// GET /api/banks/categories?banco=BBVA
+router.get('/categories', authenticate, asyncHandler(async (req, res) => {
+  if (!req.query.banco) return res.status(400).json({ error: 'banco requerido' });
+  res.json(await service.listCategories(req.query.banco));
 }));
 
 // GET /api/banks/movements
@@ -60,25 +67,7 @@ router.patch('/movements/:id/status',
   }),
 );
 
-// PATCH /api/banks/movements/:id/uuid
-router.patch('/movements/:id/uuid',
-  authenticate,
-  authorize('admin', 'contador'),
-  asyncHandler(async (req, res) => {
-    res.json(await service.linkUuid(req.params.id, req.body.uuidXML));
-  }),
-);
-
-// DELETE /api/banks/movements/:id/uuid
-router.delete('/movements/:id/uuid',
-  authenticate,
-  authorize('admin', 'contador'),
-  asyncHandler(async (req, res) => {
-    res.json(await service.unlinkUuid(req.params.id));
-  }),
-);
-
-// PATCH /api/banks/movements/:id/erp-ids  (add / remove individual)
+// PATCH /api/banks/movements/:id/erp-ids  (remove individual)
 router.patch('/movements/:id/erp-ids',
   authenticate,
   authorize('admin', 'contador'),
@@ -92,17 +81,59 @@ router.put('/movements/:id/erp-ids',
   authenticate,
   authorize('admin', 'contador'),
   asyncHandler(async (req, res) => {
-    res.json(await service.setErpIds(req.params.id, req.body.erpIds));
+    res.json(await service.setErpIds(req.params.id, req.body.erpLinks));
   }),
 );
 
-// POST /api/banks/recategorizar
-router.post('/recategorizar',
-  authenticate,
-  authorize('admin', 'contador'),
-  asyncHandler(async (_req, res) => {
-    const result = await service.recategorizarMovimientos();
-    res.json({ mensaje: `${result.actualizados} movimientos actualizados`, ...result });
+// ── Reglas de categorización ─────────────────────────────────────────────────
+
+// GET /api/banks/rules?banco=BBVA
+router.get('/rules', authenticate, asyncHandler(async (req, res) => {
+  if (!req.query.banco) return res.status(400).json({ error: 'banco requerido' });
+  res.json(await rulesService.listRules(req.query.banco));
+}));
+
+// POST /api/banks/rules
+router.post('/rules',
+  authenticate, authorize('admin', 'contador'),
+  asyncHandler(async (req, res) => {
+    const { banco, ...data } = req.body;
+    if (!banco) return res.status(400).json({ error: 'banco requerido' });
+    res.status(201).json(await rulesService.createRule(banco, data));
+  }),
+);
+
+// PUT /api/banks/rules/reorder
+router.put('/rules/reorder',
+  authenticate, authorize('admin', 'contador'),
+  asyncHandler(async (req, res) => {
+    res.json(await rulesService.reorderRules(req.body.ids));
+  }),
+);
+
+// PUT /api/banks/rules/:id
+router.put('/rules/:id',
+  authenticate, authorize('admin', 'contador'),
+  asyncHandler(async (req, res) => {
+    res.json(await rulesService.updateRule(req.params.id, req.body));
+  }),
+);
+
+// DELETE /api/banks/rules/:id
+router.delete('/rules/:id',
+  authenticate, authorize('admin', 'contador'),
+  asyncHandler(async (req, res) => {
+    res.json(await rulesService.deleteRule(req.params.id));
+  }),
+);
+
+// POST /api/banks/rules/apply
+router.post('/rules/apply',
+  authenticate, authorize('admin', 'contador'),
+  asyncHandler(async (req, res) => {
+    const { banco, soloSinCategoria = false } = req.body;
+    if (!banco) return res.status(400).json({ error: 'banco requerido' });
+    res.json(await rulesService.applyRules(banco, soloSinCategoria));
   }),
 );
 

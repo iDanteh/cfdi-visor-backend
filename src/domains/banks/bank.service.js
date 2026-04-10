@@ -4,7 +4,7 @@ const BankMovement      = require('./BankMovement.model');
 const BankConfig        = require('./BankConfig.model');
 const Counter           = require('../../shared/models/Counter');
 const CollectionRequest = require('../collection-requests/CollectionRequest.model');
-const { parseBankFile, clasificar } = require('./bank.parser');
+const { parseBankFile } = require('./bank.parser');
 const { NotFoundError, BadRequestError, ConflictError } = require('../../shared/errors/AppError');
 
 // ── Constantes ────────────────────────────────────────────────────────────────
@@ -37,14 +37,11 @@ const BANK_PREFIX = {
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
-function generarFolio(banco, fecha, seq) {
-  const key    = (banco ?? '').trim().toLowerCase();
-  const prefix = BANK_PREFIX[key] ?? 'UNKN';
-  const yy     = String(fecha.getFullYear()).slice(-2);
-  const mm     = String(fecha.getMonth() + 1).padStart(2, '0');
-  const dd     = String(fecha.getDate()).padStart(2, '0');
-  const sufijo = seq.toString(16).toUpperCase().padStart(4, '0');
-  return `${prefix}-${yy}${mm}${dd}-${sufijo}`;
+function generarFolio(seq) {
+  const longitudBase = 6;
+  const longitudSeq = seq.toString().length;
+  const longitud = Math.max(longitudBase, longitudSeq);
+  return seq.toString().padStart(longitud, '0');
 }
 
 // ── Service ───────────────────────────────────────────────────────────────────
@@ -128,17 +125,27 @@ async function listMovements(filters) {
   const {
     page = 1, limit = 50,
     banco, fechaInicio, fechaFin,
-    tipo, search,
+    tipo, search, concepto,
     sortBy = 'fecha', sortDir = 'desc',
-    status, categoria,
+    status, categorias,
   } = filters;
 
   const filter = { isActive: true };
-  if (banco)     filter.banco     = banco;
-  if (status)    filter.status    = status;
-  if (categoria) filter.categoria = categoria;
+  if (banco)  filter.banco  = banco;
+  if (status) filter.status = status;
+
+  if (categorias) {
+    // Comma-separated list; __null__ represents null (sin categoría)
+    const vals = categorias.split(',').map(v => v === '__null__' ? null : v);
+    filter.categoria = { $in: vals };
+  }
   if (tipo === 'deposito') filter.deposito = { $gt: 0 };
   if (tipo === 'retiro')   filter.retiro   = { $gt: 0 };
+
+  if (concepto) {
+    const esc = concepto.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    filter.concepto = new RegExp(esc, 'i');
+  }
 
   if (fechaInicio || fechaFin) {
     filter.fecha = {};
@@ -263,39 +270,48 @@ async function importFile(buffer, banco, userId) {
     throw err;
   }
 
-  if (movements.length > 0) {
+  // ── 1. Detectar duplicados ANTES de reservar secuenciales ─────────────────
+  const hashes = movements.map(m => m.hash);
+  const existentes = await BankMovement.find(
+    { hash: { $in: hashes } },
+    'hash',
+  ).lean();
+  const hashesExistentes = new Set(existentes.map(e => e.hash));
+
+  const nuevos     = movements.filter(m => !hashesExistentes.has(m.hash));
+  const duplicados = movements.length - nuevos.length;
+
+  // ── 2. Reservar secuenciales solo para los movimientos nuevos ─────────────
+  if (nuevos.length > 0) {
     const counter = await Counter.findOneAndUpdate(
       { _id: 'bankMovement' },
-      { $inc: { seq: movements.length } },
+      { $inc: { seq: nuevos.length } },
       { upsert: true, new: true },
     );
-    const startSeq = counter.seq - movements.length + 1;
-    movements.forEach((m, i) => {
-      const fechaMov = m.fecha instanceof Date ? m.fecha : new Date(m.fecha);
-      m.folio = generarFolio(m.banco, fechaMov, startSeq + i);
+    const startSeq = counter.seq - nuevos.length + 1;
+    nuevos.forEach((m, i) => {
+      m.folio = generarFolio(startSeq + i);
     });
   }
 
+  // ── 3. Insertar solo los nuevos ───────────────────────────────────────────
   const BATCH = 500;
   let insertados = 0;
-  let duplicados = 0;
 
-  for (let i = 0; i < movements.length; i += BATCH) {
-    const batch = movements.slice(i, i + BATCH);
+  for (let i = 0; i < nuevos.length; i += BATCH) {
+    const batch = nuevos.slice(i, i + BATCH);
     const ops = batch.map((m) => ({
       updateOne: {
         filter: { hash: m.hash },
-        update: { $setOnInsert: { ...m, uploadedBy: userId, isActive: true } },
+        update: { $setOnInsert: { ...m, categoria: null, uploadedBy: userId, isActive: true } },
         upsert: true,
       },
     }));
     try {
       const result = await BankMovement.bulkWrite(ops, { ordered: false });
       insertados += result.upsertedCount;
-      duplicados += result.matchedCount;
     } catch (err) {
       insertados += err.result?.nUpserted || 0;
-      duplicados += err.result?.nMatched  || 0;
     }
   }
 
@@ -308,77 +324,85 @@ async function importFile(buffer, banco, userId) {
   };
 }
 
+const ERP_TOLERANCE = 1.00; // $1 MXN de tolerancia para cuadre
+
+// Calcula saldoErp, uuidXML y status a partir de erpLinks del movimiento
+function aplicarLogicaErp(mov) {
+  const links = mov.erpLinks || [];
+  const saldoErp = links.length > 0
+    ? links.reduce((sum, l) => sum + (l.saldoActual || 0), 0)
+    : null;
+  const uuidXML = links.find(l => l.folioFiscal)?.folioFiscal?.toUpperCase() ?? null;
+  const bankAmount = (mov.deposito ?? mov.retiro ?? 0);
+  const status = (saldoErp !== null && Math.abs(bankAmount - saldoErp) <= ERP_TOLERANCE)
+    ? 'identificado'
+    : 'no_identificado';
+  return { saldoErp, uuidXML, status };
+}
+
 async function updateStatus(id, status) {
   if (!STATUS_VALIDOS.includes(status)) {
     throw new BadRequestError(`Status inválido. Debe ser: ${STATUS_VALIDOS.join(', ')}`);
   }
   const mov = await BankMovement.findById(id);
   if (!mov) throw new NotFoundError('Movimiento');
-  if (mov.uuidXML) {
-    throw new ConflictError('Movimiento bloqueado: tiene un UUID CFDI vinculado y no puede cambiar de estado');
+  // Bloquear si el cuadre ERP determinó automáticamente el status
+  const bankAmount = (mov.deposito ?? mov.retiro ?? 0);
+  if (mov.saldoErp !== null && Math.abs(bankAmount - mov.saldoErp) <= ERP_TOLERANCE) {
+    throw new ConflictError('Movimiento bloqueado: el saldo ERP cuadra con el monto bancario');
   }
   mov.status = status;
   await mov.save();
   return { _id: mov._id, status: mov.status };
 }
 
-async function linkUuid(id, uuidXML) {
-  if (!uuidXML || typeof uuidXML !== 'string' || !uuidXML.trim()) {
-    throw new BadRequestError('UUID inválido o vacío');
-  }
-  const uuid = uuidXML.trim().toUpperCase();
-
-  const mov = await BankMovement.findById(id);
-  if (!mov) throw new NotFoundError('Movimiento');
-  if (mov.uuidXML) throw new ConflictError('Este movimiento ya tiene un UUID vinculado');
-
-  // Si ese UUID ya está vinculado a otro movimiento, lo desvincula primero.
-  const previo = await BankMovement.findOne({ uuidXML: uuid, _id: { $ne: id }, isActive: true });
-  if (previo) {
-    previo.uuidXML = null;
-    previo.status  = 'no_identificado';
-    await previo.save();
-  }
-
-  mov.uuidXML = uuid;
-  mov.status  = 'identificado';
-  await mov.save();
-  return { _id: mov._id, uuidXML: mov.uuidXML, status: mov.status, previoDesvinculado: previo?._id ?? null };
-}
-
-async function unlinkUuid(id) {
-  const mov = await BankMovement.findById(id);
-  if (!mov) throw new NotFoundError('Movimiento');
-  if (!mov.uuidXML) throw new BadRequestError('Este movimiento no tiene UUID vinculado');
-  mov.uuidXML = null;
-  mov.status  = 'no_identificado';
-  await mov.save();
-  return { _id: mov._id, uuidXML: null, status: mov.status };
-}
-
 async function updateErpIds(id, action, erpId) {
+  if (action !== 'remove') throw new BadRequestError('Solo se acepta action "remove"');
   if (!erpId || typeof erpId !== 'string' || !erpId.trim()) {
     throw new BadRequestError('erpId inválido o vacío');
   }
-  if (!['add', 'remove'].includes(action)) {
-    throw new BadRequestError('action debe ser "add" o "remove"');
-  }
   const cleanId = erpId.trim();
-  const update  = action === 'remove'
-    ? { $pull:     { erpIds: cleanId } }
-    : { $addToSet: { erpIds: cleanId } };
-
-  const mov = await BankMovement.findByIdAndUpdate(id, update, { new: true });
+  const mov = await BankMovement.findById(id);
   if (!mov) throw new NotFoundError('Movimiento');
-  return { _id: mov._id, erpIds: mov.erpIds };
+
+  mov.erpIds   = (mov.erpIds   || []).filter(x => x !== cleanId);
+  mov.erpLinks = (mov.erpLinks || []).filter(l => l.erpId !== cleanId);
+
+  const { saldoErp, uuidXML, status } = aplicarLogicaErp(mov);
+  mov.saldoErp = saldoErp;
+  mov.uuidXML  = uuidXML;
+  mov.status   = status;
+  await mov.save();
+  return { _id: mov._id, erpIds: mov.erpIds, saldoErp: mov.saldoErp, uuidXML: mov.uuidXML, status: mov.status };
 }
 
-async function setErpIds(id, erpIds) {
-  if (!Array.isArray(erpIds)) throw new BadRequestError('erpIds debe ser un arreglo');
-  const cleaned = [...new Set(erpIds.map(x => String(x).trim()).filter(Boolean))];
-  const mov = await BankMovement.findByIdAndUpdate(id, { erpIds: cleaned }, { new: true });
+async function setErpIds(id, erpLinks) {
+  if (!Array.isArray(erpLinks)) throw new BadRequestError('erpLinks debe ser un arreglo');
+
+  const cleanLinks = erpLinks
+    .map(l => ({
+      erpId:       String(l.erpId || '').trim(),
+      saldoActual: Number(l.saldoActual) || 0,
+      folioFiscal: l.folioFiscal ? String(l.folioFiscal).trim().toUpperCase() : null,
+      total:      Number(l.total) || null,
+    }))
+    .filter(l => l.erpId);
+
+  const mov = await BankMovement.findById(id);
   if (!mov) throw new NotFoundError('Movimiento');
-  return { _id: mov._id, erpIds: mov.erpIds };
+
+  mov.erpLinks = cleanLinks;
+  mov.erpIds   = cleanLinks.map(l => l.erpId);
+
+  const { saldoErp, uuidXML, status } = aplicarLogicaErp(mov);
+  mov.saldoErp = saldoErp;
+  mov.uuidXML  = uuidXML;
+  mov.status   = status;
+  await mov.save();
+  return {
+    _id: mov._id, erpIds: mov.erpIds, erpLinks: mov.erpLinks,
+    saldoErp: mov.saldoErp, uuidXML: mov.uuidXML, status: mov.status,
+  };
 }
 
 async function getConfig(banco) {
@@ -394,41 +418,18 @@ async function saveConfig(banco, data) {
   return BankConfig.findOneAndUpdate({ banco }, { $set: update }, { upsert: true, new: true });
 }
 
-async function recategorizarMovimientos() {
-  // Obtiene todos los movimientos sin categoría en lotes y los reclasifica
-  const BATCH = 500;
-  let actualizados = 0;
-  let cursor = 0;
-
-  while (true) {
-    const docs = await BankMovement.find(
-      { isActive: true, $or: [{ categoria: null }, { categoria: { $exists: false } }] },
-      { _id: 1, concepto: 1 },
-    ).skip(cursor).limit(BATCH).lean();
-
-    if (docs.length === 0) break;
-
-    const ops = docs
-      .map((d) => ({ id: d._id, cat: clasificar(d.concepto) }))
-      .filter((x) => x.cat !== null)
-      .map(({ id, cat }) => ({
-        updateOne: { filter: { _id: id }, update: { $set: { categoria: cat } } },
-      }));
-
-    if (ops.length) {
-      await BankMovement.bulkWrite(ops, { ordered: false });
-      actualizados += ops.length;
-    }
-
-    cursor += docs.length;
-    if (docs.length < BATCH) break;
-  }
-
-  return { actualizados };
+async function listCategories(banco) {
+  const values = await BankMovement.distinct('categoria', { banco, isActive: true });
+  // Sort: non-null first alphabetically, then null last
+  return values.sort((a, b) => {
+    if (a === null) return 1;
+    if (b === null) return -1;
+    return a.localeCompare(b);
+  });
 }
 
 module.exports = {
   getCards, listMovements, getSummary,
-  importFile, updateStatus, linkUuid, unlinkUuid, updateErpIds, setErpIds,
-  getConfig, saveConfig, recategorizarMovimientos,
+  importFile, updateStatus, updateErpIds, setErpIds,
+  getConfig, saveConfig, listCategories,
 };

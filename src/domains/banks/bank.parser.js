@@ -43,18 +43,62 @@ function isOtros(text, patterns) {
 }
 
 // ── Clasificador de categorías ────────────────────────────────────────────────
+//
+// Orden importa: la primera regla que coincide gana.
+// Reglas más específicas van antes que las más generales.
+//
 const CATEGORIAS = [
-  { label: 'Nómina',            re: /\b(n[oó]mina|salario|sueldo)\b/i },
-  { label: 'Traspaso',          re: /\btraspaso\b/i },
-  { label: 'Depósitos',         re: /\b(dep[oó]s(ito)?s?|ventas?)(\s+(de\s+)?(en\s+)?efectivo)?\b/i },
-  { label: 'Cheque',            re: /\bcheque\b/i },
-  { label: 'Retiro ATM',        re: /\b(cajero|atm|retiro|disposici[oó]n)\b/i },
-  { label: 'Cargo bancario',    re: /\b(comisi[oó]n|mantenimiento|anualidad|cargo\s+(mensual|fijo|por))\b/i },
-  { label: 'Pago de servicio',  re: /\b(cfe|telmex|telcel|izzi|totalplay|dish|megacable)\b/i },
-  { label: 'Compra',            re: /\bcompra\b/i },
-  { label: 'Cobro tarjeta',     re: /\b(tpv|terminal\s+punto|punto\s+de\s+venta|cobro)\b/i },
-  { label: 'Transferencia',     re: /\b(spei|transferencia|transf|trfr|pago\s+(a|de|int)|env[ií]o|abono|bnam|bbvamex|hdnx)\b/i },
-  { label: 'Pago cuenta de tercero', re: /\b(pago\s+cuenta\s+de\s+tercero|pago\s+(a|de)\s+(?!int\b))\b/i },
+  // ── Recursos humanos ──────────────────────────────────────────────────────
+  { label: 'Nómina',
+    re: /\b(n[oó]mina|salario|sueldo)\b/i },
+
+  // ── Movimientos entre cuentas propias ─────────────────────────────────────
+  { label: 'Traspaso',
+    re: /\btraspaso\b/i },
+
+  // ── Efectivo / depósitos en ventanilla ────────────────────────────────────
+  { label: 'Depósitos',
+    re: /\b(dep[oó]s(ito)?s?|ventas?)(\s+(de\s+)?(en\s+)?efectivo)?\b/i },
+
+  // ── Instrumentos de pago físicos ──────────────────────────────────────────
+  { label: 'Cheque',
+    re: /\bcheque\b/i },
+
+  // ── Retiros / disposiciones ───────────────────────────────────────────────
+  { label: 'Retiro ATM',
+    re: /\b(cajero|atm|retiro|disposici[oó]n)\b/i },
+
+  // ── Cargos del banco (comisiones, notas de cargo) ─────────────────────────
+  { label: 'Cargo bancario',
+    re: /\b(comisi[oó]n|mantenimiento|anualidad|cargo\s+(mensual|fijo|por)|nota\s+de\s+cargo)\b/i },
+
+  // ── Servicios públicos y telecomunicaciones ───────────────────────────────
+  { label: 'Pago de servicio',
+    re: /\b(cfe|telmex|telcel|izzi|totalplay|dish|megacable)\b/i },
+
+  // ── Gastos de administración / cuotas de gestión ─────────────────────────
+  { label: 'Gasto administrativo',
+    re: /\b(administraci[oó]n|iva\s+administraci[oó]n)\b/i },
+
+  // ── Compra o venta de productos (material, equipos, refacciones) ──────────
+  // Cubre terminología del ramo hidráulico: material, bombas, tapas,
+  // conexiones, biogestores, válvulas (Valvex), etc.
+  { label: 'Compra',
+    re: /\b(compra|material(es)?(\s+hidr[aá]ulico)?|bomba(s)?|tapa(s)?|valvex|biogestor|conexi[oó]n(es)?|nota\s+de\s+(venta|remisi[oó]n))\b/i },
+
+  // ── Cobros con terminal punto de venta ────────────────────────────────────
+  { label: 'Cobro tarjeta',
+    re: /\b(tpv|terminal\s+punto|punto\s+de\s+venta|cobro)\b/i },
+
+  // ── Transferencias electrónicas y pagos de facturas ───────────────────────
+  // "pago factura(s)" cubre tanto con "de" (ya atrapado por pago\s+de)
+  // como sin "de": "PAGO FACTURA 123".
+  { label: 'Transferencia',
+    re: /\b(spei|transferencia|transf|trfr|pago\s+(a|de|int|factura(s)?)|nota\s+de\s+pago|env[ií]o|abono|bnam|bbvamex|hdnx)\b/i },
+
+  // ── Pagos a terceros / cotizaciones ───────────────────────────────────────
+  { label: 'Pago cuenta de tercero',
+    re: /\b(pago\s+cuenta\s+de\s+tercero|pago\s+(a|de)\s+(?!int\b)|cotizaci[oó]n)\b/i },
 ];
 
 
