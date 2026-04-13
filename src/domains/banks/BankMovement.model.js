@@ -72,6 +72,13 @@ const bankMovementSchema = new mongoose.Schema({
   // volver a cargar el mismo archivo.
   hash: { type: String },
 
+  // Usuario que cambió el status a 'identificado'; se limpia en cualquier otro status
+  identificadoPor: {
+    userId:  { type: String, default: null },
+    nombre:  { type: String, default: null },
+    fechaId: { type: Date,   default: null },
+  },
+
   // Auditoría
   uploadedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
   isActive:   { type: Boolean, default: true, index: true },

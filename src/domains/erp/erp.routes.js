@@ -2,7 +2,7 @@
 
 const express = require('express');
 const axios   = require('axios');
-const { authenticate } = require('../../shared/middleware/auth.stub');
+const { authenticate } = require('../../shared/middleware/auth.real');
 const { asyncHandler } = require('../../shared/middleware/error-handler');
 
 const router = express.Router();

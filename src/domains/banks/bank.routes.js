@@ -2,7 +2,7 @@
 
 const express = require('express');
 const multer  = require('multer');
-const { authenticate, authorize }  = require('../../shared/middleware/auth.stub');
+const { authenticate, authorize }  = require('../../shared/middleware/auth.real');
 const { asyncHandler }             = require('../../shared/middleware/error-handler');
 const service                      = require('./bank.service');
 const {
@@ -11,7 +11,8 @@ const {
   resumenAuxiliarClientes,
   listMovimientosAuxiliar,
 } = require('./bank-auxiliary.parser');
-const rulesService = require('./bank-rules.service');
+const rulesService          = require('./bank-rules.service');
+const { matchAutorizaciones } = require('./bank-autorizaciones.service');
 
 const router = express.Router();
 
@@ -63,7 +64,7 @@ router.patch('/movements/:id/status',
   authenticate,
   authorize('admin', 'contador'),
   asyncHandler(async (req, res) => {
-    res.json(await service.updateStatus(req.params.id, req.body.status));
+    res.json(await service.updateStatus(req.params.id, req.body.status, req.user));
   }),
 );
 
@@ -72,7 +73,7 @@ router.patch('/movements/:id/erp-ids',
   authenticate,
   authorize('admin', 'contador'),
   asyncHandler(async (req, res) => {
-    res.json(await service.updateErpIds(req.params.id, req.body.action, req.body.erpId));
+    res.json(await service.updateErpIds(req.params.id, req.body.action, req.body.erpId, req.user));
   }),
 );
 
@@ -81,7 +82,7 @@ router.put('/movements/:id/erp-ids',
   authenticate,
   authorize('admin', 'contador'),
   asyncHandler(async (req, res) => {
-    res.json(await service.setErpIds(req.params.id, req.body.erpLinks));
+    res.json(await service.setErpIds(req.params.id, req.body.erpLinks, req.user));
   }),
 );
 
@@ -188,6 +189,18 @@ router.patch('/config/:banco',
   authorize('admin', 'contador'),
   asyncHandler(async (req, res) => {
     res.json(await service.saveConfig(req.params.banco, req.body));
+  }),
+);
+
+// POST /api/banks/autorizaciones/match  — match temporal por número de autorización
+router.post('/autorizaciones/match',
+  authenticate,
+  authorize('admin', 'contador'),
+  upload.single('excelFile'),
+  asyncHandler(async (req, res) => {
+    if (!req.file) return res.status(400).json({ error: 'No se envió ningún archivo Excel' });
+    const result = await matchAutorizaciones(req.file.buffer);
+    res.json(result);
   }),
 );
 

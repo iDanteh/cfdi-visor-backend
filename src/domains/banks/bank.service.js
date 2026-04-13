@@ -340,7 +340,7 @@ function aplicarLogicaErp(mov) {
   return { saldoErp, uuidXML, status };
 }
 
-async function updateStatus(id, status) {
+async function updateStatus(id, status, user) {
   if (!STATUS_VALIDOS.includes(status)) {
     throw new BadRequestError(`Status inválido. Debe ser: ${STATUS_VALIDOS.join(', ')}`);
   }
@@ -351,12 +351,26 @@ async function updateStatus(id, status) {
   if (mov.saldoErp !== null && Math.abs(bankAmount - mov.saldoErp) <= ERP_TOLERANCE) {
     throw new ConflictError('Movimiento bloqueado: el saldo ERP cuadra con el monto bancario');
   }
+  // Bloquear si el movimiento fue identificado manualmente por otro usuario
+  if (
+    mov.status === 'identificado' &&
+    mov.identificadoPor?.userId &&
+    mov.identificadoPor.userId !== user?._id
+  ) {
+    throw new ConflictError('Movimiento bloqueado: fue identificado por otro usuario');
+  }
   mov.status = status;
+  if (status === 'identificado') {
+    const displayName = [user?.nombre, user?.apellidoP].filter(Boolean).join(' ').trim() || null;
+    mov.identificadoPor = { userId: user?._id ?? null, nombre: displayName, fechaId: new Date() };
+  } else {
+    mov.identificadoPor = { userId: null, nombre: null, fechaId: null };
+  }
   await mov.save();
-  return { _id: mov._id, status: mov.status };
+  return { _id: mov._id, status: mov.status, identificadoPor: mov.identificadoPor };
 }
 
-async function updateErpIds(id, action, erpId) {
+async function updateErpIds(id, action, erpId, user) {
   if (action !== 'remove') throw new BadRequestError('Solo se acepta action "remove"');
   if (!erpId || typeof erpId !== 'string' || !erpId.trim()) {
     throw new BadRequestError('erpId inválido o vacío');
@@ -364,6 +378,13 @@ async function updateErpIds(id, action, erpId) {
   const cleanId = erpId.trim();
   const mov = await BankMovement.findById(id);
   if (!mov) throw new NotFoundError('Movimiento');
+  if (
+    mov.status === 'identificado' &&
+    mov.identificadoPor?.userId &&
+    mov.identificadoPor.userId !== user?._id
+  ) {
+    throw new ConflictError('Movimiento bloqueado: fue identificado por otro usuario');
+  }
 
   mov.erpIds   = (mov.erpIds   || []).filter(x => x !== cleanId);
   mov.erpLinks = (mov.erpLinks || []).filter(l => l.erpId !== cleanId);
@@ -372,11 +393,14 @@ async function updateErpIds(id, action, erpId) {
   mov.saldoErp = saldoErp;
   mov.uuidXML  = uuidXML;
   mov.status   = status;
+  if (status !== 'identificado') {
+    mov.identificadoPor = { userId: null, nombre: null, fechaId: null };
+  }
   await mov.save();
-  return { _id: mov._id, erpIds: mov.erpIds, saldoErp: mov.saldoErp, uuidXML: mov.uuidXML, status: mov.status };
+  return { _id: mov._id, erpIds: mov.erpIds, saldoErp: mov.saldoErp, uuidXML: mov.uuidXML, status: mov.status, identificadoPor: mov.identificadoPor };
 }
 
-async function setErpIds(id, erpLinks) {
+async function setErpIds(id, erpLinks, user) {
   if (!Array.isArray(erpLinks)) throw new BadRequestError('erpLinks debe ser un arreglo');
 
   const cleanLinks = erpLinks
@@ -390,6 +414,13 @@ async function setErpIds(id, erpLinks) {
 
   const mov = await BankMovement.findById(id);
   if (!mov) throw new NotFoundError('Movimiento');
+  if (
+    mov.status === 'identificado' &&
+    mov.identificadoPor?.userId &&
+    mov.identificadoPor.userId !== user?._id
+  ) {
+    throw new ConflictError('Movimiento bloqueado: fue identificado por otro usuario');
+  }
 
   mov.erpLinks = cleanLinks;
   mov.erpIds   = cleanLinks.map(l => l.erpId);
@@ -398,10 +429,17 @@ async function setErpIds(id, erpLinks) {
   mov.saldoErp = saldoErp;
   mov.uuidXML  = uuidXML;
   mov.status   = status;
+  if (status === 'identificado') {
+    const displayName = [user?.nombre, user?.apellidoP].filter(Boolean).join(' ').trim() || null;
+    mov.identificadoPor = { userId: user?._id ?? null, nombre: displayName, fechaId: new Date() };
+  } else {
+    mov.identificadoPor = { userId: null, nombre: null, fechaId: null };
+  }
   await mov.save();
   return {
     _id: mov._id, erpIds: mov.erpIds, erpLinks: mov.erpLinks,
     saldoErp: mov.saldoErp, uuidXML: mov.uuidXML, status: mov.status,
+    identificadoPor: mov.identificadoPor,
   };
 }
 

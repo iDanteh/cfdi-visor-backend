@@ -468,3 +468,91 @@
     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
     at async Object.getCuentasPendientes (D:\KORE - Claude\cfdi-comparator-api\src\domains\erp\erp.service.js:61:20)
     at async D:\KORE - Claude\cfdi-comparator-api\src\domains\erp\erp.routes.js:18:12
+2026-04-13 11:58:03 [error]: InvalidTokenError: Unexpected 'aud' value
+    at D:\KORE - Claude\cfdi-comparator-api\node_modules\express-oauth2-jwt-bearer\dist\index.js:524:19
+    at async Object.verify (D:\KORE - Claude\cfdi-comparator-api\node_modules\express-oauth2-jwt-bearer\dist\index.js:851:29)
+    at async D:\KORE - Claude\cfdi-comparator-api\node_modules\express-oauth2-jwt-bearer\dist\index.js:1061:24
+2026-04-13 11:58:10 [error]: InvalidTokenError: Unexpected 'aud' value
+    at D:\KORE - Claude\cfdi-comparator-api\node_modules\express-oauth2-jwt-bearer\dist\index.js:524:19
+    at async Object.verify (D:\KORE - Claude\cfdi-comparator-api\node_modules\express-oauth2-jwt-bearer\dist\index.js:851:29)
+    at async D:\KORE - Claude\cfdi-comparator-api\node_modules\express-oauth2-jwt-bearer\dist\index.js:1061:24
+2026-04-13 11:58:13 [error]: InvalidTokenError: Unexpected 'aud' value
+    at D:\KORE - Claude\cfdi-comparator-api\node_modules\express-oauth2-jwt-bearer\dist\index.js:524:19
+    at async Object.verify (D:\KORE - Claude\cfdi-comparator-api\node_modules\express-oauth2-jwt-bearer\dist\index.js:851:29)
+    at async D:\KORE - Claude\cfdi-comparator-api\node_modules\express-oauth2-jwt-bearer\dist\index.js:1061:24
+2026-04-13 11:58:15 [error]: InvalidTokenError: Unexpected 'aud' value
+    at D:\KORE - Claude\cfdi-comparator-api\node_modules\express-oauth2-jwt-bearer\dist\index.js:524:19
+    at async Object.verify (D:\KORE - Claude\cfdi-comparator-api\node_modules\express-oauth2-jwt-bearer\dist\index.js:851:29)
+    at async D:\KORE - Claude\cfdi-comparator-api\node_modules\express-oauth2-jwt-bearer\dist\index.js:1061:24
+2026-04-13 11:58:30 [error]: InvalidTokenError: Unexpected 'aud' value
+    at D:\KORE - Claude\cfdi-comparator-api\node_modules\express-oauth2-jwt-bearer\dist\index.js:524:19
+    at async Object.verify (D:\KORE - Claude\cfdi-comparator-api\node_modules\express-oauth2-jwt-bearer\dist\index.js:851:29)
+    at async D:\KORE - Claude\cfdi-comparator-api\node_modules\express-oauth2-jwt-bearer\dist\index.js:1061:24
+2026-04-13 12:03:29 [error]: InvalidTokenError: Unexpected 'aud' value
+    at D:\KORE - Claude\cfdi-comparator-api\node_modules\express-oauth2-jwt-bearer\dist\index.js:524:19
+    at async Object.verify (D:\KORE - Claude\cfdi-comparator-api\node_modules\express-oauth2-jwt-bearer\dist\index.js:851:29)
+    at async D:\KORE - Claude\cfdi-comparator-api\node_modules\express-oauth2-jwt-bearer\dist\index.js:1061:24
+2026-04-13 12:03:46 [error]: InvalidTokenError: Unexpected 'aud' value
+    at D:\KORE - Claude\cfdi-comparator-api\node_modules\express-oauth2-jwt-bearer\dist\index.js:524:19
+    at async Object.verify (D:\KORE - Claude\cfdi-comparator-api\node_modules\express-oauth2-jwt-bearer\dist\index.js:851:29)
+    at async D:\KORE - Claude\cfdi-comparator-api\node_modules\express-oauth2-jwt-bearer\dist\index.js:1061:24
+2026-04-13 12:04:16 [error]: InvalidTokenError: Unexpected 'aud' value
+    at D:\KORE - Claude\cfdi-comparator-api\node_modules\express-oauth2-jwt-bearer\dist\index.js:524:19
+    at async Object.verify (D:\KORE - Claude\cfdi-comparator-api\node_modules\express-oauth2-jwt-bearer\dist\index.js:851:29)
+    at async D:\KORE - Claude\cfdi-comparator-api\node_modules\express-oauth2-jwt-bearer\dist\index.js:1061:24
+2026-04-13 12:05:45 [error]: InvalidTokenError: Unexpected 'aud' value
+    at D:\KORE - Claude\cfdi-comparator-api\node_modules\express-oauth2-jwt-bearer\dist\index.js:524:19
+    at async Object.verify (D:\KORE - Claude\cfdi-comparator-api\node_modules\express-oauth2-jwt-bearer\dist\index.js:851:29)
+    at async D:\KORE - Claude\cfdi-comparator-api\node_modules\express-oauth2-jwt-bearer\dist\index.js:1061:24
+2026-04-13 12:05:46 [error]: InvalidTokenError: Unexpected 'aud' value
+    at D:\KORE - Claude\cfdi-comparator-api\node_modules\express-oauth2-jwt-bearer\dist\index.js:524:19
+    at async Object.verify (D:\KORE - Claude\cfdi-comparator-api\node_modules\express-oauth2-jwt-bearer\dist\index.js:851:29)
+    at async D:\KORE - Claude\cfdi-comparator-api\node_modules\express-oauth2-jwt-bearer\dist\index.js:1061:24
+2026-04-13 12:05:46 [error]: InvalidTokenError: Unexpected 'aud' value
+    at D:\KORE - Claude\cfdi-comparator-api\node_modules\express-oauth2-jwt-bearer\dist\index.js:524:19
+    at async Object.verify (D:\KORE - Claude\cfdi-comparator-api\node_modules\express-oauth2-jwt-bearer\dist\index.js:851:29)
+    at async D:\KORE - Claude\cfdi-comparator-api\node_modules\express-oauth2-jwt-bearer\dist\index.js:1061:24
+2026-04-13 12:08:10 [error]: InvalidTokenError: Unexpected 'aud' value
+    at D:\KORE - Claude\cfdi-comparator-api\node_modules\express-oauth2-jwt-bearer\dist\index.js:524:19
+    at async Object.verify (D:\KORE - Claude\cfdi-comparator-api\node_modules\express-oauth2-jwt-bearer\dist\index.js:851:29)
+    at async D:\KORE - Claude\cfdi-comparator-api\node_modules\express-oauth2-jwt-bearer\dist\index.js:1061:24
+2026-04-13 12:08:19 [error]: InvalidTokenError: Unexpected 'aud' value
+    at D:\KORE - Claude\cfdi-comparator-api\node_modules\express-oauth2-jwt-bearer\dist\index.js:524:19
+    at async Object.verify (D:\KORE - Claude\cfdi-comparator-api\node_modules\express-oauth2-jwt-bearer\dist\index.js:851:29)
+    at async D:\KORE - Claude\cfdi-comparator-api\node_modules\express-oauth2-jwt-bearer\dist\index.js:1061:24
+2026-04-13 12:09:57 [error]: InvalidTokenError: Unexpected 'aud' value
+    at D:\KORE - Claude\cfdi-comparator-api\node_modules\express-oauth2-jwt-bearer\dist\index.js:524:19
+    at async Object.verify (D:\KORE - Claude\cfdi-comparator-api\node_modules\express-oauth2-jwt-bearer\dist\index.js:851:29)
+    at async D:\KORE - Claude\cfdi-comparator-api\node_modules\express-oauth2-jwt-bearer\dist\index.js:1061:24
+2026-04-13 12:12:09 [error]: InvalidTokenError: Unexpected 'aud' value
+    at D:\KORE - Claude\cfdi-comparator-api\node_modules\express-oauth2-jwt-bearer\dist\index.js:524:19
+    at async Object.verify (D:\KORE - Claude\cfdi-comparator-api\node_modules\express-oauth2-jwt-bearer\dist\index.js:851:29)
+    at async D:\KORE - Claude\cfdi-comparator-api\node_modules\express-oauth2-jwt-bearer\dist\index.js:1061:24
+2026-04-13 12:13:29 [error]: InvalidTokenError: Unexpected 'aud' value
+    at D:\KORE - Claude\cfdi-comparator-api\node_modules\express-oauth2-jwt-bearer\dist\index.js:524:19
+    at async Object.verify (D:\KORE - Claude\cfdi-comparator-api\node_modules\express-oauth2-jwt-bearer\dist\index.js:851:29)
+    at async D:\KORE - Claude\cfdi-comparator-api\node_modules\express-oauth2-jwt-bearer\dist\index.js:1061:24
+2026-04-13 12:13:34 [error]: InvalidTokenError: Unexpected 'aud' value
+    at D:\KORE - Claude\cfdi-comparator-api\node_modules\express-oauth2-jwt-bearer\dist\index.js:524:19
+    at async Object.verify (D:\KORE - Claude\cfdi-comparator-api\node_modules\express-oauth2-jwt-bearer\dist\index.js:851:29)
+    at async D:\KORE - Claude\cfdi-comparator-api\node_modules\express-oauth2-jwt-bearer\dist\index.js:1061:24
+2026-04-13 12:18:01 [error]: InvalidTokenError: Unexpected 'aud' value
+    at D:\KORE - Claude\cfdi-comparator-api\node_modules\express-oauth2-jwt-bearer\dist\index.js:524:19
+    at async Object.verify (D:\KORE - Claude\cfdi-comparator-api\node_modules\express-oauth2-jwt-bearer\dist\index.js:851:29)
+    at async D:\KORE - Claude\cfdi-comparator-api\node_modules\express-oauth2-jwt-bearer\dist\index.js:1061:24
+2026-04-13 12:24:54 [error]: InvalidTokenError: Unexpected 'aud' value
+    at D:\KORE - Claude\cfdi-comparator-api\node_modules\express-oauth2-jwt-bearer\dist\index.js:524:19
+    at async Object.verify (D:\KORE - Claude\cfdi-comparator-api\node_modules\express-oauth2-jwt-bearer\dist\index.js:851:29)
+    at async D:\KORE - Claude\cfdi-comparator-api\node_modules\express-oauth2-jwt-bearer\dist\index.js:1061:24
+2026-04-13 12:25:16 [error]: InvalidTokenError: Unexpected 'aud' value
+    at D:\KORE - Claude\cfdi-comparator-api\node_modules\express-oauth2-jwt-bearer\dist\index.js:524:19
+    at async Object.verify (D:\KORE - Claude\cfdi-comparator-api\node_modules\express-oauth2-jwt-bearer\dist\index.js:851:29)
+    at async D:\KORE - Claude\cfdi-comparator-api\node_modules\express-oauth2-jwt-bearer\dist\index.js:1061:24
+2026-04-13 12:27:16 [error]: InvalidTokenError: Unexpected 'aud' value
+    at D:\KORE - Claude\cfdi-comparator-api\node_modules\express-oauth2-jwt-bearer\dist\index.js:524:19
+    at async Object.verify (D:\KORE - Claude\cfdi-comparator-api\node_modules\express-oauth2-jwt-bearer\dist\index.js:851:29)
+    at async D:\KORE - Claude\cfdi-comparator-api\node_modules\express-oauth2-jwt-bearer\dist\index.js:1061:24
+2026-04-13 12:28:09 [error]: InvalidTokenError: Unexpected 'aud' value
+    at D:\KORE - Claude\cfdi-comparator-api\node_modules\express-oauth2-jwt-bearer\dist\index.js:524:19
+    at async Object.verify (D:\KORE - Claude\cfdi-comparator-api\node_modules\express-oauth2-jwt-bearer\dist\index.js:851:29)
+    at async D:\KORE - Claude\cfdi-comparator-api\node_modules\express-oauth2-jwt-bearer\dist\index.js:1061:24
