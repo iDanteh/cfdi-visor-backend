@@ -2,7 +2,7 @@
 
 const express = require('express');
 const multer  = require('multer');
-const { authenticate, authorize } = require('../../shared/middleware/auth.stub');
+const { authenticate, authorize } = require('../../shared/middleware/auth.real');
 const { asyncHandler }            = require('../../shared/middleware/error-handler');
 const service                     = require('./collection-request.service');
 
