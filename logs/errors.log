@@ -556,3 +556,88 @@
     at D:\KORE - Claude\cfdi-comparator-api\node_modules\express-oauth2-jwt-bearer\dist\index.js:524:19
     at async Object.verify (D:\KORE - Claude\cfdi-comparator-api\node_modules\express-oauth2-jwt-bearer\dist\index.js:851:29)
     at async D:\KORE - Claude\cfdi-comparator-api\node_modules\express-oauth2-jwt-bearer\dist\index.js:1061:24
+2026-04-13 14:44:34 [error]: InvalidTokenError: Unsupported algorithm "dir" for JWKS-based verification. Supported: RS256, RS384, RS512, PS256, PS384, PS512, ES256, ES256K, ES384, ES512, EdDSA
+    at D:\KORE - Claude\cfdi-comparator-api\node_modules\express-oauth2-jwt-bearer\dist\index.js:524:19
+    at Object.verify (D:\KORE - Claude\cfdi-comparator-api\node_modules\express-oauth2-jwt-bearer\dist\index.js:851:35)
+    at D:\KORE - Claude\cfdi-comparator-api\node_modules\express-oauth2-jwt-bearer\dist\index.js:1061:39
+    at authenticate (D:\KORE - Claude\cfdi-comparator-api\src\shared\middleware\auth.real.js:34:3)
+    at Layer.handle [as handle_request] (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\layer.js:95:5)
+    at next (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\layer.js:95:5)
+    at D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\index.js:346:12)
+    at next (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\index.js:175:3)
+    at router (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\index.js:328:13)
+    at D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\index.js:286:9
+2026-04-13 14:44:43 [error]: InvalidTokenError: Unsupported algorithm "dir" for JWKS-based verification. Supported: RS256, RS384, RS512, PS256, PS384, PS512, ES256, ES256K, ES384, ES512, EdDSA
+    at D:\KORE - Claude\cfdi-comparator-api\node_modules\express-oauth2-jwt-bearer\dist\index.js:524:19
+    at Object.verify (D:\KORE - Claude\cfdi-comparator-api\node_modules\express-oauth2-jwt-bearer\dist\index.js:851:35)
+    at D:\KORE - Claude\cfdi-comparator-api\node_modules\express-oauth2-jwt-bearer\dist\index.js:1061:39
+    at authenticate (D:\KORE - Claude\cfdi-comparator-api\src\shared\middleware\auth.real.js:34:3)
+    at Layer.handle [as handle_request] (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\layer.js:95:5)
+    at next (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\layer.js:95:5)
+    at D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\index.js:346:12)
+    at next (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\index.js:175:3)
+    at router (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\index.js:328:13)
+    at D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\index.js:286:9
+2026-04-13 14:45:40 [error]: InvalidTokenError: Unsupported algorithm "dir" for JWKS-based verification. Supported: RS256, RS384, RS512, PS256, PS384, PS512, ES256, ES256K, ES384, ES512, EdDSA
+    at D:\KORE - Claude\cfdi-comparator-api\node_modules\express-oauth2-jwt-bearer\dist\index.js:524:19
+    at Object.verify (D:\KORE - Claude\cfdi-comparator-api\node_modules\express-oauth2-jwt-bearer\dist\index.js:851:35)
+    at D:\KORE - Claude\cfdi-comparator-api\node_modules\express-oauth2-jwt-bearer\dist\index.js:1061:39
+    at authenticate (D:\KORE - Claude\cfdi-comparator-api\src\shared\middleware\auth.real.js:34:3)
+    at Layer.handle [as handle_request] (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\layer.js:95:5)
+    at next (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\layer.js:95:5)
+    at D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\index.js:346:12)
+    at next (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\index.js:175:3)
+    at router (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\index.js:328:13)
+    at D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\index.js:286:9
+2026-04-13 14:45:41 [error]: InvalidTokenError: Unsupported algorithm "dir" for JWKS-based verification. Supported: RS256, RS384, RS512, PS256, PS384, PS512, ES256, ES256K, ES384, ES512, EdDSA
+    at D:\KORE - Claude\cfdi-comparator-api\node_modules\express-oauth2-jwt-bearer\dist\index.js:524:19
+    at Object.verify (D:\KORE - Claude\cfdi-comparator-api\node_modules\express-oauth2-jwt-bearer\dist\index.js:851:35)
+    at D:\KORE - Claude\cfdi-comparator-api\node_modules\express-oauth2-jwt-bearer\dist\index.js:1061:39
+    at authenticate (D:\KORE - Claude\cfdi-comparator-api\src\shared\middleware\auth.real.js:34:3)
+    at Layer.handle [as handle_request] (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\layer.js:95:5)
+    at next (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\layer.js:95:5)
+    at D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\index.js:346:12)
+    at next (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\index.js:175:3)
+    at router (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\index.js:328:13)
+    at D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\index.js:286:9
+2026-04-13 14:45:53 [error]: InvalidTokenError: Unsupported algorithm "dir" for JWKS-based verification. Supported: RS256, RS384, RS512, PS256, PS384, PS512, ES256, ES256K, ES384, ES512, EdDSA
+    at D:\KORE - Claude\cfdi-comparator-api\node_modules\express-oauth2-jwt-bearer\dist\index.js:524:19
+    at Object.verify (D:\KORE - Claude\cfdi-comparator-api\node_modules\express-oauth2-jwt-bearer\dist\index.js:851:35)
+    at D:\KORE - Claude\cfdi-comparator-api\node_modules\express-oauth2-jwt-bearer\dist\index.js:1061:39
+    at authenticate (D:\KORE - Claude\cfdi-comparator-api\src\shared\middleware\auth.real.js:34:3)
+    at Layer.handle [as handle_request] (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\layer.js:95:5)
+    at next (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\layer.js:95:5)
+    at D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\index.js:346:12)
+    at next (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\index.js:175:3)
+    at router (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\index.js:328:13)
+    at D:\KORE - Claude\cfdi-comparator-api\node_modules\express\lib\router\index.js:286:9

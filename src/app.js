@@ -7,6 +7,7 @@ const compression = require('compression');
 const rateLimit   = require('express-rate-limit');
 
 const { connectDB }    = require('./config/database');
+const seed             = require('./scripts/seed');
 const { logger }       = require('./shared/utils/logger');
 const errorHandler     = require('./shared/middleware/error-handler');
 
@@ -15,6 +16,7 @@ const bankRoutes              = require('./domains/banks/bank.routes');
 const accountPlanRoutes       = require('./domains/account-plan/account-plan.routes');
 const collectionRequestRoutes = require('./domains/collection-requests/collection-request.routes');
 const erpRoutes               = require('./domains/erp/erp.routes');
+const userRoutes              = require('./domains/users/user.routes');
 
 const app = express();
 
@@ -52,6 +54,7 @@ app.use('/api/banks',                bankRoutes);
 app.use('/api/account-plan',         accountPlanRoutes);
 app.use('/api/collection-requests',  collectionRequestRoutes);
 app.use('/api/erp',                  erpRoutes);
+app.use('/api/users',                userRoutes);
 
 // ── 404 ───────────────────────────────────────────────────────────────────────
 app.use((_req, res) => {
@@ -66,6 +69,7 @@ const PORT = process.env.PORT || 3000;
 
 const startServer = async () => {
   await connectDB();
+  await seed();
   app.listen(PORT, () => {
     logger.info(`Servidor corriendo en puerto ${PORT} [${process.env.NODE_ENV || 'development'}]`);
   });

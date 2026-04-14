@@ -326,15 +326,17 @@ async function importFile(buffer, banco, userId) {
 
 const ERP_TOLERANCE = 1.00; // $1 MXN de tolerancia para cuadre
 
-// Calcula saldoErp, uuidXML y status a partir de erpLinks del movimiento
+// Calcula saldoErp, uuidXML y status a partir de erpLinks del movimiento.
+// Para cada link usa saldoActual cuando está disponible; si es null/undefined
+// cae al total del comprobante (caso: ERP no regresó saldoActual explícito).
 function aplicarLogicaErp(mov) {
   const links = mov.erpLinks || [];
   const saldoErp = links.length > 0
-    ? links.reduce((sum, l) => sum + (l.saldoActual || 0), 0)
+    ? links.reduce((sum, l) => sum + (l.saldoActual || l.total || 0), 0)
     : null;
-  const uuidXML = links.find(l => l.folioFiscal)?.folioFiscal?.toUpperCase() ?? null;
-  const bankAmount = (mov.deposito ?? mov.retiro ?? 0);
-  const status = (saldoErp !== null && Math.abs(bankAmount - saldoErp) <= ERP_TOLERANCE)
+  const uuidXML    = links.find(l => l.folioFiscal)?.folioFiscal?.toUpperCase() ?? null;
+  const bankAmount = Math.abs(mov.deposito ?? mov.retiro ?? 0);
+  const status     = (saldoErp !== null && Math.abs(bankAmount - saldoErp) <= ERP_TOLERANCE)
     ? 'identificado'
     : 'no_identificado';
   return { saldoErp, uuidXML, status };
@@ -361,7 +363,7 @@ async function updateStatus(id, status, user) {
   }
   mov.status = status;
   if (status === 'identificado') {
-    const displayName = [user?.nombre, user?.apellidoP].filter(Boolean).join(' ').trim() || null;
+    const displayName = user?.nombre || user?.email || null;
     mov.identificadoPor = { userId: user?._id ?? null, nombre: displayName, fechaId: new Date() };
   } else {
     mov.identificadoPor = { userId: null, nombre: null, fechaId: null };
@@ -393,11 +395,14 @@ async function updateErpIds(id, action, erpId, user) {
   mov.saldoErp = saldoErp;
   mov.uuidXML  = uuidXML;
   mov.status   = status;
-  if (status !== 'identificado') {
+  if (status === 'identificado') {
+    const displayName = user?.nombre || user?.email || null;
+    mov.identificadoPor = { userId: user?._id ?? null, nombre: displayName, fechaId: new Date() };
+  } else {
     mov.identificadoPor = { userId: null, nombre: null, fechaId: null };
   }
   await mov.save();
-  return { _id: mov._id, erpIds: mov.erpIds, saldoErp: mov.saldoErp, uuidXML: mov.uuidXML, status: mov.status, identificadoPor: mov.identificadoPor };
+  return { _id: mov._id, erpIds: mov.erpIds, erpLinks: mov.erpLinks, saldoErp: mov.saldoErp, uuidXML: mov.uuidXML, status: mov.status, identificadoPor: mov.identificadoPor };
 }
 
 async function setErpIds(id, erpLinks, user) {
@@ -406,9 +411,9 @@ async function setErpIds(id, erpLinks, user) {
   const cleanLinks = erpLinks
     .map(l => ({
       erpId:       String(l.erpId || '').trim(),
-      saldoActual: Number(l.saldoActual) || 0,
+      saldoActual: l.saldoActual != null ? Number(l.saldoActual) : null,
       folioFiscal: l.folioFiscal ? String(l.folioFiscal).trim().toUpperCase() : null,
-      total:      Number(l.total) || null,
+      total:       l.total != null ? Number(l.total) : null,
     }))
     .filter(l => l.erpId);
 
@@ -430,7 +435,7 @@ async function setErpIds(id, erpLinks, user) {
   mov.uuidXML  = uuidXML;
   mov.status   = status;
   if (status === 'identificado') {
-    const displayName = [user?.nombre, user?.apellidoP].filter(Boolean).join(' ').trim() || null;
+    const displayName = user?.nombre || user?.email || null;
     mov.identificadoPor = { userId: user?._id ?? null, nombre: displayName, fechaId: new Date() };
   } else {
     mov.identificadoPor = { userId: null, nombre: null, fechaId: null };
