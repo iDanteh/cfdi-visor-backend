@@ -32,6 +32,7 @@
     "pdf-parse": "^1.1.1",
     "sharp": "^0.34.5",
     "soap": "^1.0.0",
+    "socket.io": "^4.8.3",
     "tesseract.js": "^7.0.0",
     "winston": "^3.11.0",
     "xml2js": "^0.6.2",

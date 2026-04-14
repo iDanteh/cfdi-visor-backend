@@ -166,10 +166,19 @@ async function matchAutorizaciones(buffer) {
   // ── Actualización en bulk ─────────────────────────────────────────────────
   let identificados = 0;
   if (idsAIdentificar.size > 0) {
-    const result = await BankMovement.updateMany(
-      { _id: { $in: [...idsAIdentificar] } },
-      { $set: { status: 'identificado' } },
-    );
+    const ahora = new Date();
+    const ops = [...idsAIdentificar].map(id => ({
+      updateOne: {
+        filter: { _id: id },
+        update: {
+          $set: {
+            status: 'identificado',
+            identificadoPor: { userId: 'aut-match', nombre: 'Motor Autorizaciones', fechaId: ahora },
+          },
+        },
+      },
+    }));
+    const result = await BankMovement.bulkWrite(ops, { ordered: false });
     identificados = result.modifiedCount;
   }
 

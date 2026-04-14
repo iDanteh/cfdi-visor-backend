@@ -311,7 +311,13 @@ async function importFile(buffer, banco, userId) {
       const result = await BankMovement.bulkWrite(ops, { ordered: false });
       insertados += result.upsertedCount;
     } catch (err) {
-      insertados += err.result?.nUpserted || 0;
+      // BulkWriteError con ordered:false — algunos upserts pudieron completarse
+      if (err.result) {
+        insertados += err.result.nUpserted ?? 0;
+      } else {
+        // Error inesperado (ej. cast error en todos los docs) — relanzar para visibilidad
+        throw err;
+      }
     }
   }
 
@@ -348,13 +354,15 @@ async function updateStatus(id, status, user) {
   }
   const mov = await BankMovement.findById(id);
   if (!mov) throw new NotFoundError('Movimiento');
-  // Bloquear si el cuadre ERP determinó automáticamente el status
+  const isAdmin = user?.role === 'admin';
+  // Bloquear si el cuadre ERP determinó automáticamente el status (admin puede forzar)
   const bankAmount = (mov.deposito ?? mov.retiro ?? 0);
-  if (mov.saldoErp !== null && Math.abs(bankAmount - mov.saldoErp) <= ERP_TOLERANCE) {
+  if (!isAdmin && mov.saldoErp !== null && Math.abs(bankAmount - mov.saldoErp) <= ERP_TOLERANCE) {
     throw new ConflictError('Movimiento bloqueado: el saldo ERP cuadra con el monto bancario');
   }
-  // Bloquear si el movimiento fue identificado manualmente por otro usuario
+  // Bloquear si el movimiento fue identificado por otro usuario (admin puede forzar)
   if (
+    !isAdmin &&
     mov.status === 'identificado' &&
     mov.identificadoPor?.userId &&
     mov.identificadoPor.userId !== user?._id
@@ -381,6 +389,7 @@ async function updateErpIds(id, action, erpId, user) {
   const mov = await BankMovement.findById(id);
   if (!mov) throw new NotFoundError('Movimiento');
   if (
+    user?.role !== 'admin' &&
     mov.status === 'identificado' &&
     mov.identificadoPor?.userId &&
     mov.identificadoPor.userId !== user?._id
@@ -420,6 +429,7 @@ async function setErpIds(id, erpLinks, user) {
   const mov = await BankMovement.findById(id);
   if (!mov) throw new NotFoundError('Movimiento');
   if (
+    user?.role !== 'admin' &&
     mov.status === 'identificado' &&
     mov.identificadoPor?.userId &&
     mov.identificadoPor.userId !== user?._id
