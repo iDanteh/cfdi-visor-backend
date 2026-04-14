@@ -1,51 +1,66 @@
 'use strict';
 
 /**
- * auth.real.js — Middleware de autenticación con Auth0 (producción).
+ * auth.real.js — Middleware de autenticación con Auth0.
  *
- * Valida el Access Token JWT emitido por Auth0 usando la JWKS del tenant.
- * Extrae el rol y los datos de nombre del usuario de los claims personalizados.
+ * Valida tokens RS256 JWS emitidos por Auth0 y resuelve el rol/estado
+ * del usuario desde la base de datos propia (colección users).
  *
  * Variables de entorno requeridas:
  *   AUTH0_DOMAIN   — dominio del tenant, ej: myapp.us.auth0.com
- *   AUTH0_AUDIENCE — API identifier registrado en Auth0, ej: https://cfdi-comparator-api
- *
- * Para activar este middleware en producción:
- *   Reemplazar 'auth.stub' por 'auth.real' en todos los archivos de rutas.
+ *   AUTH0_AUDIENCE — API identifier registrado
  */
 
-const { auth } = require('express-oauth2-jwt-bearer');
+const { auth }  = require('express-oauth2-jwt-bearer');
+const userSvc   = require('../../domains/users/user.service');
 
-const ROLE_CLAIM      = 'https://cfdi-comparator/role';
-const NOMBRE_CLAIM    = 'https://cfdi-comparator/nombre';
-const APELLIDO_CLAIM  = 'https://cfdi-comparator/apellidoP';
+const NOMBRE_CLAIM = 'https://cfdi-comparator/nombre';
+const EMAIL_CLAIM  = 'https://cfdi-comparator/email';
 
-// Verifica firma, expiración y audience del Access Token.
-// Lanza 401/403 automáticamente si el token es inválido.
 const jwtCheck = auth({
-  issuerBaseURL: `https://${process.env.AUTH0_DOMAIN}/`,
-  audience:      process.env.AUTH0_AUDIENCE,
+  issuerBaseURL:   `https://${process.env.AUTH0_DOMAIN}/`,
+  audience:        process.env.AUTH0_AUDIENCE,
   tokenSigningAlg: 'RS256',
 });
 
 /**
- * authenticate — verifica el JWT y puebla req.user con los datos del token.
+ * authenticate — valida el JWT y puebla req.user con datos de la DB.
+ * Si el usuario no existe en DB lo crea con rol 'viewer'.
+ * Si el usuario está desactivado devuelve 403.
  */
 const authenticate = (req, res, next) => {
-  jwtCheck(req, res, (err) => {
-    if (err) return next(err);
+  jwtCheck(req, res, async (err) => {
+    if (err) {
+      console.error('[auth] jwtCheck falló:', err.message);
+      return res.status(401).json({ error: 'Token inválido', details: err.message });
+    }
 
-    // req.auth es inyectado por express-oauth2-jwt-bearer tras validación exitosa
     const payload = req.auth?.payload ?? {};
 
-    req.user = {
-      _id:       payload.sub,                         // 'auth0|xxxx'
-      nombre:    payload[NOMBRE_CLAIM]    ?? '',
-      apellidoP: payload[APELLIDO_CLAIM]  ?? '',
-      role:      payload[ROLE_CLAIM] ?? 'viewer',
-    };
+    try {
+      const userDoc = await userSvc.findOrCreate({
+        auth0Sub: payload.sub,
+        nombre:   payload[NOMBRE_CLAIM] ?? '',
+        email:    payload[EMAIL_CLAIM]  ?? payload.email ?? '',
+      });
 
-    next();
+      if (!userDoc.isActive) {
+        return res.status(403).json({ error: 'Usuario desactivado. Contacta al administrador.' });
+      }
+
+      req.user = {
+        _id:    payload.sub,
+        dbId:   userDoc._id.toString(),
+        nombre: userDoc.nombre || payload[NOMBRE_CLAIM] || '',
+        email:  userDoc.email  || payload[EMAIL_CLAIM]  || '',
+        role:   userDoc.role,
+      };
+
+      next();
+    } catch (dbErr) {
+      console.error('[auth] Error resolviendo usuario en DB:', dbErr.message);
+      return res.status(500).json({ error: 'Error interno de autenticación' });
+    }
   });
 };
 
