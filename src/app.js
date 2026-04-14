@@ -1,10 +1,12 @@
 require('dotenv').config();
+const http        = require('http');
 const express     = require('express');
 const helmet      = require('helmet');
 const cors        = require('cors');
 const morgan      = require('morgan');
 const compression = require('compression');
 const rateLimit   = require('express-rate-limit');
+const socketMgr   = require('./shared/socket');
 
 const { connectDB }    = require('./config/database');
 const seed             = require('./scripts/seed');
@@ -28,9 +30,13 @@ app.use(cors({
 }));
 
 // ── Rate limiting ─────────────────────────────────────────────────────────────
+// Ventana de 1 minuto con límite generoso para uso interno.
+// Sobreescribible con RATE_LIMIT_WINDOW_MS y RATE_LIMIT_MAX.
 app.use('/api/', rateLimit({
-  windowMs: parseInt(process.env.RATE_LIMIT_WINDOW_MS) || 15 * 60 * 1000,
-  max:      parseInt(process.env.RATE_LIMIT_MAX)       || 100,
+  windowMs: parseInt(process.env.RATE_LIMIT_WINDOW_MS) || 60 * 1000,
+  max:      parseInt(process.env.RATE_LIMIT_MAX)       || 300,
+  standardHeaders: true,
+  legacyHeaders:   false,
   message:  { error: 'Demasiadas solicitudes, intenta más tarde.' },
 }));
 
@@ -70,7 +76,9 @@ const PORT = process.env.PORT || 3000;
 const startServer = async () => {
   await connectDB();
   await seed();
-  app.listen(PORT, () => {
+  const server = http.createServer(app);
+  socketMgr.init(server);
+  server.listen(PORT, () => {
     logger.info(`Servidor corriendo en puerto ${PORT} [${process.env.NODE_ENV || 'development'}]`);
   });
 };
