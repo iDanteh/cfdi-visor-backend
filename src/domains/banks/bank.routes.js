@@ -54,9 +54,32 @@ router.post('/upload',
   upload.single('excelFile'),
   asyncHandler(async (req, res) => {
     if (!req.file) return res.status(400).json({ error: 'No se envió ningún archivo Excel' });
-    const result = await service.importFile(req.file.buffer, req.body.banco, req.user.dbId);
+    const result = await service.importFile(req.file.buffer, req.body.banco, req.user.dbId, { auth0Sub: req.user._id });
     res.status(207).json(result);
   }),
+);
+
+// POST /api/banks/import-individual
+router.post(
+  '/import-individual',
+  authenticate,
+  authorize('admin', 'contador'),
+  asyncHandler(async (req, res) => {
+    const { movimiento, banco } = req.body;
+
+    if (!movimiento) {
+      return res.status(400).json({ error: 'No se envió el movimiento' });
+    }
+
+    const result = await service.importIndividual(
+      movimiento,
+      banco,
+      req.user.dbId,
+      { auth0Sub: req.user._id }
+    );
+
+    res.status(201).json(result);
+  })
 );
 
 // PATCH /api/banks/movements/:id/status

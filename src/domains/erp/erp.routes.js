@@ -6,6 +6,7 @@ const { authenticate, authorize } = require('../../shared/middleware/auth.real')
 const { asyncHandler } = require('../../shared/middleware/error-handler');
 const ErpCuentaPendiente = require('./ErpCuentaPendiente.model');
 const BankMovement       = require('../banks/BankMovement.model');
+const { emitToAll }      = require('../../shared/socket');
 
 const ERP_TOLERANCE = 1.00; // $1 MXN de tolerancia (misma que bank.service)
 
@@ -235,7 +236,9 @@ router.post('/match', authenticate, authorize('admin', 'contador'), asyncHandler
     matched = result.modifiedCount ?? ops.length;
   }
 
-  res.json({ matched, message: `${matched} movimiento(s) vinculado(s) con cuentas ERP` });
+  const matchResult = { matched, message: `${matched} movimiento(s) vinculado(s) con cuentas ERP` };
+  emitToAll('bank:erp:match:done', matchResult);
+  res.json(matchResult);
 }));
 
 // POST /api/erp/match/revert
