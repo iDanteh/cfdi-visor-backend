@@ -185,5 +185,5 @@ async function applyRules(banco, soloSinCategoria = false) {
 }
 
 module.exports = {
-  listRules, createRule, updateRule, deleteRule, reorderRules, applyRules,
+  listRules, createRule, updateRule, deleteRule, reorderRules, applyRules, matchRegla
 };

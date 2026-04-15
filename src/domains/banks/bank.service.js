@@ -4,9 +4,11 @@ const BankMovement      = require('./BankMovement.model');
 const BankConfig        = require('./BankConfig.model');
 const Counter           = require('../../shared/models/Counter');
 const CollectionRequest = require('../collection-requests/CollectionRequest.model');
-const { parseBankFile } = require('./bank.parser');
+const { parseBankFile, makeHash } = require('./bank.parser');
 const { NotFoundError, BadRequestError, ConflictError } = require('../../shared/errors/AppError');
-
+const { emitToUser, emitToBanco } = require('../../shared/socket');
+const { matchRegla } = require('./bank-rules.service');
+const BankRule            = require('./BankRule.model');
 // ── Constantes ────────────────────────────────────────────────────────────────
 
 const BANCOS_VALIDOS = [
@@ -259,7 +261,7 @@ async function getSummary(fechaInicio, fechaFin) {
   ]);
 }
 
-async function importFile(buffer, banco, userId) {
+async function importFile(buffer, banco, userId, { auth0Sub } = {}) {
   const bancoValidado = BANCOS_VALIDOS.includes(banco) ? banco : null;
   const { movements, summary, errors } = await parseBankFile(buffer, bancoValidado);
 
@@ -297,6 +299,7 @@ async function importFile(buffer, banco, userId) {
   // ── 3. Insertar solo los nuevos ───────────────────────────────────────────
   const BATCH = 500;
   let insertados = 0;
+  const total = nuevos.length;
 
   for (let i = 0; i < nuevos.length; i += BATCH) {
     const batch = nuevos.slice(i, i + BATCH);
@@ -319,14 +322,144 @@ async function importFile(buffer, banco, userId) {
         throw err;
       }
     }
+
+    // Emitir progreso al usuario que hizo la importación
+    emitToUser(auth0Sub, 'bank:import:progress', {
+      banco:      bancoValidado || banco,
+      done:       Math.min(i + BATCH, total),
+      total,
+      importados: insertados,
+      duplicados,
+    });
   }
 
+    // ── 4. Aplicar reglas a los movimientos recién insertados ─────────────────
+    let categorizados  = 0;
+    let sinReglasAviso = false;
+
+    if (insertados > 0 && bancoValidado) {
+      const rules = await BankRule.find({ banco: bancoValidado })
+        .sort({ orden: 1, createdAt: 1 })
+        .lean();
+
+      if (rules.length === 0) {
+        sinReglasAviso = true;
+      } else {
+        const foliosNuevos   = nuevos.map(m => m.folio);
+        const docsInsertados = await BankMovement.find(
+          { folio: { $in: foliosNuevos }, isActive: true },
+        ).lean();
+
+        const ops = [];
+        for (const mov of docsInsertados) {
+          for (const rule of rules) {
+            if (matchRegla(mov, rule)) {
+              ops.push({
+                updateOne: {
+                  filter: { _id: mov._id },
+                  update: { $set: { categoria: rule.nombre } },
+                },
+              });
+              categorizados++;
+              break; // Primera regla que aplica gana
+            }
+          }
+        }
+
+        if (ops.length) {
+          await BankMovement.bulkWrite(ops, { ordered: false });
+        }
+      }
+    }
+
+    return {
+      message:      `${insertados} movimientos importados, ${duplicados} ya existían`,
+      importados:   insertados,
+      duplicados,
+      categorizados,
+      sinReglas:    sinReglasAviso,
+      resumen:      summary,
+      erroresHojas: errors,
+    };
+}
+
+async function importIndividual(mov, banco, userId, { auth0Sub } = {}) {
+  // ── 1. Validar banco ───────────────────────────────────────────────
+  const bancoResuelto = BANCOS_VALIDOS.includes(banco) ? banco : null;
+  if (!bancoResuelto) {
+    const err = new Error('Banco inválido o no especificado');
+    err.statusCode = 400;
+    throw err;
+  }
+
+  // ── 2. Generar hash del movimiento ─────────────────────────────────
+  const movConBanco = { ...mov, banco: bancoResuelto };
+  const hash = makeHash(movConBanco);
+
+  // ── 3. Crear folio (secuencial) ────────────────────────────────────
+  const counter = await Counter.findOneAndUpdate(
+    { _id: 'bankMovement' },
+    { $inc: { seq: 1 } },
+    { upsert: true, new: true }
+  );
+
+  const folio = generarFolio(counter.seq);
+
+  // ── 4. Construir documento ─────────────────────────────────────────
+  const nuevo = new BankMovement({
+    ...mov,
+    banco: bancoResuelto,
+    hash,
+    folio,
+    categoria: null,
+    uploadedBy: userId,
+    isActive: true,
+  });
+
+  // ── 5. Guardar (controlando duplicados por índice único) ───────────
+  try {
+    await nuevo.save();
+  } catch (err) {
+    if (err.code === 11000) {
+      const e = new Error('Movimiento ya existe');
+      e.statusCode = 409;
+      throw e;
+    }
+    throw err;
+  }
+
+  // ── 6. Aplicar reglas automáticas ──────────────────────────────────
+  let categorizado = false;
+
+  if (bancoResuelto) {
+    const rules = await BankRule.find({ banco: bancoResuelto })
+      .sort({ orden: 1, createdAt: 1 })
+      .lean();
+
+    for (const rule of rules) {
+      if (matchRegla(nuevo, rule)) {
+        nuevo.categoria = rule.nombre;
+        await nuevo.save();
+        categorizado = true;
+        break;
+      }
+    }
+  }
+
+  // ── 7. Emitir evento ───────────────────────────────────────────────
+  if (auth0Sub) {
+    emitToUser(auth0Sub, 'bank:import:individual', {
+      banco: bancoResuelto,
+      folio,
+      categorizado,
+    });
+  }
+
+  // ── 8. Respuesta ───────────────────────────────────────────────────
   return {
-    message:      `${insertados} movimientos importados, ${duplicados} ya existían`,
-    importados:   insertados,
-    duplicados,
-    resumen:      summary,
-    erroresHojas: errors,
+    message: 'Movimiento importado correctamente',
+    movimiento: nuevo,
+    categorizado,
   };
 }
 
@@ -377,7 +510,11 @@ async function updateStatus(id, status, user) {
     mov.identificadoPor = { userId: null, nombre: null, fechaId: null };
   }
   await mov.save();
-  return { _id: mov._id, status: mov.status, identificadoPor: mov.identificadoPor };
+
+  const updated = { _id: mov._id, banco: mov.banco, status: mov.status, identificadoPor: mov.identificadoPor };
+  emitToBanco(mov.banco, 'bank:movement:updated', updated);
+
+  return updated;
 }
 
 async function updateErpIds(id, action, erpId, user) {
@@ -411,7 +548,14 @@ async function updateErpIds(id, action, erpId, user) {
     mov.identificadoPor = { userId: null, nombre: null, fechaId: null };
   }
   await mov.save();
-  return { _id: mov._id, erpIds: mov.erpIds, erpLinks: mov.erpLinks, saldoErp: mov.saldoErp, uuidXML: mov.uuidXML, status: mov.status, identificadoPor: mov.identificadoPor };
+
+  const updated = {
+    _id: mov._id, banco: mov.banco, erpIds: mov.erpIds, erpLinks: mov.erpLinks,
+    saldoErp: mov.saldoErp, uuidXML: mov.uuidXML, status: mov.status, identificadoPor: mov.identificadoPor,
+  };
+  emitToBanco(mov.banco, 'bank:movement:updated', updated);
+
+  return updated;
 }
 
 async function setErpIds(id, erpLinks, user) {
@@ -451,11 +595,15 @@ async function setErpIds(id, erpLinks, user) {
     mov.identificadoPor = { userId: null, nombre: null, fechaId: null };
   }
   await mov.save();
-  return {
-    _id: mov._id, erpIds: mov.erpIds, erpLinks: mov.erpLinks,
+
+  const updated = {
+    _id: mov._id, banco: mov.banco, erpIds: mov.erpIds, erpLinks: mov.erpLinks,
     saldoErp: mov.saldoErp, uuidXML: mov.uuidXML, status: mov.status,
     identificadoPor: mov.identificadoPor,
   };
+  emitToBanco(mov.banco, 'bank:movement:updated', updated);
+
+  return updated;
 }
 
 async function getConfig(banco) {
@@ -484,5 +632,5 @@ async function listCategories(banco) {
 module.exports = {
   getCards, listMovements, getSummary,
   importFile, updateStatus, updateErpIds, setErpIds,
-  getConfig, saveConfig, listCategories,
+  getConfig, saveConfig, listCategories, importIndividual
 };

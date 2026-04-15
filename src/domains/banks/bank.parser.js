@@ -631,4 +631,4 @@ async function parseBankFile(buffer, banco) {
   return { movements: allMovements, summary, errors };
 }
 
-module.exports = { parseBankFile, CATEGORIAS, clasificar };
+module.exports = { parseBankFile, CATEGORIAS, clasificar, makeHash };

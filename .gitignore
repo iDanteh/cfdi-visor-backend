@@ -11,3 +11,5 @@ spa.traineddata
 satcfdis-34fdcfae6d93.json
 .env
 .env.example
+logs/app.log
+logs/errors.log
